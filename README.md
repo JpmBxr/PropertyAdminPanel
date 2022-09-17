@@ -1,4 +1,4 @@
-# Property Admin
+# Property Admin Panel
 
 ## Project setup
 ```
