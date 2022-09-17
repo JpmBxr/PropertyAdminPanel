@@ -1,0 +1,14 @@
+//Common
+export const IS_LOADER_ACTIVE = 'IS_LOADER_ACTIVE'
+export const ITEMS = 'ITEMS'
+export const TOTAL_ITEMS = 'TOTAL_ITEMS'
+export const  IS_TABLE_DATA_LOADING='IS_TABLE_DATA_LOADING'
+export const IS_DIALOG_LOADER_ACTIVE = 'IS_DIALOG_LOADER_ACTIVE'
+
+// Login
+export const IS_LOGGED_IN = 'IS_LOGGED_IN'
+export const IS_LOGGED_OUT='IS_LOGGED_OUT'
+
+//Home
+export const USER_PERMISSION='USER_PERMISSION';
+
