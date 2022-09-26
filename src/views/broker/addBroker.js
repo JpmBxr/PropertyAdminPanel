@@ -45,16 +45,16 @@ export const addBroker = {
       //end
     };
   },
-  created() {
-    this.getUserTypeItemWithoutPagination();
+  async created() {
+   await this.getUserTypeItemWithoutPagination();
 
-    this.getBrokerAssociationWithoutPagination();
-    this.getAgencySpecilizationWithoutPagination();
-    this.getProvinceWithoutPagination();
-    this.getCapabilityWithoutPagination();
+   await this.getBrokerAssociationWithoutPagination();
+   await this.getAgencySpecilizationWithoutPagination();
+   await this.getProvinceWithoutPagination();
+   await this.getCapabilityWithoutPagination();
 
-    this.getBrokerProvinceItems();
-    this.getTownWithoutPagination();
+   await this.getBrokerProvinceItems();
+   await this.getTownWithoutPagination();
 
     if (this.$route.params.brokerId != 0) {
       this.isSwitchVisible = true;

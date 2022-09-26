@@ -110,20 +110,7 @@
               </v-btn>
             </v-toolbar>
           </template>
-
-          <template v-slot:item.is_role_active="{ item }">
-            <v-switch
-              :color="item.is_role_active == 'Active' ? 'green' : 'red'"
-              inset
-              dense
-              false-value="Inactive"
-              true-value="Active"
-              v-model="item.is_role_active"
-              @change="enableDisableItem(item)"
-            >
-            </v-switch>
-          </template>
-
+          
           <template v-slot:item.actions="{ item }">
             <v-icon
               size="22"
@@ -133,20 +120,6 @@
                 showAddEditDialog(item);
               "
               >mdi-square-edit-outline</v-icon
-            >
-
-            <v-icon
-              size="22"
-              class="mr-0 ml-1 fitPotSuccessIcon"
-              @click="enableDisableItem(item)"
-              >mdi-bookmark-plus-outline</v-icon
-            >
-
-            <v-icon
-              size="22"
-              class="mr-0 ml-1 fitPotErrorIcon"
-              @click="deleteItem(item)"
-              >mdi-delete-sweep-outline</v-icon
             >
           </template>
         </v-data-table>
