@@ -78,7 +78,7 @@ export const openPending = {
             skillsItems: [],
             userSkills: null,
             pagination: {},
-            module: "Reports",
+            module: "Approvals",
             entity: "List of Open/Pending Properties",
             
 

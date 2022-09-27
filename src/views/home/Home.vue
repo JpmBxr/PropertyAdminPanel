@@ -37,6 +37,7 @@
 
       <v-divider class="mt-0 mb-0"></v-divider>
       <perfect-scrollbar>
+
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-account-group" :value="false">
             <template v-slot:activator>
@@ -58,6 +59,29 @@
             </v-list-item>
           </v-list-group>
         </v-list>
+
+        <v-list shaped dense class="sidepanel">
+          <v-list-group prepend-icon="mdi-account-check " :value="false">
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Approvals</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item
+              v-for="(item, i) in menuItemsApprovals"
+              :key="i"
+              :to="item.to"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item>
+          </v-list-group>
+        </v-list>
+
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-view-dashboard" :value="false">
             <template v-slot:activator>

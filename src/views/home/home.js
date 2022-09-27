@@ -95,7 +95,7 @@ export const home = {
             "/home/master/propertyClassification/propertyClassification-master",
         },
         {
-          text: "Zonning Code",
+          text: "Zoning Code",
           icon: "mdi-newspaper-variant",
           to: "/home/master/zonningCode/zonningCode-master",
         },
@@ -111,17 +111,27 @@ export const home = {
         },
       ],
 
+      menuItemsApprovals:[
+        {
+          text: "Approve User",
+          icon: "mdi-account-circle",
+          to: "/home/users/ApproveUser/approve-user",
+        },
+        {
+          text: "List of Open/Pending Properties",
+          icon: "mdi-chevron-double-right",
+          to: "/home/reports/open-pending",
+        },
+
+      ],
+
       menuItemsUsers: [
         {
           text: "Users",
           icon: "mdi-account-circle",
           to: "/home/users/AgentOperator/agent-operator",
         },
-        {
-          text: "Approve User",
-          icon: "mdi-account-circle",
-          to: "/home/users/ApproveUser/approve-user",
-        },
+        
         {
           text: "Agency",
           icon: "mdi-account-circle",
@@ -258,11 +268,6 @@ export const home = {
           text: "User Count Property",
           icon: "mdi-chevron-double-right",
           to: "/home/reports/user-count-property",
-        },
-        {
-          text: "List of Open/Pending Properties",
-          icon: "mdi-chevron-double-right",
-          to: "/home/reports/open-pending",
         },
       ],
       //#region - Theme Data

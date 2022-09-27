@@ -40,7 +40,7 @@ export const agentOperatorUsers = {
           text: "Phone",
           value: "phone_1",
           width: "15%",
-          sortable: true,
+          sortable: false,
           align: "start",
         },
         {

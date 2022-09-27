@@ -17,7 +17,7 @@
                 <strong>{{ entity }}</strong>
               </v-list-item-title>
               <v-list-item-subtitle
-                >Home <v-icon>mdi-chevron-right</v-icon> Users
+                >Home <v-icon>mdi-chevron-right</v-icon>Approvals
                 <v-icon>mdi-chevron-right</v-icon>
                 {{ entity }}</v-list-item-subtitle
               >

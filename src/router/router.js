@@ -142,12 +142,12 @@ const router = new Router({
           },
         },
 
-        //zonningCode
+        //zoningCode
         {
           path: "master/zonningCode/zonningCode-master",
           component: require("../views/master/ZonningCode/ZonningCodeMaster.vue")
             .default,
-          name: "zonningCodeMaster",
+          name: "zoningCodeMaster",
           meta: {
             requiresAuth: true,
           },
