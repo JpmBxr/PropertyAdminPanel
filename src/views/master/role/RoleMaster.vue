@@ -111,7 +111,7 @@
             </v-toolbar>
           </template>
           
-          <template v-slot:item.actions="{ item }">
+          <!-- <template v-slot:item.actions="{ item }">
             <v-icon
               size="22"
               class="mx-1 fitPotPrimaryIcon"
@@ -121,7 +121,7 @@
               "
               >mdi-square-edit-outline</v-icon
             >
-          </template>
+          </template> -->
         </v-data-table>
       </transition>
       <!--start of Add / edit -->

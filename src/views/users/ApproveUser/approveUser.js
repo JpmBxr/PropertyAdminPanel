@@ -7,9 +7,11 @@ export const approveUser = {
   data() {
     return {
       isLoaderActive: false,
+      isDialogLoaderActive: false,
       totalItemsInDB: 0,
       tableItems: [],
       tableDataLoading: false,
+  
       // Data Table
       tableLoadingDataText: "Loading data",
       tableHeader: [
@@ -23,7 +25,14 @@ export const approveUser = {
         {
           text: "Name",
           value: "full_name",
-          width: "30%",
+          width: "20%",
+          sortable: true,
+          align: "start",
+        },
+        {
+          text: "Role",
+          value: "role_name",
+          width: "20%",
           sortable: true,
           align: "start",
         },
@@ -31,7 +40,7 @@ export const approveUser = {
           text: "Phone",
           value: "phone_1",
           width: "15%",
-          sortable: true,
+          sortable: false,
           align: "start",
         },
         {
@@ -41,14 +50,20 @@ export const approveUser = {
           sortable: true,
           align: "start",
         },
-
+        {
+          text: "OTP",
+          value: "otp",
+          sortable: false,
+          width: "10%",
+          align: "end",
+        },
         {
           text: "Approve",
           value: "user_status",
           sortable: false,
           width: "10%",
           align: "start",
-        },
+        }, 
       ],
 
       pagination: {},
@@ -57,15 +72,12 @@ export const approveUser = {
       // search
       searchText: "",
 
-      // add edit
+      //OTP
       defaultItem: {},
       item: {},
-      addEditDialog: false,
-      isFormAddEditValid: false,
-      isAddEdit: true,
-      addUpdateButtonText: "Add Role",
-      addEditText: "Add",
-      //end
+      addOtpDialog: false,
+      isFormAddOtpValid: false,
+      isAddOtp: true,
 
       //excel
       excelFields: {
@@ -87,9 +99,10 @@ export const approveUser = {
     },
   },
   watch: {
-    addEditDialog(value) {
+    addOtpDialog(value) {
       return value ? true : this.close();
     },
+    //#endregion
     pagination: {
       handler() {
         this.getUsers();
@@ -174,5 +187,91 @@ export const approveUser = {
         }
       }
     },
+
+    //#region  show add Service dialog
+    showAddOtpDialog(item) {
+      if (item == null && this.isAddOtp == true) {
+        this.addOtpText = `Add  ${this.entity}`;
+        this.addOtpDialog = true;
+      } else {
+        this.item = Object.assign({}, item);
+        this.addOtpText = `Enter OTP `
+        this.addOtpDialog = true;
+      }
+    },
+    //#endregion
+
+    //#region  to close the dialog
+    close() {
+      this.addOtpDialog = false;
+      setTimeout(() => {
+        this.item = Object.assign({}, {});
+      }, 300);
+    },
+    //#endregion
+
+     //#region  add Otp item
+     addOtpItem(item) {
+      if (this.$refs.holdingFormAddOtp.validate()) {
+        if (this.isAddOtp) {
+          // save
+          let payload = {
+            user_id: this.item.user_id,
+            verify_otp: this.item.verify_otp,
+          };
+          this.isDialogLoaderActive = true;
+          ApiService.post("WebVerifyOTP",payload)
+            .then((response) => {
+              this.isDialogLoaderActive = false;
+              this.close();
+              if (response.data.result == "success") {
+                Global.showSuccessAlert(true, "success", response.data.message);
+                this.getUsers();
+              } else if (response.data.result == "error") {
+                Global.showErrorAlert(true, "error", response.data.message);
+              }
+            })
+            .catch((error) => {
+              this.isDialogLoaderActive = false;
+
+              if (
+                error.response.status != 401 ||
+                error.response.status != 403
+              ) {
+                Global.showErrorAlert(true, "error", "Something went wrong");
+              }
+            });
+        } else {
+          //update
+          this.isDialogLoaderActive = true;
+          let payload = {
+            user_id: this.item.user_id,
+            verify_otp: this.item.verify_otp,
+          };
+          ApiService.post("WebVerifyOTP",payload)
+            .then((response) => {
+              this.isDialogLoaderActive = false;
+              this.close();
+              if (response.data.result == "success") {
+                Global.showSuccessAlert(true, "success", response.data.message);
+                this.getUsers();
+              } else if (response.data.result == "error") {
+                Global.showErrorAlert(true, "error", response.data.message);
+              }
+            })
+            .catch((error) => {
+              this.isDialogLoaderActive = false;
+
+              if (
+                error.response.status != 401 ||
+                error.response.status != 403
+              ) {
+                Global.showErrorAlert(true, "error", "Something went wrong");
+              }
+            });
+        }
+      }
+    },
+    //#endregion
   },
 };

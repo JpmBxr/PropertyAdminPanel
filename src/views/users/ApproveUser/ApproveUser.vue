@@ -84,6 +84,7 @@
 
           <template v-slot:item.user_status="{ item }">
             <v-switch
+            v-if="item.role_id!=1"
               v-permission="
                 'Change Status of an Agent' |
                   'Change Status of Admin' |
@@ -101,12 +102,24 @@
             >
             </v-switch>
           </template>
+
+          <template v-slot:item.otp="{ item }">
+            <v-icon
+              v-if="item.role_id==1"
+              size="30"
+              class="mr-0 ml-1 fitPotErrorIcon"
+              @click="isAddOtp = true;
+              showAddOtpDialog(item);"
+              >mdi-circle-edit-outline</v-icon
+            >
+          </template>
+
         </v-data-table>
       </transition>
-      <!--start of Add / edit -->
-      <v-dialog
+       <!--start of Add Otp -->
+       <v-dialog
         transition="dialog-top-transition"
-        v-model="addEditDialog"
+        v-model="addOtpDialog"
         max-width="400"
         scrollable
         :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -127,29 +140,35 @@
               :max-height="$vuetify.breakpoint.smAndDown ? 56 : '20vh'"
             >
               <v-toolbar-title class="popup-header">{{
-                addEditText
+                addOtpText
               }}</v-toolbar-title>
               <v-spacer></v-spacer><v-spacer></v-spacer>
-              <v-btn icon dark @click="addEditDialog = false">
+              <v-btn icon dark @click="addOtpDialog = false">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-toolbar>
             <v-card-text class="py-4 px-2">
               <v-form
-                ref="holdingFormAddEdit"
-                v-model="isFormAddEditValid"
+                ref="holdingFormAddOtp"
+                v-model="isFormAddOtpValid"
                 lazy-validation
               >
                 <v-row class="mx-auto d-flex">
                   <v-col cols="12" md="12" class="pt-5 pb-2">
+                    <!-- <v-otp-input 
+                      length="6" 
+                      type="number" 
+                      v-model="item.verify_otp" 
+                    >
+                    </v-otp-input> -->
                     <v-text-field
-                      v-model="item.name"
+                      v-model="item.verify_otp"
                       dense
                       outlined
                       :rules="validationRulesRequired"
                     >
                       <template #label>
-                        Name
+                       Enter Otp To Verify
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -166,16 +185,17 @@
               >
               <v-btn
                 class="mx-2 primary-button"
-                @click="addEditItem()"
-                :disabled="!isFormAddEditValid"
+                @click="addOtpItem"
+                :disabled="!isFormAddOtpValid"
               >
-                {{ addUpdateButtonText }}
+                Verify OTP
               </v-btn>
             </v-card-actions>
           </v-card>
         </template>
       </v-dialog>
-      <!--end of add/edit -->
+      <!--end of add Otp -->
+
       <!-- Card End -->
     </v-card>
   </v-container>

@@ -169,7 +169,7 @@
         </v-list>
       </perfect-scrollbar>
       <v-col class="text-center" cols="12">
-        <strong> Version: 1.0.0.7 </strong></v-col
+        <strong> Version: 1.0.0.8 </strong></v-col
       >
     </v-navigation-drawer>
 

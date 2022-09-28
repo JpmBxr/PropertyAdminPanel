@@ -37,13 +37,13 @@ export const roleMaster = {
           width: "20%",
           align: "start",
         },
-        {
-          text: "Actions",
-          value: "actions",
-          sortable: false,
-          width: "25%",
-          align: "end",
-        },
+        // {
+        //   text: "Actions",
+        //   value: "actions",
+        //   sortable: false,
+        //   width: "25%",
+        //   align: "end",
+        // },
       ],
 
       pagination: {},

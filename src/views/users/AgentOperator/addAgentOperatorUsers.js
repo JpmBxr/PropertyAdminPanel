@@ -450,6 +450,7 @@ export const addAgentOperatorUsers = {
             activeUserDateLimit: this.activeUserDateLimit,
             email: this.email,
             created_by: Global.loggedInUser,
+            user_info: secureLS.get(Global.userId),
           };
           this.isLoaderActive = true;
           ApiService.post(`SaveUser`, payload)
