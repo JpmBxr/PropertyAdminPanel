@@ -335,13 +335,15 @@
           <v-list dense>
             <v-list-item-group>
               <!-- put other options before the divider -->
-              <v-list-item @click="logout">
+              <v-list-item @click="
+                showAccountDetails
+              ">
                 <v-list-item-icon>
                   <v-icon>mdi-account-convert</v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>
-                  <v-list-item-title>Change Profile</v-list-item-title>
+                  <v-list-item-title>Account Details</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
 

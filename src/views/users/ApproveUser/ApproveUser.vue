@@ -101,9 +101,6 @@
               @change="enableDisableItem(item)"
             >
             </v-switch>
-          </template>
-
-          <template v-slot:item.otp="{ item }">
             <v-icon
               v-if="item.role_id==1"
               size="30"

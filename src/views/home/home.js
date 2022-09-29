@@ -20,6 +20,9 @@ export const home = {
       divider: true,
       items: [],
 
+      accountDetailsItem: [],
+      isLoaderActive: false,
+
       //#endregion
       //#region - Side Bar Data
       sideMenu: true,
@@ -430,6 +433,7 @@ export const home = {
     this.setTheme("Purple");
     this.getLoggedUserRolePermission();
     this.get();
+    this.getAccountDetails();
   },
   //#endregion
   //#region - Method Section
@@ -455,6 +459,34 @@ export const home = {
       }
     },
     //#endregion
+
+    // fetch roles
+    getAccountDetails() {
+      let payload = {
+        user_id: secureLS.get(Global.userId),
+      };
+      this.isLoaderActive = true;
+      ApiService.get("webGetAccountDetails", payload)
+        .then((response) => {
+          console.log(response)
+          this.isLoaderActive = false;
+          this.accountDetailsItem = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
+
+    //show add edit dialog
+    showAccountDetails() {
+      this.$router.push({
+        name: "AccountDetails",
+        params: { AccountDetailsDataProps: this.accountDetailsItem[0] },
+      });
+    },
 
     //#region -Logout
     logout() {

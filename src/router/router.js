@@ -32,7 +32,19 @@ const router = new Router({
       meta: {
         requiresAuth: true,
       },
+      
+      
       children: [
+        //Account Details
+        {
+          path: "/home/account-details",
+          component: require("../views/home/AccountDetails.vue").default,
+          name: "AccountDetails",
+          meta: {
+            requiresAuth: true,
+          },
+          props:true
+        },
         // Role Master
         {
           path: "master/role/role-master",

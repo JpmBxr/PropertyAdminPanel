@@ -51,13 +51,6 @@ export const approveUser = {
           align: "start",
         },
         {
-          text: "OTP",
-          value: "otp",
-          sortable: false,
-          width: "10%",
-          align: "end",
-        },
-        {
           text: "Approve",
           value: "user_status",
           sortable: false,
@@ -188,7 +181,7 @@ export const approveUser = {
       }
     },
 
-    //#region  show add Service dialog
+    //#region  show OTP dialog
     showAddOtpDialog(item) {
       if (item == null && this.isAddOtp == true) {
         this.addOtpText = `Add  ${this.entity}`;
