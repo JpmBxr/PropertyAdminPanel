@@ -579,6 +579,7 @@
                   <v-col cols="12" md="12" class="pt-5 pb-2">
                     <v-text-field
                       v-model="item.verify_password"
+                      type="password"
                       dense
                       outlined
                       :rules="validationRulesRequired"

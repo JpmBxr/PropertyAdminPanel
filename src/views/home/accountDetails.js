@@ -454,10 +454,11 @@ export const accountDetails = {
             .then((response) => {
               this.isLoaderActive = false;
               this.close();
+              // this.logout();
+              this.$router.push({
+                name: "Home",
+              });
               Global.showSuccessAlert(true, "success", response.data.message);
-            //   this.$router.push({
-            //     name: "Home",
-            //   });
             })
             .catch((error) => {
               this.isLoaderActive = false;
@@ -517,9 +518,10 @@ export const accountDetails = {
             .then((response) => {
               this.isLoaderActive = false;
               this.close();
-            //   this.$router.push({
-            //     name: "Home",
-            //   });
+              // this.logout();
+              this.$router.push({
+                name: "Home",
+              });
               Global.showSuccessAlert(true, "success", response.data.message);
             })
             .catch((error) => {
