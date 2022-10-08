@@ -32,9 +32,11 @@ const getters = {
 const actions = {
   // get roles
   actionGetRoles({ commit }, payload) {
-    console.log(payload.endPoint);
     commit(types.IS_TABLE_DATA_LOADING, true);
-    ApiService.get(`${payload.endPoint}?page=${payload.page}`, payload)
+    return new ApiService.get(
+      `${payload.endPoint}?page=${payload.page}`,
+      payload
+    )
       .then((response) => {
         commit(types.IS_TABLE_DATA_LOADING, false);
         commit(types.ITEMS, response.data.roleData.data);

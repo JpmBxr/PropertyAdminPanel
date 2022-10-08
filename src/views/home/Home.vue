@@ -82,7 +82,7 @@
           </v-list-group>
         </v-list>
 
-        <v-list shaped dense class="sidepanel">
+        <!-- <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-view-dashboard" :value="false">
             <template v-slot:activator>
               <v-list-item-content>
@@ -101,6 +101,75 @@
               </v-list-item-icon>
               <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item>
+          </v-list-group>
+        </v-list> -->
+        <v-list shaped dense class="sidepanel">
+          <v-list-group prepend-icon="mdi-view-dashboard" :value="false">
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Master</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item   v-permission="'Role Menu'" to="/home/master/role/role-master" 
+              :class="menuClass" :color="menuColor"><v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title >Role</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Province Menu'" to="/home/master/province/province-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-account-multiple</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Province</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Town Menu'" to="/home/master/town/town-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-city</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Town</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Barangay Menu'" to="/home/master/barangay/barangay-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-home-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Barangay</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Subdivision Menu'" to="/home/master/subdivision/subdivision-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-office-building</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Subdivision</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Capability Menu'" to="/home/master/capability/capability-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-file-video</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Capability</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Category Menu'" to="/home/master/category/category-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-point-of-sale</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Category</v-list-item-title>
+            </v-list-item>
+
+
+
+
+
           </v-list-group>
         </v-list>
 

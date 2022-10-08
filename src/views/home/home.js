@@ -503,7 +503,8 @@ export const home = {
       if (navigator.onLine) {
         await this.actionGetLoggedUserDetailsWithRolesPermission({});
         this.$laravel.setPermissions(this.userPermission);
-        console.log("Permission111", this.userPermission);
+
+        console.log("Permission------>", this.userPermission);
       } else {
         // Internet not found
         Global.showErrorAlert(true, "error", "Internet not found", null);

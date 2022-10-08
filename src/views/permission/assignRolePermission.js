@@ -115,30 +115,40 @@ export const assignRolePermission = {
       }
     },
 
-    // fetch roles
-    assignPermissionRoleWise() {
+    // Assign Permission Role Wise
+    assignPermissionRoleWise(item, $event) {
+      if ($event) {
+        this.selectedPermissionId.push(item.permission_id);
+      } else {
+        this.selectedPermissionId.pop(item.permission_id);
+      }
+      // console.log("roleidSave==================>", this.selectedPermissionId);
       let payload = {
         roleId: this.$route.params.roleId,
         permissionId: this.selectedPermissionId,
         endPoint: "webAssignPermissionRoleWise",
       };
+      // console.log("Payload==================>", payload);
       this.actionSavePermission(payload);
     },
 
-    // fetch roles
-    assignPermission() {
-      console.log("roleid", this.$route.params.roleId);
+    //Assign Permission
+    async assignPermission() {
+      // console.log("roleid==================>", this.$route.params.roleId);
       let payload = {
         roleId: this.$route.params.roleId,
         endPoint: "getAssignedUnAssignedPermission",
       };
-      this.actionGetRoles(payload);
+      await this.actionGetRoles(payload);
       this.tableItems.map((val) => {
         if (val.is_permission_assigned == 1) {
           this.selectedPermissionId.push(val.permission_id);
         }
       });
-      console.log("rrr", this.tableItems);
+      // console.log("IsItemPresemtCount", this.selectedPermissionId.length);
+      for (let x in this.selectedPermissionId) {
+        // console.log("IsItemPresemt", x);
+      }
     },
     // search
     searchInfo() {
