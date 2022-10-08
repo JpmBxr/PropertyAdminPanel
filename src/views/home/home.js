@@ -163,21 +163,6 @@ export const home = {
           icon: "mdi-home-analytics",
           to: "/home/Property/property-list",
         },
-        // {
-        //   text: "Add Property",
-        //   icon: "mdi-home-plus-outline",
-        //   to: "/home/Agency/agency",
-        // },
-        // {
-        //   text: "Property Search",
-        //   icon: "mdi-home-search-outline",
-        //   to: "/home/Broker/broker",
-        // },
-        // {
-        //   text: "Property Settings",
-        //   icon: "mdi-message-cog-outline",
-        //   to: "/home/Broker/broker",
-        // },
       ],
       menuItemsSettings: [
         {

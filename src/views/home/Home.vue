@@ -166,6 +166,62 @@
               <v-list-item-title>Category</v-list-item-title>
             </v-list-item>
 
+            <v-list-item v-permission="'Product Mode Menu Menu'" to="/home/master/propertyType/propertyType-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-newspaper-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Product Mode Menu</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Property Type Menu'" to="/home/master/propertyType/propertyType-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-newspaper-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Property Type</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Agri Type Menu'" to="/home/master/agriType/agriType-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-island</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Agri Type</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Property Classification Menu'" to="/home/master/propertyClassification/propertyClassification-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-newspaper-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Property Classification</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Zoning Code Menu'" to="/home/master/zonningCode/zonningCode-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-newspaper-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Zoning Code</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'Specialization Menu'" to="/home/master/specialization/specialization-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-newspaper-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Specialization</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-permission="'User Skills Menu'" to="/home/master/userSkills/userSkills-master"
+              :class="menuClass" :color="menuColor">
+              <v-list-item-icon>
+                <v-icon>mdi-point-of-sale</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>User Skills</v-list-item-title>
+            </v-list-item>
+
 
 
 

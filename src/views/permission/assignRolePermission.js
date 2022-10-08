@@ -108,10 +108,16 @@ export const assignRolePermission = {
     ]),
     // Set selected permission
     setSelectedPermission(item, $event) {
+      console.log("Item======>",item);
       if ($event) {
         this.selectedPermissionId.push(item.permission_id);
       } else {
-        this.selectedPermissionId.pop(item.permission_id);
+         let index = this.selectedPermissionId.indexOf(item.permission_id);
+         if(index>-1)
+         {
+         this.selectedPermissionId.splice(index, 1);
+         }
+        // this.selectedPermissionId.pop(item.permission_id);
       }
     },
 
@@ -120,7 +126,12 @@ export const assignRolePermission = {
       if ($event) {
         this.selectedPermissionId.push(item.permission_id);
       } else {
-        this.selectedPermissionId.pop(item.permission_id);
+        let index = this.selectedPermissionId.indexOf(item.permission_id);
+        if(index>-1)
+        {
+        this.selectedPermissionId.splice(index, 1);
+        }
+        // this.selectedPermissionId.pop(item.permission_id);
       }
       // console.log("roleidSave==================>", this.selectedPermissionId);
       let payload = {
