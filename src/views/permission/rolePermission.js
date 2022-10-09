@@ -190,44 +190,5 @@ export const rolePermission = {
         }
       }
     },
-
-    // enable disable role
-    async enableDisableItem(item) {
-      const result = await Global.showConfirmationAlert(
-        `Change ${this.entity} : ${item.name} Status`,
-        "Are you sure to change the status",
-        "warning"
-      );
-      if (result.isConfirmed) {
-        let payload = {
-          roleName: item.name,
-          roleId: item.id,
-          isRoleActive: item.is_role_active == "Active" ? 1 : 0,
-          endPoint: "webUpdateRoles",
-        };
-        await this.actionEnableDisableRole(payload);
-        this.getRoles();
-      } else {
-        if (item.is_role_active == "Inactive") {
-          item.is_role_active = "Active";
-        } else {
-          item.is_role_active = "Inactive";
-        }
-      }
-    },
-
-    // delete role
-    async deleteItem(item) {
-      const result = await Global.showConfirmationAlert(
-        `Delete Role ${item.name}`,
-        "Are you sure to delete",
-        "warning"
-      );
-      if (result.isConfirmed) {
-        let payload = { roleId: item.id, endPoint: "webDeleteRoles" };
-        await this.actionDeleteRole(payload);
-        this.getRoles();
-      }
-    },
   },
 };

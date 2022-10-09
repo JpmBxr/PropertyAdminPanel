@@ -112,17 +112,11 @@
             </v-toolbar>
           </template>
 
-          <!-- <template v-slot:item.actions="{ item }">
-            <v-icon
-              size="22"
-              class="mx-1 fitPotPrimaryIcon"
-              @click="
-                isAddEdit = false;
-                showAddEditDialog(item);
-              "
-              >mdi-square-edit-outline</v-icon
-            >
-          </template> -->
+          <template v-slot:item.is_role_active="{ item }">
+            <v-chip x-small :color="setStatusColor(item.is_role_active)" dark>{{
+              item.is_role_active
+            }}</v-chip>
+          </template>
         </v-data-table>
       </transition>
       <!--start of Add / edit -->

@@ -122,6 +122,12 @@ export const roleMaster = {
           }
         });
     },
+
+    // Change Status Color
+    setStatusColor(is_active) {
+      return Global.getStatusColor(is_active);
+    },
+    
     // search
     searchInfo() {
       clearTimeout(this._timerId);
