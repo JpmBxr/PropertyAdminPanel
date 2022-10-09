@@ -26,6 +26,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
+        v-permission="'Add Master'"
           :disabled="tableDataLoading"
           class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
           @click="
@@ -92,6 +93,7 @@
               </v-btn>
 
               <v-btn
+              v-permission="'Add Master'"
                 icon
                 small
                 size="24"
@@ -110,6 +112,7 @@
 
           <template v-slot:item.property_classification_status="{ item }">
             <v-switch
+            v-permission="'Enable Master'"
               :color="
                 item.property_classification_status == 'Active'
                   ? 'green'
@@ -127,6 +130,7 @@
 
           <template v-slot:item.actions="{ item }">
             <v-icon
+            v-permission="'Edit Master'"
               size="22"
               class="mx-1 fitPotPrimaryIcon"
               @click="
@@ -137,6 +141,7 @@
             >
 
             <v-icon
+            v-permission="'Delete Master'"
               size="22"
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"

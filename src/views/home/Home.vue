@@ -29,7 +29,7 @@
               <v-list-item-title>
                 <h3>{{ loggedUserFullName }}</h3>
               </v-list-item-title>
-              <v-list-item-subtitle> Administrator </v-list-item-subtitle>
+              <v-list-item-subtitle> {{ roleName }} </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list-item>
@@ -67,6 +67,7 @@
                 <v-list-item-title>Approvals</v-list-item-title>
               </v-list-item-content>
             </template>
+            
             <v-list-item
               v-for="(item, i) in menuItemsApprovals"
               :key="i"
@@ -103,6 +104,7 @@
             </v-list-item>
           </v-list-group>
         </v-list> -->
+
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-view-dashboard" :value="false">
             <template v-slot:activator>
@@ -111,121 +113,172 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item   v-permission="'Role Menu'" to="/home/master/role/role-master" 
-              :class="menuClass" :color="menuColor"><v-list-item-icon>
+            <v-list-item
+              v-permission="'Role Menu'"
+              to="/home/master/role/role-master"
+              :class="menuClass"
+              :color="menuColor"
+              ><v-list-item-icon>
                 <v-icon>mdi-account</v-icon>
               </v-list-item-icon>
-              <v-list-item-title >Role</v-list-item-title>
+              <v-list-item-title>Role</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Province Menu'" to="/home/master/province/province-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Province Menu'"
+              to="/home/master/province/province-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-account-multiple</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Province</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Town Menu'" to="/home/master/town/town-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Town Menu'"
+              to="/home/master/town/town-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-city</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Town</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Barangay Menu'" to="/home/master/barangay/barangay-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Barangay Menu'"
+              to="/home/master/barangay/barangay-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-home-account</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Barangay</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Subdivision Menu'" to="/home/master/subdivision/subdivision-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Subdivision Menu'"
+              to="/home/master/subdivision/subdivision-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-office-building</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Subdivision</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Capability Menu'" to="/home/master/capability/capability-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Capability Menu'"
+              to="/home/master/capability/capability-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-file-video</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Capability</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Category Menu'" to="/home/master/category/category-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Category Menu'"
+              to="/home/master/category/category-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-point-of-sale</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Category</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Product Mode Menu Menu'" to="/home/master/propertyType/propertyType-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Product Mode Menu Menu'"
+              to="/home/master/propertyType/propertyType-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-newspaper-variant</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Product Mode Menu</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Property Type Menu'" to="/home/master/propertyType/propertyType-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Property Type Menu'"
+              to="/home/master/propertyType/propertyType-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-newspaper-variant</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Property Type</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Agri Type Menu'" to="/home/master/agriType/agriType-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Agri Type Menu'"
+              to="/home/master/agriType/agriType-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-island</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Agri Type</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Property Classification Menu'" to="/home/master/propertyClassification/propertyClassification-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Property Classification Menu'"
+              to="/home/master/propertyClassification/propertyClassification-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-newspaper-variant</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Property Classification</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Zoning Code Menu'" to="/home/master/zonningCode/zonningCode-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Zoning Code Menu'"
+              to="/home/master/zonningCode/zonningCode-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-newspaper-variant</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Zoning Code</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'Specialization Menu'" to="/home/master/specialization/specialization-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'Specialization Menu'"
+              to="/home/master/specialization/specialization-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-newspaper-variant</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Specialization</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-permission="'User Skills Menu'" to="/home/master/userSkills/userSkills-master"
-              :class="menuClass" :color="menuColor">
+            <v-list-item
+              v-permission="'User Skills Menu'"
+              to="/home/master/userSkills/userSkills-master"
+              :class="menuClass"
+              :color="menuColor"
+            >
               <v-list-item-icon>
                 <v-icon>mdi-point-of-sale</v-icon>
               </v-list-item-icon>
               <v-list-item-title>User Skills</v-list-item-title>
             </v-list-item>
-
-
-
-
-
           </v-list-group>
         </v-list>
 
@@ -450,7 +503,7 @@
                 <v-list-item-title class="m-0 p-o">
                   <h5>{{ loggedUserFullName }}</h5>
                 </v-list-item-title>
-                <v-list-item-subtitle> Administrator </v-list-item-subtitle>
+                <v-list-item-subtitle> {{ roleName }} </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -460,9 +513,7 @@
           <v-list dense>
             <v-list-item-group>
               <!-- put other options before the divider -->
-              <v-list-item @click="
-                showAccountDetails
-              ">
+              <v-list-item @click="showAccountDetails">
                 <v-list-item-icon>
                   <v-icon>mdi-account-convert</v-icon>
                 </v-list-item-icon>

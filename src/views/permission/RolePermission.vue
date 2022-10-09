@@ -26,6 +26,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
+          v-if="false"
           :disabled="tableDataLoading"
           class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
           @click="
@@ -92,6 +93,7 @@
               </v-btn>
 
               <v-btn
+                v-if="false"
                 icon
                 small
                 size="24"
@@ -109,16 +111,9 @@
           </template>
 
           <template v-slot:item.is_role_active="{ item }">
-            <v-switch
-              :color="item.is_role_active == 'Active' ? 'green' : 'red'"
-              inset
-              dense
-              false-value="Inactive"
-              true-value="Active"
-              v-model="item.is_role_active"
-              @change="enableDisableItem(item)"
-            >
-            </v-switch>
+            <v-chip x-small :color="setStatusColor(item.is_role_active)" dark>{{
+              item.is_role_active
+            }}</v-chip>
           </template>
 
           <template v-slot:item.actions="{ item }">
@@ -134,6 +129,7 @@
             </v-btn>
 
             <v-icon
+              v-if="false"
               size="22"
               class="mx-1 fitPotPrimaryIcon"
               @click="
@@ -144,6 +140,7 @@
             >
 
             <v-icon
+              v-if="false"
               size="22"
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"

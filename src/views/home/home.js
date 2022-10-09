@@ -37,6 +37,8 @@ export const home = {
         secureLS.get(Global.firstNameKey).substring(0, 1) +
         secureLS.get(Global.lastNameKey).substring(0, 1),
 
+      roleName: secureLS.get(Global.roleName),
+
       //#endregion
       menuClass: Global.menuClass,
       menuColor: Global.menuColor,
@@ -114,7 +116,7 @@ export const home = {
         },
       ],
 
-      menuItemsApprovals:[
+      menuItemsApprovals: [
         {
           text: "Approve User",
           icon: "mdi-account-circle",
@@ -125,7 +127,6 @@ export const home = {
           icon: "mdi-chevron-double-right",
           to: "/home/reports/open-pending",
         },
-
       ],
 
       menuItemsUsers: [
@@ -134,7 +135,7 @@ export const home = {
           icon: "mdi-account-circle",
           to: "/home/users/AgentOperator/agent-operator",
         },
-        
+
         {
           text: "Agency",
           icon: "mdi-account-circle",
@@ -453,7 +454,7 @@ export const home = {
       this.isLoaderActive = true;
       ApiService.get("webGetAccountDetails", payload)
         .then((response) => {
-          console.log(response)
+          console.log(response);
           this.isLoaderActive = false;
           this.accountDetailsItem = response.data.resultData;
         })

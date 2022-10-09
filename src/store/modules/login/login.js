@@ -42,7 +42,7 @@ const actions = {
 
           commit(types.IS_LOGGED_IN, true);
           router.push({
-            path: "/home/master/role/role-master",
+            path: "/home/notification/notification-list",
           });
         } else if (response.data.result == "error") {
           Global.showErrorAlert(true, "error", response.data.message, null);

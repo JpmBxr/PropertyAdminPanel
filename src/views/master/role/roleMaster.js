@@ -156,8 +156,8 @@ export const roleMaster = {
       if (this.$refs.holdingFormAddEdit.validate()) {
         if (this.isAddEdit) {
           // save
-          let payload = { 
-            roleName: this.item.name 
+          let payload = {
+            roleName: this.item.name,
           };
           this.isDialogLoaderActive = true;
           ApiService.post("webSaveRole", payload)

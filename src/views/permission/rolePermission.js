@@ -111,6 +111,10 @@ export const rolePermission = {
       "actionEnableDisableRole",
       "actionDeleteRole",
     ]),
+    // Change Status Color
+    setStatusColor(is_active) {
+      return Global.getStatusColor(is_active);
+    },
     // Assign permission
     assignPermission(item) {
       console.log(item);

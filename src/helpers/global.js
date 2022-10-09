@@ -71,6 +71,12 @@ export const Global = {
       confirmButtonText: "Cancel",
     });
   },
+  //Change status color of Status
+  getStatusColor(is_active) {
+    console.log(is_active);
+    if (is_active == "Active") return "success";
+    else return "error";
+  },
   tokenKey: "tokenKey",
   firstNameKey: "firstNameKey",
   lastNameKey: "lastNameKey",
