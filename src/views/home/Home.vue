@@ -37,7 +37,7 @@
 
       <v-divider class="mt-0 mb-0"></v-divider>
       <perfect-scrollbar>
-
+        <!-- Entity -->
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-account-group" :value="false">
             <template v-slot:activator>
@@ -45,21 +45,71 @@
                 <v-list-item-title>Entity</v-list-item-title>
               </v-list-item-content>
             </template>
+
             <v-list-item
-              v-for="(item, i) in menuItemsUsers"
-              :key="i"
-              :to="item.to"
+              v-permission="'Users'"
+              to="/home/users/AgentOperator/agent-operator"
               :class="menuClass"
               :color="menuColor"
             >
               <v-list-item-icon>
-                <v-icon v-text="item.icon"></v-icon>
+                <v-icon>mdi-account-circle</v-icon>
               </v-list-item-icon>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
+              <v-list-item-title>Users</v-list-item-title>
             </v-list-item>
+
+            <v-list-item
+              v-permission="'Agency'"
+              to="/home/Agency/agency"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-account-circle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Agency</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Broker'"
+              to="/home/Broker/broker"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-account-circle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Broker</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Broker Association'"
+              to="/home/Broker/broker-association"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-account-circle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Broker Association</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Seller'"
+              to="/home/Seller/seller"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-account-circle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Seller</v-list-item-title>
+            </v-list-item>
+
           </v-list-group>
         </v-list>
 
+         <!-- Approvals -->
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-account-check " :value="false">
             <template v-slot:activator>
@@ -69,42 +119,33 @@
             </template>
             
             <v-list-item
-              v-for="(item, i) in menuItemsApprovals"
-              :key="i"
-              :to="item.to"
+              v-permission="'Approve User'"
+              to="/home/users/ApproveUser/approve-user"
               :class="menuClass"
               :color="menuColor"
             >
               <v-list-item-icon>
-                <v-icon v-text="item.icon"></v-icon>
+                <v-icon>mdi-account-circle</v-icon>
               </v-list-item-icon>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
+              <v-list-item-title>Approve User</v-list-item-title>
             </v-list-item>
+
+            <v-list-item
+              v-permission="'List of Open/Pending Properties'"
+              to="/home/reports/open-pending"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>List of Open/Pending Properties</v-list-item-title>
+            </v-list-item>
+
           </v-list-group>
         </v-list>
-
-        <!-- <v-list shaped dense class="sidepanel">
-          <v-list-group prepend-icon="mdi-view-dashboard" :value="false">
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>Master</v-list-item-title>
-              </v-list-item-content>
-            </template>
-            <v-list-item
-              v-for="(item, i) in menuItems"
-              :key="i"
-              :to="item.to"
-              :class="menuClass"
-              :color="menuColor"
-            >
-              <v-list-item-icon>
-                <v-icon v-text="item.icon"></v-icon>
-              </v-list-item-icon>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
-            </v-list-item>
-          </v-list-group>
-        </v-list> -->
-
+        
+        <!-- Master -->
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-view-dashboard" :value="false">
             <template v-slot:activator>
@@ -281,7 +322,8 @@
             </v-list-item>
           </v-list-group>
         </v-list>
-
+        
+        <!-- Property -->
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-home-city" :value="false">
             <template v-slot:activator>
@@ -289,20 +331,23 @@
                 <v-list-item-title>Property</v-list-item-title>
               </v-list-item-content>
             </template>
+
             <v-list-item
-              v-for="(item, i) in menuItemsProperty"
-              :key="i"
-              :to="item.to"
+              v-permission="'Property List'"
+              to="/home/Property/property-list"
               :class="menuClass"
               :color="menuColor"
             >
               <v-list-item-icon>
-                <v-icon v-text="item.icon"></v-icon>
+                <v-icon>mdi-home-analytics</v-icon>
               </v-list-item-icon>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
+              <v-list-item-title>Property List</v-list-item-title>
             </v-list-item>
+
           </v-list-group>
         </v-list>
+         
+        <!-- Reports -->
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-form-select" :value="false">
             <template v-slot:activator>
@@ -310,20 +355,203 @@
                 <v-list-item-title>Reports</v-list-item-title>
               </v-list-item-content>
             </template>
+
             <v-list-item
-              v-for="(item, i) in menuItemsReports"
-              :key="i"
-              :to="item.to"
+              v-permission="'Skill Based User Reports'"
+              to="/home/reports/user-based-skill"
               :class="menuClass"
               :color="menuColor"
             >
               <v-list-item-icon>
-                <v-icon v-text="item.icon"></v-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
               </v-list-item-icon>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
+              <v-list-item-title>Skill Based User</v-list-item-title>
             </v-list-item>
+
+            <v-list-item
+              v-permission="'Agents Reports'"
+              to="/home/reports/agents"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Agents</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Agencies Reports'"
+              to="/home/reports/agencies"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Agencies</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Brokers Reports'"
+              to="/home/reports/brokers"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Brokers</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Broker Associations Reports'"
+              to="/home/reports/broker-associations"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Broker Associations</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Agents Based Agency Reports'"
+              to="/home/reports/agents-based-agency"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Agents Based Agency</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Property Based Broker Reports'"
+              to="/home/reports/property-based-broker"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Property Based Broker</v-list-item-title>
+            </v-list-item>
+
+            <!-- <v-list-item
+              v-permission="'Agency linked Broker Reports'"
+              to="/home/permission/role-permission-list"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Agency linked Broker</v-list-item-title>
+            </v-list-item> -->
+
+            <v-list-item
+              v-permission="'BrokerLinkedBrokerAssociationReports'"
+              to="/home/reports/broker-linked-broker-associations"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Broker Linked Broker Associations</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Sellers Reports'"
+              to="/home/reports/sellers"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Sellers</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'User List Reports'"
+              to="/home/reports/user-list"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>User List</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'User To Activated Reports'"
+              to="/home/reports/user-to-activated"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>User To Activated</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Individuals Reports'"
+              to="/home/reports/individuals"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Individuals</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Sold Rent Reports'"
+              to="/home/reports/sold-rent"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Sold Rent</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'Property attachments Reports'"
+              to="/home/reports/property-attachments"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Property attachments</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              v-permission="'User Count Property Reports'"
+              to="/home/reports/user-count-property"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-double-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>User Count Property</v-list-item-title>
+            </v-list-item>
+
           </v-list-group>
         </v-list>
+        
+        <!-- Settings -->
         <v-list shaped dense class="sidepanel">
           <v-list-group prepend-icon="mdi-cog" :value="false">
             <template v-slot:activator>
@@ -331,23 +559,37 @@
                 <v-list-item-title>Settings</v-list-item-title>
               </v-list-item-content>
             </template>
+
             <v-list-item
-              v-for="(item, i) in menuItemsSettings"
-              :key="i"
-              :to="item.to"
+              v-permission="'Role Permissions'"
+              to="/home/permission/role-permission-list"
               :class="menuClass"
               :color="menuColor"
             >
               <v-list-item-icon>
-                <v-icon v-text="item.icon"></v-icon>
+                <v-icon>mdi-account-cog</v-icon>
               </v-list-item-icon>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
+              <v-list-item-title>Role Permissions</v-list-item-title>
             </v-list-item>
+
+            <v-list-item
+              v-permission="'Notification'"
+              to="/home/notification/notification-list"
+              :class="menuClass"
+              :color="menuColor"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-bell-ring</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Notification</v-list-item-title>
+            </v-list-item>
+
           </v-list-group>
         </v-list>
       </perfect-scrollbar>
+
       <v-col class="text-center" cols="12">
-        <strong> Version: 1.0.0.8 </strong></v-col
+        <strong> Version: 1.0.0.9 </strong></v-col
       >
     </v-navigation-drawer>
 

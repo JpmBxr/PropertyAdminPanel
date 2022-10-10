@@ -26,6 +26,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
+        v-permission="'Add User'"
           :disabled="tableDataLoading"
           class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
           @click="
@@ -92,6 +93,7 @@
               </v-btn>
 
               <v-btn
+              v-permission="'Add User'"
                 icon
                 small
                 size="24"
@@ -156,6 +158,7 @@
 
           <template v-slot:item.actions="{ item }">
             <v-icon
+            v-permission="'Add User'"
               v-if="
                 loggedInUserRole === item.role_name &&
                 loggedInUserID === item.user_id
@@ -169,6 +172,7 @@
               >mdi-square-edit-outline</v-icon
             >
             <v-icon
+            v-permission="'Edit User'"
               v-else-if="
                 loggedInUserRole !== item.role_name &&
                 loggedInUserID !== item.user_id
@@ -191,17 +195,6 @@
               @click="deleteItem(item)"
               >mdi-delete-outline</v-icon
             >
-
-            <!-- <v-icon
-              v-else-if="
-                loggedInUserRole !== item.role_name &&
-                loggedInUserID !== item.user_id
-              "
-              size="22"
-              class="mr-0 ml-1 fitPotErrorIcon"
-              @click="deleteItem(item)"
-              >mdi-delete-outline</v-icon
-            > -->
           </template>
         </v-data-table>
       </transition>

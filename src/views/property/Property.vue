@@ -26,6 +26,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
+        v-permission="'Add Property'"
           :disabled="isLoaderActive"
           class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
           @click="goToAddProperty"
@@ -98,6 +99,7 @@
                         v-text="item.action"
                       ></v-list-item-action-text>
                       <v-btn
+                      v-permission="'Property Image'"
                         color="primary"
                         class="white--text"
                         fab
@@ -109,6 +111,7 @@
                       </v-btn>
 
                       <v-btn
+                      v-permission="'Edit Property'"
                         color="info"
                         class="white--text"
                         fab

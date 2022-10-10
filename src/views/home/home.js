@@ -42,6 +42,47 @@ export const home = {
       //#endregion
       menuClass: Global.menuClass,
       menuColor: Global.menuColor,
+      menuItemsUsers: [
+        {
+          text: "Users",
+          icon: "mdi-account-circle",
+          to: "/home/users/AgentOperator/agent-operator",
+        },
+        {
+          text: "Agency",
+          icon: "mdi-account-circle",
+          to: "/home/Agency/agency",
+        },
+        {
+          text: "Broker",
+          icon: "mdi-account-circle",
+          to: "/home/Broker/broker",
+        },
+        {
+          text: "Broker Association",
+          icon: "mdi-account-circle",
+          to: "/home/Broker/broker-association",
+        },
+        {
+          text: "Seller",
+          icon: "mdi-account-circle",
+          to: "/home/Seller/seller",
+        },
+      ],
+
+      menuItemsApprovals: [
+        {
+          text: "Approve User",
+          icon: "mdi-account-circle",
+          to: "/home/users/ApproveUser/approve-user",
+        },
+        {
+          text: "List of Open/Pending Properties",
+          icon: "mdi-chevron-double-right",
+          to: "/home/reports/open-pending",
+        },
+      ],
+
       menuItems: [
         {
           text: "Role",
@@ -116,48 +157,6 @@ export const home = {
         },
       ],
 
-      menuItemsApprovals: [
-        {
-          text: "Approve User",
-          icon: "mdi-account-circle",
-          to: "/home/users/ApproveUser/approve-user",
-        },
-        {
-          text: "List of Open/Pending Properties",
-          icon: "mdi-chevron-double-right",
-          to: "/home/reports/open-pending",
-        },
-      ],
-
-      menuItemsUsers: [
-        {
-          text: "Users",
-          icon: "mdi-account-circle",
-          to: "/home/users/AgentOperator/agent-operator",
-        },
-
-        {
-          text: "Agency",
-          icon: "mdi-account-circle",
-          to: "/home/Agency/agency",
-        },
-        {
-          text: "Broker",
-          icon: "mdi-account-circle",
-          to: "/home/Broker/broker",
-        },
-        {
-          text: "Broker Association",
-          icon: "mdi-account-circle",
-          to: "/home/Broker/broker-association",
-        },
-        {
-          text: "Seller",
-          icon: "mdi-account-circle",
-          to: "/home/Seller/seller",
-        },
-      ],
-
       menuItemsProperty: [
         {
           text: "Property List",
@@ -165,18 +164,7 @@ export const home = {
           to: "/home/Property/property-list",
         },
       ],
-      menuItemsSettings: [
-        {
-          text: "Role Permissions",
-          icon: "mdi-account-cog",
-          to: "/home/permission/role-permission-list",
-        },
-        {
-          text: "Notification",
-          icon: "mdi-bell-ring-outline",
-          to: "/home/notification/notification-list",
-        },
-      ],
+      
       menuItemsReports: [
         {
           text: "Skill Based User",
@@ -213,11 +201,11 @@ export const home = {
           icon: "mdi-chevron-double-right",
           to: "/home/reports/property-based-broker",
         },
-        {
-          text: "Agency linked Broker",
-          icon: "mdi-chevron-double-right",
-          to: "/home/permission/role-permission-list",
-        },
+        // {
+        //   text: "Agency linked Broker",
+        //   icon: "mdi-chevron-double-right",
+        //   to: "/home/permission/role-permission-list",
+        // },
         {
           text: "Broker Linked Broker Associations",
           icon: "mdi-chevron-double-right",
@@ -257,6 +245,19 @@ export const home = {
           text: "User Count Property",
           icon: "mdi-chevron-double-right",
           to: "/home/reports/user-count-property",
+        },
+      ],
+
+      menuItemsSettings: [
+        {
+          text: "Role Permissions",
+          icon: "mdi-account-cog",
+          to: "/home/permission/role-permission-list",
+        },
+        {
+          text: "Notification",
+          icon: "mdi-bell-ring-outline",
+          to: "/home/notification/notification-list",
         },
       ],
       //#region - Theme Data

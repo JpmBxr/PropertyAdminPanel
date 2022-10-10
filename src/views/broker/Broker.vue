@@ -26,6 +26,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
+        v-permission="'Add Broker'"
           :disabled="tableDataLoading"
           class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
           @click="
@@ -95,6 +96,7 @@
 
           <template v-slot:item.actions="{ item }">
             <v-icon
+            v-permission="'Edit Broker'"
               size="22"
               class="mx-1 fitPotPrimaryIcon"
               @click="
