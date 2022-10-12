@@ -96,6 +96,10 @@ export const addAgentOperatorUsers = {
         this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.birth_month != null
           ? this.addAgentOperatorDataProps.birth_month
           : null,
+      selectBirthYear:
+          this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.birth_year != null
+            ? this.addAgentOperatorDataProps.birth_year
+            : null,
       rELicence:
         this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.re_license != null
           ? this.addAgentOperatorDataProps.re_license
@@ -133,6 +137,7 @@ export const addAgentOperatorUsers = {
       floorLevelItems: ["Basement", "Ground", "First", "Second"],
       userTypeItems: ["Agent", "Operator"],
       birthMonthItems: Global.birthMonth,
+      birthYearItems: Global.birthYear,
       birthDaysItems: [],
       townItems: [],
       provinceItems: [],
@@ -430,6 +435,7 @@ export const addAgentOperatorUsers = {
             subdivision: this.subdivision,
             selectBirthDay: this.selectBirthDay,
             selectBirthMonth: this.selectBirthMonth,
+            selectBirthYear: this.selectBirthYear,
             rELicence: this.rELicence,
             userWebsite: this.userWebsite,
             userSkills:
@@ -497,6 +503,7 @@ export const addAgentOperatorUsers = {
             subdivision: this.subdivision,
             selectBirthDay: this.selectBirthDay,
             selectBirthMonth: this.selectBirthMonth,
+            selectBirthYear: this.selectBirthYear,
             rELicence: this.rELicence,
             userWebsite: this.userWebsite,
             userSkills: this.userSkills != null ? this.userSkills.toString() : null,

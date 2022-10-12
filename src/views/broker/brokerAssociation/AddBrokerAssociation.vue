@@ -111,7 +111,7 @@
                       v-numeric
                       label="Primary Phone"
                       v-model="item.phone_1"
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_mobile"
                       hide-details="auto"
                     >
                       <template #label>
@@ -129,7 +129,7 @@
                       v-numeric
                       label="Secondary Phone"
                       v-model="item.phone_2"
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_alternatecontact"
                       hide-details="auto"
                     >
                       <template #label>
@@ -240,6 +240,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       @change="changeProvince"
                       small-chips
                       label="Select Provinces of Operations"
@@ -261,6 +262,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Town"
                       ><template #label>
@@ -285,6 +287,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Barangay"
                       ><template #label>
@@ -302,6 +305,7 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
+                      @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
@@ -310,10 +314,12 @@
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
+                    v-numeric
                       dense
                       label="Zip Code"
                       v-model="item.zip_code"
                       hide-details="auto"
+                      :rules="validationRules_zipCodeWithMax6Char"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">

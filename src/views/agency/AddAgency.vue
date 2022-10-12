@@ -106,6 +106,33 @@
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
                       dense
+                      v-numeric
+                      label="Primary Phone"
+                      v-model="item.phone_1"
+                      :rules="validationRules_mobile"
+                      hide-details="auto"
+                    >
+                      <template #label>
+                        Primary Phone
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="3" sm="12">
+                    <v-text-field
+                      dense
+                      v-numeric
+                      label="Secondary Phone"
+                      v-model="item.phone_2"
+                      hide-details="auto"
+                      :rules="validationRules_alternatecontact"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="3" sm="12">
+                    <v-text-field
+                      dense
                       label="Email"
                       v-model="item.email_address"
                       :rules="validationRules_email"
@@ -124,32 +151,7 @@
                       dense
                       label="Secondary Email"
                       v-model="item.email_address_secondary"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" md="3" sm="12">
-                    <v-text-field
-                      dense
-                      v-numeric
-                      label="Primary Phone"
-                      v-model="item.phone_1"
-                      :rules="validationRulesRequired"
-                      hide-details="auto"
-                    >
-                      <template #label>
-                        Primary Phone
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
-                    </v-text-field>
-                  </v-col>
-                  <v-col cols="12" md="3" sm="12">
-                    <v-text-field
-                      dense
-                      v-numeric
-                      label="Secondary Phone"
-                      v-model="item.phone_2"
+                      :rules="validationRules_optionalemail"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
@@ -165,6 +167,7 @@
                       item-value="specialization_id"
                       dense
                       multiple
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="4" sm="12">
@@ -176,6 +179,7 @@
                       :rules="validationRulesRequired"
                       dense
                       multiple
+                      @keypress="acceptNotCharacter"
                       ><template #label>
                         Select Provinces of Operations
                         <span class="red--text">
@@ -193,6 +197,7 @@
                       item-value="capability_id"
                       dense
                       multiple
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                 </v-row>
@@ -290,6 +295,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       @change="changeProvince"
                       small-chips
                       label="Select Province"
@@ -312,6 +318,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Town"
                     >
@@ -337,6 +344,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Barangay"
                     >
@@ -355,6 +363,7 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
+                      @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
@@ -364,10 +373,12 @@
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
+                    v-numeric
                       dense
                       label="Zip Code"
                       v-model="item.zip_code"
                       hide-details="auto"
+                      :rules="validationRules_zipCodeWithMax6Char"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">

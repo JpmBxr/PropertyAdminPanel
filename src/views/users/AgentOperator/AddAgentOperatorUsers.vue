@@ -57,6 +57,7 @@
                 <v-row class="mt-4">
                   <v-col cols="12" md="3" sm="12">
                     <v-autocomplete
+                  
                       v-model="UserType"
                       :items="userTypeItems"
                       :disabled="isItemLoading"
@@ -65,6 +66,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select User Type"
                       @change="changeUserType"
@@ -114,6 +116,7 @@
                       label="First Name"
                       v-model="firstName"
                       :rules="validationRulesRequired"
+                      @keypress="acceptCharacterWithSpace"
                       hide-details="auto"
                     >
                       <template #label>
@@ -130,6 +133,7 @@
                       label="Last Name"
                       v-model="lastName"
                       :rules="validationRulesRequired"
+                      @keypress="acceptCharacterWithSpace"
                       hide-details="auto"
                     >
                       <template #label>
@@ -173,7 +177,7 @@
                       v-numeric
                       label="Primary Phone"
                       v-model="phone1"
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_mobile"
                       hide-details="auto"
                     >
                       <template #label>
@@ -189,6 +193,7 @@
                       dense
                       v-numeric
                       label="Secondary Phone"
+                      :rules="validationRules_mobile"
                       v-model="phone2"
                       hide-details="auto"
                     ></v-text-field>
@@ -196,7 +201,23 @@
                 </v-row>
 
                 <v-row>
-                  <v-col cols="12" md="4" sm="12">
+                  <v-col cols="12" md="3" sm="12">
+                    <v-combobox
+                      v-model="selectBirthDay"
+                      :items="birthDaysItems"
+                      :rules="validationRulesRequired"
+                      label="Select Birth Day"
+                      dense
+                    >
+                      <template #label>
+                        Select Birth Day
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template></v-combobox
+                    >
+                  </v-col>
+                  <v-col cols="12" md="3" sm="12">
                     <v-combobox
                       v-model="selectBirthMonth"
                       :items="birthMonthItems"
@@ -213,16 +234,17 @@
                       </template></v-combobox
                     >
                   </v-col>
-                  <v-col cols="12" md="4" sm="12">
+                  <v-col cols="12" md="3" sm="12">
                     <v-combobox
-                      v-model="selectBirthDay"
-                      :items="birthDaysItems"
+                      v-model="selectBirthYear"
+                      :items="birthYearItems"
+                      label="Select Birth Year"
                       :rules="validationRulesRequired"
-                      label="Select Birth Day"
+                      @change="populateBirthDay"
                       dense
                     >
                       <template #label>
-                        Select Birth Day
+                        Select Birth Year
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -310,6 +332,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       @change="changeProvince"
                       small-chips
                       label="Select Province"
@@ -332,6 +355,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Town"
                     >
@@ -357,6 +381,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Barangay"
                     >
@@ -375,6 +400,8 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
@@ -383,10 +410,12 @@
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
+                    v-numeric
                       dense
                       label="Zip Code"
                       v-model="zipCode"
                       hide-details="auto"
+                      :rules="validationRules_zipCodeWithMax6Char"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">

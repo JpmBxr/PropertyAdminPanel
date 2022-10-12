@@ -185,7 +185,7 @@
               "
               >mdi-square-edit-outline</v-icon
             >
-            <v-icon
+            <!-- <v-icon
               v-if="
                 loggedInUserRole === item.role_name &&
                 loggedInUserID === item.user_id
@@ -194,7 +194,7 @@
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"
               >mdi-delete-outline</v-icon
-            >
+            > -->
           </template>
         </v-data-table>
       </transition>

@@ -1,18 +1,66 @@
 export const validationMixin = {
   data() {
     return {
+      //Field is required
       validationRulesRequired: [(v) => !!v || "Field is required"],
+      // mobile is required
       validationRules_mobile: [
         (v) => !!v || "Provide valid Mobile number",
         (v) => (v && v.length >= 10) || "Mobile number must be of 10 digits",
         (v) =>
           /^[6-9]\d{9}$/.test(v) || "Mobile number must start with 6/7/8/9",
       ],
+      // mobile is optional
+      validationRules_alternatecontact: [
+        (v) => {
+          if (v) {
+            return (
+              (v && v.length >= 10) ||
+              /^[6-9]\d{9}$/.test(v) ||
+              "Mobile number must start with 6/7/8/9 and contain 10 digits"
+            );
+          } else {
+            return true;
+          }
+        },
+      ],
+      //Email is required
+      validationRules_email: [
+        (v) => !!v || "Email is required",
+        (v) =>
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "Provide valid email",
+      ],
+      //Email is optional
+      validationRules_optionalemail: [
+        (v) => {
+          if (v) {
+            return (
+              /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+              "Provide valid Email"
+            );
+          } else {
+            return true;
+          }
+        },
+      ],
+      //Zip Codeis optional
+      validationRules_zipCodeWithMax6Char: [
+        (v) => {
+          if (v){
+            return( (v && v.length >= 6) || "ZIP Code must be of 6 characters");
+          }else {
+            return true;
+          }
+        }
+      ],
+      
       validationRules_otpWithMax6Char: [
         (v) => !!v || "Provide valid OTP",
         (v) => (v && v.length > 5) || "OTP must be of 6 characters",
       ],
 
+     
       validationRules_passwordRuleWithOneNumberAndOneChar: [
         (v) => !!v || "Provide valid Password",
         (v) =>
@@ -28,13 +76,7 @@ export const validationMixin = {
       validationRulesAutocomplete_required: [
         (v) => !!(v && v.length) || "Field is required",
       ],
-      validationRules_email: [
-        (v) => !!v || "Email is required",
-        (v) =>
-          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "Provide valid email",
-      ],
-
+      
       validationRules_companywebsite: [
         (v) => {
           if (v) {
@@ -65,32 +107,6 @@ export const validationMixin = {
       validationRules_image1Mb: [
         (v) => !!v || "Select image",
         (v) => !v || v.size <= 1048576 || "Maximum upload limit is 1Mb",
-      ],
-
-      validationRules_alternatecontact: [
-        (v) => {
-          if (v) {
-            return (
-              /^[6-9]\d{9}$/.test(v) ||
-              "Mobile number must start with 6/7/8/9 and contain 10 digits"
-            );
-          } else {
-            return true;
-          }
-        },
-      ],
-
-      validationRules_optionalemail: [
-        (v) => {
-          if (v) {
-            return (
-              /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-              "Provide valid Email"
-            );
-          } else {
-            return true;
-          }
-        },
       ],
 
       validationRules_pan: [
@@ -155,6 +171,27 @@ export const validationMixin = {
     };
   },
   methods: {
+    // #region accept Not Character 
+    acceptNotCharacter(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (charCode  ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+    // #endregion
+    // #region Accept charcter with space
+    acceptCharacterWithSpace(evt) {
+      var regex = new RegExp("^[a-zA-z ]+$");
+      var key = String.fromCharCode(!evt.charCode ? evt.which : evt.charCode);
+      if (!regex.test(key)) {
+        evt.preventDefault();
+        return false;
+      }
+    },
+    // #endregion
     // Only digit in text field
     isDigit(evt) {
       evt = evt ? evt : window.event;

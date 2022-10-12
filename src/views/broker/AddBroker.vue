@@ -62,6 +62,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                     >
                       <template #label>
@@ -163,7 +164,7 @@
                       v-numeric
                       label="Primary Phone"
                       v-model="item.phone_1"
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_mobile"
                       hide-details="auto"
                     >
                       <template #label>
@@ -182,6 +183,7 @@
                       label="Secondary Phone"
                       v-model="item.phone_2"
                       hide-details="auto"
+                      :rules="validationRules_alternatecontact"
                     ></v-text-field>
                   </v-col>
 
@@ -194,6 +196,7 @@
                       item-value="broker_association_id"
                       dense
                       multiple
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                 </v-row>
@@ -208,6 +211,7 @@
                       item-value="specialization_id"
                       dense
                       multiple
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="4" sm="12">
@@ -217,6 +221,7 @@
                       item-text="province_name"
                       item-value="province_id"
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       dense
                       multiple
                       ><template #label>
@@ -236,6 +241,7 @@
                       item-value="capability_id"
                       dense
                       multiple
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                 </v-row>
@@ -307,6 +313,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       @change="changeProvince"
                       small-chips
                       label="Select Provinces of Operations"
@@ -328,6 +335,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Town"
                       ><template #label>
@@ -352,6 +360,7 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Barangay"
                       ><template #label>
@@ -373,14 +382,17 @@
                       chips
                       small-chips
                       label="Select Subdivision"
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
+                    v-numeric
                       dense
                       label="Zip Code"
                       v-model="item.zip_code"
                       hide-details="auto"
+                      :rules="validationRules_zipCodeWithMax6Char"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
