@@ -193,7 +193,7 @@
                       dense
                       v-numeric
                       label="Secondary Phone"
-                      :rules="validationRules_mobile"
+                      :rules="validationRules_alternatecontact"
                       v-model="phone2"
                       hide-details="auto"
                     ></v-text-field>
@@ -205,51 +205,32 @@
                     <v-combobox
                       v-model="selectBirthDay"
                       :items="birthDaysItems"
-                      :rules="validationRulesRequired"
+                      
                       label="Select Birth Day"
                       dense
                     >
-                      <template #label>
-                        Select Birth Day
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template></v-combobox
-                    >
+                    </v-combobox>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-combobox
                       v-model="selectBirthMonth"
                       :items="birthMonthItems"
                       label="Select Birth Month"
-                      :rules="validationRulesRequired"
                       @change="populateBirthDay"
                       dense
                     >
-                      <template #label>
-                        Select Birth Month
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template></v-combobox
-                    >
+                    </v-combobox>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-combobox
                       v-model="selectBirthYear"
                       :items="birthYearItems"
                       label="Select Birth Year"
-                      :rules="validationRulesRequired"
+                      
                       @change="populateBirthDay"
                       dense
                     >
-                      <template #label>
-                        Select Birth Year
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template></v-combobox
-                    >
+                    </v-combobox>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-switch
@@ -291,8 +272,16 @@
                       dense
                       label="House/Lot Number"
                       v-model="houseLotNumber"
+                      :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      House/Lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" sm="12">
                     <v-text-field
@@ -318,32 +307,8 @@
                       dense
                       label="Property/Building Name"
                       v-model="propertyBuildingName"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" md="4" sm="12">
-                    <v-autocomplete
-                      :disabled="isItemLoading"
-                      v-model="province"
-                      :items="provinceItems"
-                      item-text="province_name"
-                      item-value="province_id"
-                      dense
-                      chips
-                      :rules="validationRulesRequired"
-                      @keypress="acceptNotCharacter"
-                      @change="changeProvince"
-                      small-chips
-                      label="Select Province"
-                    >
-                      <template #label>
-                        Select Province
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
-                    </v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="4" sm="12">
                     <v-autocomplete
@@ -367,6 +332,31 @@
                       </template>
                     </v-autocomplete>
                   </v-col>
+                  
+                  <v-col cols="12" md="4" sm="12">
+                    <v-autocomplete
+                      :disabled="isItemLoading"
+                      v-model="province"
+                      :items="provinceItems"
+                      item-text="province_name"
+                      item-value="province_id"
+                      dense
+                      chips
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                      @change="changeProvince"
+                      small-chips
+                      label="Select Province"
+                    >
+                      <template #label>
+                        Select Province
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
+                  
                 </v-row>
 
                 <v-row>
@@ -400,7 +390,6 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       dense
                       chips
@@ -416,14 +405,32 @@
                       v-model="zipCode"
                       hide-details="auto"
                       :rules="validationRules_zipCodeWithMax6Char"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
-                    <v-text-field
+                    <v-autocomplete
                       v-model="floorLevel"
+                      :items="floorItems"
                       dense
-                      label="Enter Floor or Level"
-                    ></v-text-field>
+                      chips
+                      :rules="validationRulesRequired"
+                      small-chips
+                      label="Select Floor or Level"
+                    >
+                    <template #label>
+                      Select Floor or Level
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>

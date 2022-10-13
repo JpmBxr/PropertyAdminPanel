@@ -134,7 +134,7 @@ export const addAgentOperatorUsers = {
           : 5,
       associatedAgencyItems: [],
       associatedBrokerItems: [],
-      floorLevelItems: ["Basement", "Ground", "First", "Second"],
+      floorItems: ["Basement", "Ground", "First", "Second"],
       userTypeItems: ["Agent", "Operator"],
       birthMonthItems: Global.birthMonth,
       birthYearItems: Global.birthYear,

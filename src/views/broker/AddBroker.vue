@@ -196,8 +196,16 @@
                       item-value="broker_association_id"
                       dense
                       multiple
+                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Select Broker Association
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
 
@@ -214,6 +222,7 @@
                       @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
+
                   <v-col cols="12" md="4" sm="12">
                     <v-autocomplete
                       v-model="item.province_id"
@@ -272,8 +281,16 @@
                       dense
                       label="House/Lot Number"
                       v-model="item.house_number"
+                      :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      House/Lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" sm="12">
                     <v-text-field
@@ -299,8 +316,16 @@
                       dense
                       label="Property/Building Name"
                       v-model="item.building_name"
+                      :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Property/Building Name
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="12" md="4" sm="12">
@@ -382,8 +407,16 @@
                       chips
                       small-chips
                       label="Select Subdivision"
+                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Select Subdivision
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
@@ -393,16 +426,33 @@
                       v-model="item.zip_code"
                       hide-details="auto"
                       :rules="validationRules_zipCodeWithMax6Char"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
+              
                   <v-col cols="12" md="3" sm="12">
-                    <v-text-field
+                    <v-autocomplete
                       v-model="item.floor"
+                      :items="floorItems"
                       dense
                       chips
+                      :rules="validationRulesRequired"
                       small-chips
-                      label="Enter Floor"
-                    ></v-text-field>
+                      label="Select Floor or Level"
+                    >
+                    <template #label>
+                      Select Floor or Level
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>

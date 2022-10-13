@@ -589,7 +589,7 @@
       </perfect-scrollbar>
 
       <v-col class="text-center" cols="12">
-        <strong> Version: 1.0.0.9 </strong></v-col
+        <strong> Version: 1.0.1.0 </strong></v-col
       >
     </v-navigation-drawer>
 

@@ -6,22 +6,20 @@ export const validationMixin = {
       // mobile is required
       validationRules_mobile: [
         (v) => !!v || "Provide valid Mobile number",
-        (v) => (v && v.length >= 10) || "Mobile number must be of 10 digits",
-        (v) =>
-          /^[6-9]\d{9}$/.test(v) || "Mobile number must start with 6/7/8/9",
+        (v) => /^(\d{10})$/.test(v) || "Mobile number must be of 10 digits",
+        // (v) => /^[6-9]\d{9}$/.test(v) || "Mobile number must start with 6/7/8/9",
       ],
       // mobile is optional
       validationRules_alternatecontact: [
         (v) => {
           if (v) {
-            return (
-              (v && v.length >= 10) ||
-              /^[6-9]\d{9}$/.test(v) ||
-              "Mobile number must start with 6/7/8/9 and contain 10 digits"
+            return  (
+              /^(\d{10})$/.test(v) || "Mobile number must be of 10 digits"
             );
           } else {
             return true;
           }
+          
         },
       ],
       //Email is required
@@ -29,7 +27,7 @@ export const validationMixin = {
         (v) => !!v || "Email is required",
         (v) =>
           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "Provide valid email",
+          "Please provide a valid email",
       ],
       //Email is optional
       validationRules_optionalemail: [
@@ -37,7 +35,7 @@ export const validationMixin = {
           if (v) {
             return (
               /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-              "Provide valid Email"
+              "Please provide a valid Email"
             );
           } else {
             return true;
@@ -46,13 +44,8 @@ export const validationMixin = {
       ],
       //Zip Codeis optional
       validationRules_zipCodeWithMax6Char: [
-        (v) => {
-          if (v){
-            return( (v && v.length >= 6) || "ZIP Code must be of 6 characters");
-          }else {
-            return true;
-          }
-        }
+        (v) => !!v || "Please provide a valid Zip Code",
+        (v) =>  /^(\d{6})$/.test(v) || "Zip Code must be of 6 digits"
       ],
       
       validationRules_otpWithMax6Char: [

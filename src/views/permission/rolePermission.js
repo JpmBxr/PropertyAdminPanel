@@ -117,10 +117,12 @@ export const rolePermission = {
     },
     // Assign permission
     assignPermission(item) {
-      console.log(item);
+     
       this.$router.push({
         name: "AssignRolePermission",
-        params: { roleId: item.id },
+        params: { roleId: item.id,
+        name:item.name
+        },
       });
     },
     // fetch roles
@@ -137,6 +139,7 @@ export const rolePermission = {
         endPoint: "webGetRoles",
       };
       this.actionGetRoles(payload);
+      console.log("getRoles------->", this.actionGetRoles);
     },
     // search
     searchInfo() {

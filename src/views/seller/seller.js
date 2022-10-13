@@ -51,6 +51,7 @@ export const seller = {
           width: "20%",
           align: "start",
         },
+ 
         {
           text: "Actions",
           value: "actions",
@@ -133,6 +134,7 @@ export const seller = {
           }
         });
     },
+    
     // search
     searchInfo() {
       clearTimeout(this._timerId);

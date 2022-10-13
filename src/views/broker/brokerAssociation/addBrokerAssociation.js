@@ -27,7 +27,7 @@ export const addBrokerAssociation = {
       pagination: {},
       entity: "Broker Association",
       isItemLoading: false,
-
+      floorItems: ["Basement", "Ground", "First", "Second"],
       // search
       searchText: "",
 
@@ -106,8 +106,8 @@ export const addBrokerAssociation = {
     getBarangayWithoutPagination() {
       this.isLoaderActive = true;
       ApiService.get("GetBarangayWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
+        townId: this.item.town_id,
+        provinceId: this.item.province_id,
       })
         .then((response) => {
           this.isLoaderActive = false;

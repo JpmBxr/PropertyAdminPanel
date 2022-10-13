@@ -114,6 +114,11 @@ export const agentOperatorUsers = {
     },
   },
 
+  // Change Status Color
+    setStatusColor(is_active) {
+      return Global.getStatusColor(is_active);
+    },
+
   created() {
     this.loggedInUserRole = secureLS.get(Global.roleName);
     this.loggedInUserID = secureLS.get(Global.userId);

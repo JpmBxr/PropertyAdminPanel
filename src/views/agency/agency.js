@@ -60,6 +60,13 @@ export const agency = {
           align: "start",
         },
         {
+          text: "Status",
+          value: "status",
+          sortable: false,
+          width: "20%",
+          align: "start",
+        },
+        {
           text: "Actions",
           value: "actions",
           sortable: false,
@@ -136,6 +143,12 @@ export const agency = {
           }
         });
     },
+
+    // Change Status Color
+        setStatusColor(is_active) {
+          return Global.getStatusColor(is_active);
+        },
+ 
     // search
     searchInfo() {
       clearTimeout(this._timerId);

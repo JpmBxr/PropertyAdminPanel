@@ -156,6 +156,12 @@
             </v-switch>
           </template>
 
+          <template v-slot:item.status="{ item }">
+            <v-chip x-small :color="setStatusColor(item.status)" dark>{{
+              item.status
+            }}</v-chip>
+          </template>
+
           <template v-slot:item.actions="{ item }">
             <v-icon
             v-permission="'Add User'"
@@ -171,6 +177,7 @@
               "
               >mdi-square-edit-outline</v-icon
             >
+            
             <v-icon
             v-permission="'Edit User'"
               v-else-if="

@@ -13,12 +13,14 @@
           <v-list-item two-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5">
-                <strong>{{ entity }}</strong>
+                <strong>{{ entity }} Assign For {{name}}
+
+                </strong>
               </v-list-item-title>
               <v-list-item-subtitle
                 >Home <v-icon>mdi-chevron-right</v-icon> Settings
                 <v-icon>mdi-chevron-right</v-icon>
-                {{ entity }}</v-list-item-subtitle
+                {{ entity }} Assign For {{name}}</v-list-item-subtitle
               >
             </v-list-item-content>
           </v-list-item>

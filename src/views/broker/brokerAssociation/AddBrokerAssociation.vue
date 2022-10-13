@@ -132,12 +132,6 @@
                       :rules="validationRules_alternatecontact"
                       hide-details="auto"
                     >
-                      <template #label>
-                        Secondary Phone
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -186,7 +180,7 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
                 <v-row class="mt-4">
-                  <v-col cols="12" md="4" sm="12">
+                  <v-col cols="12" md="3" sm="12">
                     <v-text-field
                       dense
                       label="Unit Number"
@@ -194,15 +188,23 @@
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" md="4" sm="12">
+                  <v-col cols="12" md="3" sm="12">
                     <v-text-field
                       dense
                       label="House/Lot Number"
                       v-model="item.house_number"
+                      :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      House/Lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
-                  <v-col cols="12" md="4" sm="12">
+                  <v-col cols="12" md="6" sm="12">
                     <v-text-field
                       dense
                       label="Street Name"
@@ -226,8 +228,16 @@
                       dense
                       label="Property/Building Name"
                       v-model="item.building_name"
+                      :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Property/Building Name
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="12" md="4" sm="12">
@@ -305,12 +315,20 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
+                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
                       label="Select Subdivision"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Select Subdivision
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
@@ -320,16 +338,33 @@
                       v-model="item.zip_code"
                       hide-details="auto"
                       :rules="validationRules_zipCodeWithMax6Char"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
+                  
                   <v-col cols="12" md="3" sm="12">
-                    <v-text-field
+                    <v-autocomplete
                       v-model="item.floor"
+                      :items="floorItems"
                       dense
                       chips
+                      :rules="validationRulesRequired"
                       small-chips
-                      label="Enter Floor"
-                    ></v-text-field>
+                      label="Select Floor or Level"
+                    >
+                    <template #label>
+                      Select Floor or Level
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>

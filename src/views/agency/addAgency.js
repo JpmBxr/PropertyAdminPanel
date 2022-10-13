@@ -23,6 +23,7 @@ export const addAgency = {
       provinceItems: [],
       barangayItems: [],
       subdivisionItems: [],
+      floorItems: ["Basement", "Ground", "First", "Second"],
       pagination: {},
       entity: "Add Agency",
       isFormAddEditValid: false,
@@ -32,6 +33,7 @@ export const addAgency = {
 
       // add edit
       defaultItem: {},
+      
       item: {},
       item_s: {},
       addEditDialog: false,
@@ -161,6 +163,7 @@ export const addAgency = {
           this.isLoaderActive = false;
 
           this.townItems = response.data.resultData;
+          //console.log(this.townItems[0]);
         })
         .catch((error) => {
           this.isLoaderActive = false;
@@ -173,10 +176,11 @@ export const addAgency = {
 
     //#region getBarangayWithoutPagination
     getBarangayWithoutPagination() {
+      console.log(this.town);
       this.isLoaderActive = true;
       ApiService.get("GetBarangayWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
+        townId: this.item.town_id,
+        provinceId: this.item.address_province_id,
       })
         .then((response) => {
           this.isLoaderActive = false;

@@ -71,16 +71,10 @@
                   <v-col cols="12" md="6" sm="12">
                     <v-text-field
                       dense
+                      label="Owner Name"
                       v-model="item.property_owner_name"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                      <template #label>
-                        Owner Name
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -91,15 +85,9 @@
                       dense
                       label="Email"
                       v-model="item.email_address"
-                      :rules="validationRules_email"
+                      :rules="validationRules_optionalemail"
                       hide-details="auto"
                     >
-                      <template #label>
-                        Email
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
 
@@ -124,16 +112,11 @@
                     <v-text-field
                       dense
                       v-numeric
+                      label="Secondary Phone"
                       v-model="item.phone_2"
                       :rules="validationRules_alternatecontact"
                       hide-details="auto"
                     >
-                      <template #label>
-                        Secondary Phone
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -165,8 +148,16 @@
                       dense
                       label="House/Lot Number"
                       v-model="item.house_no"
+                      :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      House/Lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="12" md="6" sm="12">
@@ -195,7 +186,14 @@
                       v-model="item.zipcode"
                       hide-details="auto"
                       :rules="validationRules_zipCodeWithMax6Char"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="12" md="4" sm="12">
@@ -274,12 +272,20 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
+                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
                       label="Select Subdivision"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Select Subdivision
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   
                   <v-col cols="12" md="6" sm="12">

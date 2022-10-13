@@ -18,7 +18,7 @@ export const addBroker = {
       brokerProvinceItems: [],
       brokerCapabilitiesItems: [],
       brokerSpecializationItems: [],
-
+      floorItems: ["Basement", "Ground", "First", "Second"],
       brokerAssociationItems: [],
       townItems: [],
       provinceItems: [],
@@ -187,8 +187,8 @@ export const addBroker = {
     getBarangayWithoutPagination() {
       this.isLoaderActive = true;
       ApiService.get("GetBarangayWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
+        townId: this.item.town_id,
+        provinceId: this.item.address_province_id,
       })
         .then((response) => {
           this.isLoaderActive = false;

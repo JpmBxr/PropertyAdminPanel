@@ -93,6 +93,13 @@
               </v-btn>
             </v-toolbar>
           </template>
+         
+          <template v-slot:item.status="{ item }">
+            <v-chip x-small :color="setStatusColor(item.status)" dark>{{
+              item.status
+            }}</v-chip>
+          </template>
+      
 
           <template v-slot:item.actions="{ item }">
             <v-icon

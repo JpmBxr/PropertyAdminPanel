@@ -28,10 +28,12 @@ export const assignRolePermission = {
         },
       ],
       selectedPermissionId: [],
+  
       isPermissionDataProcessing: false,
       pagination: {},
       entity: "Role Permission",
-
+      roleId:this.$route.params.roleId,
+      name:this.$route.params.name,
       // search
       searchText: "",
 
@@ -96,6 +98,7 @@ export const assignRolePermission = {
   created() {
     // Call Assigned Unassigned permission
     this.assignPermission();
+    
   },
   methods: {
     ...mapActions([
