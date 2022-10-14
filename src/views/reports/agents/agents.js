@@ -30,13 +30,6 @@ export const agents = {
                     sortable: true,
                     align: "start",
                 },
-                // {
-                //     text: "Property Name",
-                //     value: "property_name",
-                //     width: "20%",
-                //     sortable: true,
-                //     align: "start",
-                // },
                 {
                     text: "Phone",
                     value: "primary_phone",
@@ -65,7 +58,6 @@ export const agents = {
             //excel
             excelFields: {
                 Name: "full_name",
-               
                 Primary_phone: "primary_phone",
                 user_email: "user_email",
 

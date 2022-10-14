@@ -261,7 +261,7 @@
                       v-model="item.zip_code"
                       dense
                       v-numeric
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_zipCodeWithMax6Char"
                     >
                       <template #label>
                         Zip Code
@@ -282,6 +282,7 @@
                       multiple
                       chips
                       small-chips
+                      @keypress="acceptNotCharacter"
                       ><template #label>
                         Select Adjacent Subdivisions
                         <span class="red--text">

@@ -44,7 +44,7 @@ export const userBasedSkill = {
       //excel
       excelFields: {
         ID: "id",
-        Name: "name",
+        user_skills: "user_skills",
       },
       excelFileName:
         "UserSkillsMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",

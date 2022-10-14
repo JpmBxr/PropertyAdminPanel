@@ -253,7 +253,8 @@
                     <v-text-field
                       v-model="item.zip_code"
                       dense
-                      :rules="validationRulesRequired"
+                      v-numeric
+                      :rules="validationRules_zipCodeWithMax6Char"
                     >
                       <template #label>
                         Zip Code
@@ -276,6 +277,7 @@
                       multiple
                       chips
                       small-chips
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                 </v-row>

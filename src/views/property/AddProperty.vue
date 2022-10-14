@@ -63,7 +63,15 @@
                       item-value="user_id"
                       dense
                       :rules="validationRulesRequired"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Agent
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -75,7 +83,16 @@
                       item-text="seller_name"
                       item-value="seller_id"
                       dense
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Seller
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="6">
                     <v-autocomplete
@@ -83,7 +100,16 @@
                       :items="featureItems"
                       label="Featured Property"
                       dense
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Featured Property
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -95,7 +121,14 @@
                       v-model="priceAsked"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Price Asked
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="4">
                     <v-text-field
@@ -105,7 +138,14 @@
                       v-numeric
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Land Area
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="4">
@@ -115,7 +155,15 @@
                       label="Building Area"
                       v-model="buildingArea"
                       hide-details="auto"
-                    ></v-text-field>
+                      :rules="validationRulesRequired"
+                    >
+                    <template #label>
+                      Building Area
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-text-field>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -126,7 +174,14 @@
                       v-model="propertyName"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Property Name
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-text-field>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -137,7 +192,14 @@
                       v-model="propertyHeadline"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Property Headline
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-text-field>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -148,7 +210,15 @@
                       label="Property Description"
                       v-model="propertyDescription"
                       hide-details="auto"
-                    ></v-textarea>
+                      :rules="validationRulesRequired"
+                    >
+                    <template #label>
+                      Property Description
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-textarea>
                   </v-col>
                 </v-row>
 
@@ -161,7 +231,16 @@
                       item-text="property_classification"
                       item-value="property_classification_id"
                       dense
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Property Classification
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
 
                   <v-col cols="4">
@@ -172,7 +251,16 @@
                       item-text="product_category_name"
                       item-value="product_category_id"
                       dense
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Category
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="4">
                     <v-autocomplete
@@ -182,7 +270,16 @@
                       item-text="property_type"
                       item-value="property_type_id"
                       dense
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Property Type
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
 
@@ -195,7 +292,16 @@
                       item-text="agri_type_name"
                       item-value="agri_type_id"
                       dense
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Agri Type
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
                   </v-col>
 
                   <v-col cols="4">
@@ -231,7 +337,14 @@
                       v-model="unitNumber"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Unit Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="3">
                     <v-text-field
@@ -240,7 +353,14 @@
                       v-model="houseLotNumber"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      House/Lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="6">
                     <v-text-field
@@ -249,7 +369,14 @@
                       v-model="streetName"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Street Name
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                 </v-row>
 
@@ -261,7 +388,14 @@
                       v-model="propertyBuildingName"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Property/Building Name
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="4">
@@ -275,7 +409,15 @@
                       :rules="validationRulesRequired"
                       small-chips
                       label="Select Town"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Town
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="4">
                     <v-autocomplete
@@ -289,7 +431,15 @@
                       @change="changeProvince"
                       small-chips
                       label="Select Province"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Province
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
 
@@ -306,7 +456,15 @@
                       :rules="validationRulesRequired"
                       small-chips
                       label="Select Barangay"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Barangay
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
@@ -319,16 +477,30 @@
                       :rules="validationRulesRequired"
                       small-chips
                       label="Select Subdivision"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Select Subdivision
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="3">
                     <v-text-field
                       dense
                       label="Zip Code"
                       v-model="zipCode"
-                      :rules="validationRulesRequired"
-                      hide-details="auto"
-                    ></v-text-field>
+                      :rules="validationRules_zipCodeWithMax6Char"
+                    >
+                    <template #label>
+                      Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
@@ -336,10 +508,18 @@
                       :items="floorLevelItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
                       label="Select Floor or Level"
-                    ></v-autocomplete>
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template  #label>
+                      Select Floor or Level
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>
@@ -367,7 +547,15 @@
                       :rules="validationRulesRequired"
                       small-chips
                       label="Number of Bedrooms"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Number of Bedrooms
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
@@ -378,7 +566,15 @@
                       :rules="validationRulesRequired"
                       small-chips
                       label="Number of Toilets"
-                    ></v-autocomplete>
+                      @keypress="acceptNotCharacter"
+                    >
+                    <template #label>
+                      Number of Toilets
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="6">
                     <v-autocomplete
@@ -386,9 +582,9 @@
                       :items="carSpacesUncoveredItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
                       label="Car Spaces Uncovered"
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                 </v-row>
@@ -400,9 +596,9 @@
                       :items="garageSpacesCoveredItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
                       label="Garage Spaces Covered"
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
 
@@ -411,7 +607,6 @@
                       dense
                       label="Longitude"
                       v-model="longitude"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
@@ -420,7 +615,6 @@
                       dense
                       label="Latitude"
                       v-model="latitude"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
@@ -432,6 +626,7 @@
                       chips
                       small-chips
                       label="Select Furnishing"
+                      @keypress="acceptNotCharacter"
                     ></v-autocomplete>
                   </v-col>
                 </v-row>
@@ -454,7 +649,7 @@
                       dense
                       label="Rental Price Asked"
                       v-model="rentalPriceAsked"
-                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
@@ -464,7 +659,7 @@
                       :items="minimumRentalPeriodItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Minimum Rental Period"
                     ></v-autocomplete>
@@ -475,7 +670,7 @@
                       :items="maximumRentalPeriodItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Maximum Rental Period"
                     ></v-autocomplete>
@@ -486,7 +681,7 @@
                       :items="dayMonthRentDueItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Day of Month Rent Due"
                     ></v-autocomplete>
@@ -499,7 +694,7 @@
                       :items="periodCanExtendItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Period Can Extend"
                     ></v-autocomplete>
@@ -666,7 +861,14 @@
                       v-model="salePriceAsked"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      Sale Price Asked
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col cols="3">
@@ -674,7 +876,6 @@
                       dense
                       label="Price/SqM"
                       v-model="pricePerSqm"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
@@ -685,9 +886,17 @@
                       dense
                       chips
                       :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
                       small-chips
                       label="Product Mode"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Product Mode
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                   <v-col cols="3">
                     <v-menu
@@ -752,7 +961,7 @@
                         :items="heatingTypeItems"
                         dense
                         chips
-                        :rules="validationRulesRequired"
+                        @keypress="acceptNotCharacter"
                         small-chips
                         label="Heating Type"
                       ></v-autocomplete>
@@ -763,9 +972,9 @@
                         :items="exteriorItems"
                         dense
                         chips
-                        :rules="validationRulesRequired"
                         small-chips
                         label="Exterior"
+                        @keypress="acceptNotCharacter"
                       ></v-autocomplete>
                     </v-col>
                     <v-col cols="3">
@@ -774,7 +983,7 @@
                         :items="kitchenFeaturesItems"
                         dense
                         chips
-                        :rules="validationRulesRequired"
+                        @keypress="acceptNotCharacter"
                         small-chips
                         label="Kitchen Features"
                       ></v-autocomplete>
@@ -785,10 +994,11 @@
                         :items="coolingItems"
                         dense
                         chips
-                        :rules="validationRulesRequired"
+                        @keypress="acceptNotCharacter"
                         small-chips
                         label="Cooling"
-                      ></v-autocomplete>
+                      >
+                      </v-autocomplete>
                     </v-col>
                   </v-row>
                   <v-row>

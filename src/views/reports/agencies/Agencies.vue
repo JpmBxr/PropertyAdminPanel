@@ -58,7 +58,7 @@
                 v-model="searchText"
                 label="Search"
                 prepend-inner-icon="mdi-magnify"
-                @keydown.enter="searchInfo"
+                @input="searchInfo"
               ></v-text-field>
               <v-spacer></v-spacer>
               <span class="text-right mx-1 d-none d-md-block">

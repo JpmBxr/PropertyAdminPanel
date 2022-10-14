@@ -102,9 +102,9 @@
                 class="mt-4"
                 v-model="searchText"
                 label="Search"
-                placeholder="Enter Clinic Name | Doctor | Disease and press ENTER to search"
+                placeholder="ENTER to search"
                 prepend-inner-icon="mdi-magnify"
-                @keydown.enter="searchInfo"
+                @input="searchInfo"
               ></v-text-field>
               <v-spacer></v-spacer>
               <span class="text-right mx-1 d-none d-md-block">

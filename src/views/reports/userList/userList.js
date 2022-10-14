@@ -45,7 +45,7 @@ export const userList = {
                     align: "start",
                 }, 
                 {
-                    text: "Secondary Person",
+                    text: "Secondary Phone",
                     value: "secondary_phone",
                     width: "20%",
                     sortable: true,

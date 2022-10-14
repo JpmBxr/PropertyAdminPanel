@@ -18,7 +18,7 @@ export const userCountProperty = {
                 },
                 {
                     text: "User Type",
-                    value: "user_type",
+                    value: "role_type",
                     width: "20%",
                     sortable: true,
                     align: "start",
@@ -31,8 +31,8 @@ export const userCountProperty = {
                     align: "start",
                 },
                 {
-                    text: "Status",
-                    value: "status",
+                    text: "User/Agent/Individual Status",
+                    value: "user_status",
                     sortable: false,
                     width: "15%",
                     align: "start",
@@ -66,13 +66,12 @@ export const userCountProperty = {
 
             //excel
             excelFields: {
-                seller_name: "seller_name",
-                date_sold: "date_sold",
-                street_name: "street_name",
-                property_building_name: "property_building_name",
-                Status: "status",
+                user_type: "role_type",
+                full_name  : "full_name",
+                status: "status",
+                totalProperties:"totalProperties",
             },
-            excelFileName: "SoldRent" + moment().format("DD/MM/YYYY") + ".xls",
+            excelFileName: "UserCountProperty" + moment().format("DD/MM/YYYY") + ".xls",
             //end
         };
     },

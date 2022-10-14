@@ -93,6 +93,7 @@ export const soldRent = {
         date_sold: "date_sold",
         street_name: "street_name",
         property_building_name: "property_building_name",
+        broker_associated:"broker_associated",
         Status: "status",
       },
       excelFileName: "SoldRent" + moment().format("DD/MM/YYYY") + ".xls",
