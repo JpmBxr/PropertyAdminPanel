@@ -34,6 +34,7 @@
           <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
         </v-btn>
       </v-card-actions>
+      
       <v-expand-transition>
         <div v-show="show">
           <v-divider></v-divider>
@@ -74,6 +75,7 @@
           </v-row>
         </div>
       </v-expand-transition>
+
       <transition name="fade" mode="out-in">
         <v-data-table
           :headers="tableHeader"
@@ -102,7 +104,7 @@
                 class="mt-4"
                 v-model="searchText"
                 label="Search"
-                placeholder="ENTER to search"
+                placeholder="search"
                 prepend-inner-icon="mdi-magnify"
                 @input="searchInfo"
               ></v-text-field>

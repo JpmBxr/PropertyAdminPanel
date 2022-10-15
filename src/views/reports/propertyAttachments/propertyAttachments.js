@@ -65,6 +65,20 @@ export const propertyAttachments = {
             userSkills: null,
             pagination: {},
             module: "Reports",
+            // attachmentType: this.attachmentType,
+            // attachmentTypeItems: ["Image", "Video"],
+            attachment_type: this.attachment_type,
+            attachmentTypeItems: [
+                {
+                  value: "Image",
+                  text: "Image"
+                },
+                {
+                  value: "Video",
+                  text: "Video"
+                },
+              ],
+
             entity: "List of Property Attachments",
             
 
@@ -90,12 +104,14 @@ export const propertyAttachments = {
     },
     computed: {
         // For numbering the Data Table Rows
-        dataTableRowNumbering() {
+       dataTableRowNumbering() {
             return this.tableItems.map((items, index) => ({
                 ...items,
                 index: index + 1,
             }));
-        },
+        }, 
+      
+       
     },
     watch: {
         pagination: {
@@ -110,13 +126,14 @@ export const propertyAttachments = {
         get() {
             let { page, itemsPerPage, sortDesc, sortBy } = this.pagination;
             sortDesc = sortDesc.length > 0 && sortDesc[0] ? "desc" : "asc";
-            sortBy = sortBy.length == 0 ? `broker_association_id` : sortBy[0];
+            sortBy = sortBy.length == 0 ? `property_name` : sortBy[0];
             let payload = {
+                itemsPerPage: itemsPerPage,
                 sortColumn: sortBy,
                 sortOrder: sortDesc,
-                itemsPerPage: itemsPerPage,
-                searchText: this.searchText,
                 page: page,
+                searchText:this.searchText,
+                attachment_type: this.attachment_type,
             };
             this.isLoaderActive = true;
             ApiService.get("getListOfAttachments", payload)

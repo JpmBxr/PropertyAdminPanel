@@ -48,7 +48,6 @@ export const userCountProperty = {
             ],
             tableItems: [],
             item:{},
-            isLoaderActive: false,
             isItemLoading: false,
             userTypeItems: [],
             totalItemsInDB: 0,

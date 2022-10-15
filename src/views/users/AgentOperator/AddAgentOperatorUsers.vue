@@ -399,12 +399,13 @@
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
+
                     v-numeric
                       dense
                       label="Zip Code"
                       v-model="zipCode"
                       hide-details="auto"
-                      :rules="validationRules_zipCodeWithMax6Char"
+                      :rules="UserType.id == 30 ? []:validationRules_zipCodeWithMax6Char"
                     >
                     <template #label>
                       Zip Code

@@ -27,13 +27,60 @@
           </v-toolbar-title>
           <v-spacer></v-spacer>
         </v-row>
+
         <v-spacer></v-spacer>
+        
+        <v-btn icon @click="show = !show">
+          <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
+        </v-btn>
       </v-card-actions>
+
+      <v-expand-transition>
+        <div v-show="show">
+          <v-divider></v-divider>
+          <v-row dense class="mt-5 px-4">
+            <v-col cols="6">
+              <v-autocomplete
+                v-model="attachment_type"
+                :items="attachmentTypeItems"
+                dense
+                small-chips
+                label="Select Attachment Type"
+                item-text="text"
+                item-value="value"
+                @keypress="acceptNotCharacter"
+              >
+                <template>
+                  <v-chip close>
+                    <v-avatar left>
+                      <span>a</span>
+                    </v-avatar>
+                  </v-chip>
+                </template>
+              </v-autocomplete>
+            </v-col>
+
+            <v-col cols="6" md="4" class="px-4 my-0">
+              <v-btn
+                class="ma-0"
+                outlined
+                color="indigo"
+                rounded
+                small
+                @click="get"
+              >
+                <v-icon class="mr-2" small>mdi-magnify</v-icon> Search Booking
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+      </v-expand-transition>
+
       <transition name="fade" mode="out-in">
         <v-data-table
           :headers="tableHeader"
           :items="dataTableRowNumbering"
-          item-key="id"
+          item-key="image_video_id"
           :options.sync="pagination"
           class="elevation-0"
           :loading="tableDataLoading"
@@ -49,6 +96,8 @@
               No Data Found
             </p>
           </template>
+            
+             
 
           <template v-slot:top>
             <v-toolbar flat>
@@ -59,6 +108,7 @@
                 prepend-inner-icon="mdi-magnify"
                 @input="searchInfo"
               ></v-text-field>
+              
               <v-spacer></v-spacer>
               <span class="text-right mx-1 d-none d-md-block">
                 <strong class="primary--text">
@@ -85,8 +135,10 @@
             </v-toolbar>
           </template>
 
+          
+
           <template v-slot:item.images_video="{ item }">
-            <v-avatar>
+            <v-avatar v-if="item.type=='Image'" >
             <img
               
               inset
@@ -95,7 +147,18 @@
               max-width="50"
               :src= "'https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/' + item.images_video"            >
             </v-avatar>
+            <a v-else 
+              inset
+              dense
+             
+              target="_blank"
+              :href=item.images_video            >
+              <v-icon 
+              class="mdi-youtube">mdi-youtube</v-icon>
+            </a>
           </template>
+     
+          
         </v-data-table>
       </transition>
 
@@ -109,6 +172,9 @@ export default propertyAttachments;
 </script>
 
 <style scoped>
+.mdi-youtube{
+  font-size:50px !important;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.9s;

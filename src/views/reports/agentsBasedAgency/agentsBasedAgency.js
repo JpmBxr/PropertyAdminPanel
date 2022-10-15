@@ -92,8 +92,8 @@ export const agentsBasedAgency = {
                 owner_name: "owner_name",
                 contact_person: "contact_person",
                 AgentName: "AgentName",
-                agency_email_address:agency_email_address,
-                agent_email:agent_email,
+                agency_email_address:"agency_email_address",
+                agent_email:"agent_email",
                 Phone: "phone_1",
             },
             excelFileName:

@@ -392,7 +392,8 @@ export const addAgentOperatorUsers = {
     },
 
     changeUserType() {
-      console.log(this.UserType.name);
+      console.log("-------->" ,this.UserType);
+
       if (this.UserType.name == "Agent" || this.UserType.name == "Operator") {
         this.isAgentOperator = true;
       } else {
