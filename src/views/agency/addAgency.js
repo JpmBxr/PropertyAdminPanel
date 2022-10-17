@@ -7,7 +7,6 @@ export const addAgency = {
   //#region data
   data() {
     return {
-      //newly added
       isLoaderActive: false,
       totalItemsInDB: 0,
       tableItems: [],
