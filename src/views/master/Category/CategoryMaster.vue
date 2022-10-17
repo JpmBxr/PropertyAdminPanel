@@ -110,7 +110,7 @@
             </v-toolbar>
           </template>
 
-          <template v-slot:item.is_role_active="{ item }">
+          <!-- <template v-slot:item.is_role_active="{ item }">
             <v-switch
             v-permission="'Enable Master'"
               :color="item.is_role_active == 'Active' ? 'green' : 'red'"
@@ -122,9 +122,15 @@
               @change="enableDisableItem(item)"
             >
             </v-switch>
+          </template> -->
+
+          <template v-slot:item.product_category_status="{ item }">
+            <v-chip x-small :color="setStatusColor(item.product_category_status)" dark>{{
+              item.product_category_status
+            }}</v-chip>
           </template>
 
-          <template v-slot:item.actions="{ item }">
+          <template v-slot:item.actions="{ item }" v-if="false">
             <v-icon
             v-permission="'Edit Master'"
               size="22"

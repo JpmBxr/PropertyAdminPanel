@@ -63,6 +63,7 @@
                   <v-row class="mt-4">
                     <v-col cols="12" md="3" sm="12">
                       <v-autocomplete
+                      v-if="false"
                         v-model="UserType"
                         :items="userTypeItems"
                         :disabled="isItemLoading"
@@ -84,8 +85,10 @@
                         </template>
                       </v-autocomplete>
                     </v-col>
-                    <v-col cols="12" md="2" sm="12">
+
+                    <v-col cols="12" md="2" sm="12"  v-if="false">
                       <v-switch
+                      
                         v-if="AccountDetailsDataProps!=null"
                         class="p-0 m-0"
                         dense
@@ -112,6 +115,36 @@
                         hide-details="auto"
                       ></v-text-field>
                     </v-col>
+
+                    <v-col cols="12" md="6" sm="12">
+                    <v-file-input
+                      v-model="ProfileImage"
+                      prepend-icon="mdi-camera"
+                      color="primary"
+                      dense
+                      show-size
+                      accept=".jpg , .png, .jpeg"
+                      :rules="imageRule"
+                    >
+                      <template #label>
+                       Select Profile Image
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+
+                      <template v-slot:selection="{ index, text }">
+                        <v-chip
+                          v-if="index < 2"
+                          color="primary"
+                          dark
+                          label
+                          small
+                          >{{ text }}</v-chip
+                        >
+                      </template>
+                    </v-file-input>
+                  </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="12" md="4" sm="12">
@@ -179,7 +212,7 @@
                         v-numeric
                         label="Primary Phone"
                         v-model="phone1"
-                        :rules="validationRulesRequired"
+                        :rules="validationRules_mobile"
                         hide-details="auto"
                       >
                         <template #label>
@@ -197,6 +230,7 @@
                         label="Secondary Phone"
                         v-model="phone2"
                         hide-details="auto"
+                        :rules="validationRules_alternatecontact"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -276,6 +310,7 @@
                         label="House/Lot Number"
                         v-model="houseLotNumber"
                         hide-details="auto"
+                        :rules="validationRulesRequired"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" md="6" sm="12">
@@ -306,6 +341,30 @@
                         hide-details="auto"
                       ></v-text-field>
                     </v-col>
+                    
+                    <v-col cols="12" md="4" sm="12">
+                      <v-autocomplete
+                        :disabled="isItemLoading"
+                        v-model="town"
+                        :items="townItems"
+                        item-text="town_name"
+                        item-value="town_id"
+                        dense
+                        chips
+                        :rules="validationRulesRequired"
+                        small-chips
+                        label="Select Town"
+                        @keypress="acceptNotCharacter"
+                      >
+                        <template #label>
+                          Select Town
+                          <span class="red--text">
+                            <strong>*</strong>
+                          </span>
+                        </template>
+                      </v-autocomplete>
+                    </v-col>
+
                     <v-col cols="12" md="4" sm="12">
                       <v-autocomplete
                         :disabled="isItemLoading"
@@ -319,30 +378,10 @@
                         @change="changeProvince"
                         small-chips
                         label="Select Province"
+                        @keypress="acceptNotCharacter"
                       >
                         <template #label>
                           Select Province
-                          <span class="red--text">
-                            <strong>*</strong>
-                          </span>
-                        </template>
-                      </v-autocomplete>
-                    </v-col>
-                    <v-col cols="12" md="4" sm="12">
-                      <v-autocomplete
-                        :disabled="isItemLoading"
-                        v-model="town"
-                        :items="townItems"
-                        item-text="town_name"
-                        item-value="town_id"
-                        dense
-                        chips
-                        :rules="validationRulesRequired"
-                        small-chips
-                        label="Select Town"
-                      >
-                        <template #label>
-                          Select Town
                           <span class="red--text">
                             <strong>*</strong>
                           </span>
@@ -365,6 +404,7 @@
                         :rules="validationRulesRequired"
                         small-chips
                         label="Select Barangay"
+                        @keypress="acceptNotCharacter"
                       >
                         <template #label>
                           Select Barangay
@@ -385,23 +425,45 @@
                         chips
                         small-chips
                         label="Select Subdivision"
+                        :rules="validationRulesRequired"
+                        @keypress="acceptNotCharacter"
                       ></v-autocomplete>
                     </v-col>
                     <v-col cols="12" md="3" sm="12">
-                      <v-text-field
-                        dense
-                        label="Zip Code"
-                        v-model="zipCode"
-                        hide-details="auto"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" md="3" sm="12">
-                      <v-text-field
-                        v-model="floorLevel"
-                        dense
-                        label="Enter Floor or Level"
-                      ></v-text-field>
-                    </v-col>
+                    <v-text-field
+                    v-numeric
+                      dense
+                      label="Zip Code"
+                      v-model="zipCode"
+                      hide-details="auto"
+                      :rules="validationRules_zipCodeWithMax6Char"
+                    >
+                    <template #label>
+                      Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="3" sm="12">
+                    <v-autocomplete
+                      v-model="floorLevel"
+                      :items="floorLevelItems"
+                      dense
+                      chips
+                      :rules="validationRulesRequired"
+                      small-chips
+                      label="Select Floor or Level"
+                    >
+                    <template #label>
+                      Select Floor or Level
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
                   </v-row>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -638,4 +700,5 @@
   .fade-leave-active {
     opacity: 0;
   }
+ 
   </style>

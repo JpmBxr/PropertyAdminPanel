@@ -129,6 +129,8 @@ export const accountDetails = {
         this.AccountDetailsDataProps != null && this.AccountDetailsDataProps.open_property_limit != null
           ? this.AccountDetailsDataProps.open_property_limit
           : 5,
+      imageRule: [],
+      ProfileImage: null,
       associatedAgencyItems: [],
       associatedBrokerItems: [],
       floorLevelItems: ["Basement", "Ground", "First", "Second"],
@@ -199,6 +201,15 @@ export const accountDetails = {
       deep: true,
     },
   },
+
+  ProfileImage(val) {
+    this.ProfileImage = val;
+    this.imageRule =
+      this.ProfileImage != null
+        ? [(v) => !v || v.size <= 1048576 || "File size should be 1MB"]
+        : [];
+  },
+
   methods: {
     getTownWithoutPagination() {
       this.isLoaderActive = true;
@@ -403,61 +414,42 @@ export const accountDetails = {
 
         if (this.isAddEdit && this.AccountDetailsDataProps == null) {
           // save
-          let payload = {
-            UserType: this.UserType.id,
-            AssociatedAgency:
-              this.AssociatedAgency != null
-                ? this.AssociatedAgency.toString()
-                : null,
-            firstName: this.firstName,
-            lastName: this.lastName,
-            nickName: this.nickName,
-            selectDate: this.selectDate,
-            sameAsAgency: this.sameAsAgency,
-            unitNumber: this.unitNumber,
-            houseLotNumber: this.houseLotNumber,
-            streetName: this.streetName,
-            propertyBuildingName: this.propertyBuildingName,
-            subdivision: this.subdivision,
-            barangay: this.barangay,
-            town: this.town,
-            province: this.province,
-            zipCode: this.zipCode,
-            floorLevel: this.floorLevel,
-            subdivision: this.subdivision,
-            selectBirthDay: this.selectBirthDay,
-            selectBirthMonth: this.selectBirthMonth,
-            rELicence: this.rELicence,
-            userWebsite: this.userWebsite,
-            userSkills:
-              this.userSkills != null ? this.userSkills.toString() : null,
-            profileStatement: this.profileStatement,
-            selfBroker: this.selfBroker,
-
-            associatedBroker:
-              this.associatedBroker != null
-                ? this.associatedBroker.toString()
-                : null,
-            reasonInactive: this.reasonInactive,
-            inactiveUser: this.inactiveUser,
-            created_by: this.created_by,
-            phone1: this.phone1,
-            phone2: this.phone2,
-            openPropertyLimit: this.openPropertyLimit,
-            activeUserDateLimit: this.activeUserDateLimit,
-            email: this.email,
-            created_by: Global.loggedInUser,
-            user_info: secureLS.get(Global.userId),
-          };
+          let postData = new FormData();
+          if (this.ProfileImage != null) {
+            postData.append("profile_image", this.ProfileImage);
+          }
+          postData.append("firstName", this.firstName);
+          postData.append("lastName", this.lastName,);
+          postData.append("nickName", this.nickName,);
+          postData.append("unitNumber", this.unitNumber,);
+          postData.append( "houseLotNumber", this.houseLotNumber,);
+          postData.append( "streetName", this.streetName,);
+          postData.append("propertyBuildingName", this.propertyBuildingName,);
+          postData.append("subdivision", this.subdivision,);
+          postData.append( "barangay", this.barangay,);
+          postData.append("town", this.town,);
+          postData.append("province", this.province,);
+          postData.append("zipCode", this.zipCode,);
+          postData.append("floorLevel", this.floorLevel,);
+          postData.append( "selectBirthDay", this.selectBirthDay,);
+          postData.append("selectBirthMonth", this.selectBirthMonth,);
+          postData.append( "rELicence", this.rELicence,);
+          postData.append("userWebsite", this.userWebsite,);
+          postData.append("userSkills",
+            this.userSkills != null ? this.userSkills.toString() : null,);
+          postData.append( "profileStatement", this.profileStatement,);
+          postData.append( "phone1", this.phone1,);
+          postData.append( "phone2", this.phone2,);
+          postData.append("openPropertyLimit", this.openPropertyLimit);
+          postData.append( "email", this.email,);
+          postData.append( "user_id", secureLS.get(Global.userId));
+          postData.append( "verify_password",this.item.verify_password);
+         
           this.isLoaderActive = true;
-          ApiService.post(`SaveUser`, payload)
+          ApiService.post(`SaveUser`, postData)
             .then((response) => {
               this.isLoaderActive = false;
               this.close();
-              // this.logout();
-              this.$router.push({
-                name: "Home",
-              });
               Global.showSuccessAlert(true, "success", response.data.message);
             })
             .catch((error) => {
@@ -473,55 +465,43 @@ export const accountDetails = {
 
         else {
           //update
-          let payload = {
-            user_id: this.AccountDetailsDataProps.user_id,
-            UserType: this.UserType,
-            AssociatedAgency: this.AssociatedAgency != null ? this.AssociatedAgency.toString() : null,
-            firstName: this.firstName,
-            lastName: this.lastName,
-            nickName: this.nickName,
-            selectDate: this.selectDate,
-            sameAsAgency: this.sameAsAgency,
-            unitNumber: this.unitNumber,
-            houseLotNumber: this.houseLotNumber,
-            streetName: this.streetName,
-            propertyBuildingName: this.propertyBuildingName,
-            subdivision: this.subdivision,
-            barangay: this.barangay,
-            town: this.town,
-            province: this.province,
-            zipCode: this.zipCode,
-            floorLevel: this.floorLevel,
-            subdivision: this.subdivision,
-            selectBirthDay: this.selectBirthDay,
-            selectBirthMonth: this.selectBirthMonth,
-            rELicence: this.rELicence,
-            userWebsite: this.userWebsite,
-            userSkills: this.userSkills != null ? this.userSkills.toString() : null,
-            profileStatement: this.profileStatement,
-            selfBroker: this.selfBroker,
-
-            associatedBroker: this.associatedBroker != null ? this.associatedBroker.toString() : null,
-            reasonInactive: this.reasonInactive,
-            inactiveUser: this.inactiveUser,
-            created_by: this.created_by,
-            phone1: this.phone1,
-            phone2: this.phone2,
-            openPropertyLimit: this.openPropertyLimit,
-            activeUserDateLimit: this.activeUserDateLimit,
-            email: this.email,
-            created_by: Global.loggedInUser,
-            verify_password:this.item.verify_password
-          };
+         
+          let postData = new FormData();
+          if (this.ProfileImage != null) {
+            postData.append("profile_image", this.ProfileImage);
+          }
+          postData.append("firstName", this.firstName);
+          postData.append("lastName", this.lastName,);
+          postData.append("nickName", this.nickName,);
+          postData.append("unitNumber", this.unitNumber,);
+          postData.append( "houseLotNumber", this.houseLotNumber,);
+          postData.append( "streetName", this.streetName,);
+          postData.append("propertyBuildingName", this.propertyBuildingName,);
+          postData.append("subdivision", this.subdivision,);
+          postData.append( "barangay", this.barangay,);
+          postData.append("town", this.town,);
+          postData.append("province", this.province,);
+          postData.append("zipCode", this.zipCode,);
+          postData.append("floor", this.floorLevel,);
+          postData.append( "selectBirthDay", this.selectBirthDay,);
+          postData.append("selectBirthMonth", this.selectBirthMonth,);
+          postData.append( "rELicence", this.rELicence,);
+          postData.append("userWebsite", this.userWebsite,);
+          postData.append("userSkills",
+            this.userSkills != null ? this.userSkills.toString() : null,);
+          postData.append( "profileStatement", this.profileStatement,);
+          postData.append( "phone1", this.phone1,);
+          postData.append( "phone2", this.phone2,);
+          postData.append("openPropertyLimit", this.openPropertyLimit);
+          postData.append( "email", this.email,);
+          postData.append( "user_id", secureLS.get(Global.userId));
+          postData.append( "verify_password",this.item.verify_password);
+        
           this.isLoaderActive = true;
-          ApiService.post(`UpdateProfile`, payload)
+          ApiService.post(`UpdateProfile`, postData)
             .then((response) => {
               this.isLoaderActive = false;
               this.close();
-              // this.logout();
-              this.$router.push({
-                name: "Home",
-              });
               Global.showSuccessAlert(true, "success", response.data.message);
             })
             .catch((error) => {

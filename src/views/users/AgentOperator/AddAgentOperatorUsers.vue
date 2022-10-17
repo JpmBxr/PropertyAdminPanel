@@ -421,7 +421,7 @@
                       :items="floorItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
+                      :rules="UserType.id == 30 ? []:validationRulesRequired"
                       small-chips
                       label="Select Floor or Level"
                     >

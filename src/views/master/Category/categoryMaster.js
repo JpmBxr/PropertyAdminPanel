@@ -94,6 +94,8 @@ export const categoryMaster = {
       deep: true,
     },
   },
+
+    
   methods: {
     // fetch roles
     get() {
@@ -123,6 +125,10 @@ export const categoryMaster = {
           }
         });
     },
+         // Change Status Color
+         setStatusColor(is_active) {
+          return Global.getStatusColor(is_active);
+        },
     // search
     searchInfo() {
       clearTimeout(this._timerId);
