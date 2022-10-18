@@ -407,6 +407,10 @@ export const accountDetails = {
         this.isAgentOperator = false;
       }
     },
+    //reloadPage
+    reloadPage() {
+      window.location.reload();
+    },
 
     // add edit role
     addEditItem() {
@@ -502,7 +506,14 @@ export const accountDetails = {
             .then((response) => {
               this.isLoaderActive = false;
               this.close();
+              this.$router.push({
+                name: "NotificationList",
+              });
+              let full=   this.firstName.concat("  ", this.lastName)
+              secureLS.set(Global.fullNameKey,full);
+              secureLS.get(Global.fullNameKey);
               Global.showSuccessAlert(true, "success", response.data.message);
+              this.reloadPage();
             })
             .catch((error) => {
               this.isLoaderActive = false;
@@ -538,69 +549,5 @@ export const accountDetails = {
         }, 300);
       },
       //#endregion
-  
-    //    //#region  add Pass item
-    //    addPassItem(item) {
-    //     if (this.$refs.holdingFormAddPass.validate()) {
-    //       if (this.isAddPass) {
-    //         // save
-    //         let payload = {
-    //           user_id: this.item.user_id,
-    //           verify_Pass: this.item.verify_Pass,
-    //         };
-    //         this.isDialogLoaderActive = true;
-    //         ApiService.post("UpdateProfile",payload)
-    //           .then((response) => {
-    //             this.isDialogLoaderActive = false;
-    //             this.close();
-    //             if (response.data.result == "success") {
-    //               Global.showSuccessAlert(true, "success", response.data.message);
-    //             //   this.getUsers();
-    //             } else if (response.data.result == "error") {
-    //               Global.showErrorAlert(true, "error", response.data.message);
-    //             }
-    //           })
-    //           .catch((error) => {
-    //             this.isDialogLoaderActive = false;
-  
-    //             if (
-    //               error.response.status != 401 ||
-    //               error.response.status != 403
-    //             ) {
-    //               Global.showErrorAlert(true, "error", "Something went wrong");
-    //             }
-    //           });
-    //       } else {
-    //         //update
-    //         this.isDialogLoaderActive = true;
-    //         let payload = {
-    //           user_id: this.item.user_id,
-    //           verify_Pass: this.item.verify_Pass,
-    //         };
-    //         ApiService.post("UpdateProfile",payload)
-    //           .then((response) => {
-    //             this.isDialogLoaderActive = false;
-    //             this.close();
-    //             if (response.data.result == "success") {
-    //               Global.showSuccessAlert(true, "success", response.data.message);
-    //             //   this.getUsers();
-    //             } else if (response.data.result == "error") {
-    //               Global.showErrorAlert(true, "error", response.data.message);
-    //             }
-    //           })
-    //           .catch((error) => {
-    //             this.isDialogLoaderActive = false;
-  
-    //             if (
-    //               error.response.status != 401 ||
-    //               error.response.status != 403
-    //             ) {
-    //               Global.showErrorAlert(true, "error", "Something went wrong");
-    //             }
-    //           });
-    //       }
-    //     }
-    //   },
-    //   //#endregion
   }
 };
