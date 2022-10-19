@@ -2,7 +2,12 @@ export const validationMixin = {
   data() {
     return {
       //Field is required
-      validationRulesRequired: [(v) => !!v || "Field is required"],
+      validationRulesRequired: [
+        (v) =>
+          (Array.isArray(v) && v.length === 0) || !v
+            ? "Field is required"
+            : null,
+      ],
       // mobile is required
       validationRules_mobile: [
         (v) => !!v || "Provide valid Mobile number",
@@ -13,13 +18,10 @@ export const validationMixin = {
       validationRules_alternatecontact: [
         (v) => {
           if (v) {
-            return  (
-              /^(\d{10})$/.test(v) || "Mobile number must be of 10 digits"
-            );
+            return /^(\d{10})$/.test(v) || "Mobile number must be of 10 digits";
           } else {
             return true;
           }
-          
         },
       ],
       //Email is required
@@ -45,15 +47,14 @@ export const validationMixin = {
       //Zip Codeis optional
       validationRules_zipCodeWithMax6Char: [
         (v) => !!v || "Please provide a valid Zip Code",
-        (v) =>  /^(\d{6})$/.test(v) || "Zip Code must be of 6 digits"
+        (v) => /^(\d{6})$/.test(v) || "Zip Code must be of 6 digits",
       ],
-      
+
       validationRules_otpWithMax6Char: [
         (v) => !!v || "Provide valid OTP",
         (v) => (v && v.length > 5) || "OTP must be of 6 characters",
       ],
 
-     
       validationRules_passwordRuleWithOneNumberAndOneChar: [
         (v) => !!v || "Provide valid Password",
         (v) =>
@@ -69,7 +70,7 @@ export const validationMixin = {
       validationRulesAutocomplete_required: [
         (v) => !!(v && v.length) || "Field is required",
       ],
-      
+
       validationRules_companywebsite: [
         (v) => {
           if (v) {
@@ -164,11 +165,11 @@ export const validationMixin = {
     };
   },
   methods: {
-    // #region accept Not Character 
+    // #region accept Not Character
     acceptNotCharacter(evt) {
       evt = evt ? evt : window.event;
       var charCode = evt.which ? evt.which : evt.keyCode;
-      if (charCode  ) {
+      if (charCode) {
         evt.preventDefault();
       } else {
         return true;
