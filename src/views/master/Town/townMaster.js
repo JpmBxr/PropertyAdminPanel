@@ -128,9 +128,11 @@ export const townMaster = {
       deep: true,
     },
   },
+
   created() {
     this.getProvinceWithoutPagination();
     this.getTownWithoutPagination();
+    this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   methods: {
 

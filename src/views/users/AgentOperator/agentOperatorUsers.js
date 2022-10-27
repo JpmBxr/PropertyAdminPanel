@@ -125,6 +125,7 @@ export const agentOperatorUsers = {
 
     console.log(this.loggedInUserRole, "   ", this.loggedInUserID);
     console.log("userPermissionDataProps", this.userPermissionDataProps);
+    this.$laravel.setPermissions(this.userPermissionDataProps);
   },
 
   methods: {

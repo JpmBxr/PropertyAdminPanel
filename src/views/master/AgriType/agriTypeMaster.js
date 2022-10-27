@@ -75,6 +75,10 @@ export const agriTypeMaster = {
     };
   },
 
+  created() {
+    this.$laravel.setPermissions(this.userPermissionDataProps);
+  },
+
   computed: {
     // For numbering the Data Table Rows
     dataTableRowNumbering() {

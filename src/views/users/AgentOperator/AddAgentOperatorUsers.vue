@@ -202,37 +202,6 @@
 
                 <v-row>
                   <v-col cols="12" md="3" sm="12">
-                    <v-combobox
-                      v-model="selectBirthDay"
-                      :items="birthDaysItems"
-                      
-                      label="Select Birth Day"
-                      dense
-                    >
-                    </v-combobox>
-                  </v-col>
-                  <v-col cols="12" md="3" sm="12">
-                    <v-combobox
-                      v-model="selectBirthMonth"
-                      :items="birthMonthItems"
-                      label="Select Birth Month"
-                      @change="populateBirthDay"
-                      dense
-                    >
-                    </v-combobox>
-                  </v-col>
-                  <v-col cols="12" md="3" sm="12">
-                    <v-combobox
-                      v-model="selectBirthYear"
-                      :items="birthYearItems"
-                      label="Select Birth Year"
-                      
-                      @change="populateBirthDay"
-                      dense
-                    >
-                    </v-combobox>
-                  </v-col>
-                  <v-col cols="12" md="3" sm="12">
                     <v-switch
                       class="p-0 m-0"
                       dense
@@ -243,6 +212,41 @@
                       true-value="1"
                       false-value="0"
                     ></v-switch>
+                  </v-col>
+
+                  <v-col cols="12" md="3" sm="12">
+                    <v-combobox
+                    v-if="false"
+                      v-model="selectBirthDay"
+                      :items="birthDaysItems"
+                      
+                      label="Select Birth Day"
+                      dense
+                    >
+                    </v-combobox>
+                  </v-col>
+                  <v-col cols="12" md="3" sm="12">
+                    <v-combobox
+                    v-if="false"
+                      v-model="selectBirthMonth"
+                      :items="birthMonthItems"
+                      label="Select Birth Month"
+                      @change="populateBirthDay"
+                      dense
+                    >
+                    </v-combobox>
+                  </v-col>
+                  <v-col cols="12" md="3" sm="12">
+                    <v-combobox
+                    v-if="false"
+                      v-model="selectBirthYear"
+                      :items="birthYearItems"
+                      label="Select Birth Year"
+                      
+                      @change="populateBirthDay"
+                      dense
+                    >
+                    </v-combobox>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>

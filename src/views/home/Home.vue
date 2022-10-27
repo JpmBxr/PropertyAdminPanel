@@ -589,7 +589,7 @@
       </perfect-scrollbar>
 
       <v-col class="text-center" cols="12">
-        <strong> Version: 1.0.1.0 </strong></v-col
+        <strong> Version: 1.0.1.1 </strong></v-col
       >
     </v-navigation-drawer>
 
@@ -804,7 +804,8 @@
     </transition>
     <v-footer padless fixed class="text-center">
       <v-col class="text-center" cols="12">
-        Powered by <strong>{{ CompanyName }}</strong>
+        Powered by <strong>{{ CompanyName }}</strong> ||
+        <strong> Version: 1.0.1.1 </strong>
       </v-col>
     </v-footer>
   </v-app>

@@ -42,6 +42,7 @@ export const property = {
          created() {
            this.propertyImageUrl = Global.propertyImageUrl;
            this.getPropertyList();
+           this.$laravel.setPermissions(this.userPermissionDataProps);
          },
 
          methods: {

@@ -106,11 +106,13 @@ export const subdivisionMaster = {
       //end
     };
   },
+
   created() {
     this.getProvinceWithoutPagination();
     this.getTownWithoutPagination();
     this.getBarangayWithoutPagination();
     this.getSubdivisionWithoutPagination();
+    this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   computed: {
     // For numbering the Data Table Rows
