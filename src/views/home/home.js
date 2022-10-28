@@ -222,7 +222,7 @@ export const home = {
           to: "/home/reports/user-list",
         },
         {
-          text: "User To Activated",
+          text: "Users to Activate",
           icon: "mdi-chevron-double-right",
           to: "/home/reports/user-to-activated",
         },

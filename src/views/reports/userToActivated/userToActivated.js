@@ -64,7 +64,7 @@ export const userToActivated = {
             userSkills: null,
             pagination: {},
             module: "Reports",
-            entity: "User To Activated",
+            entity: "User To Activate",
             endPoint: "UserToActivated",
 
             // search

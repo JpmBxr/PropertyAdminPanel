@@ -489,7 +489,7 @@
             </v-list-item>
 
             <v-list-item
-              v-permission="'User To Activated Reports'"
+              v-permission="'User To Activate Reports'"
               to="/home/reports/user-to-activated"
               :class="menuClass"
               :color="menuColor"
@@ -497,7 +497,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-chevron-double-right</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>User To Activated</v-list-item-title>
+              <v-list-item-title>User To Activate</v-list-item-title>
             </v-list-item>
 
             <v-list-item

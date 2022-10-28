@@ -54,7 +54,7 @@
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-btn text small color="primary">Forgot Password</v-btn>
+                <v-btn text small color="primary" v-if="false">Forgot Password</v-btn>
                 <v-divider></v-divider>
 
                 <div class="text-center">
