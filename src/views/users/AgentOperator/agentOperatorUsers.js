@@ -124,7 +124,7 @@ export const agentOperatorUsers = {
     this.loggedInUserID = secureLS.get(Global.userId);
 
     console.log(this.loggedInUserRole, "   ", this.loggedInUserID);
-    console.log("userPermissionDataProps", this.userPermissionDataProps);
+   
     this.$laravel.setPermissions(this.userPermissionDataProps);
   },
 
@@ -140,6 +140,7 @@ export const agentOperatorUsers = {
         itemsPerPage: itemsPerPage,
         searchText: this.searchText,
         page: page,
+        loggedInUserID: secureLS.get(Global.userId)
       };
       this.isLoaderActive = true;
       ApiService.get("GetUser", payload)

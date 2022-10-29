@@ -112,17 +112,7 @@
 
           <template v-slot:item.user_status="{ item }">
             <v-switch
-              v-if="
-                loggedInUserRole === item.role_name &&
-                loggedInUserID === item.user_id
-              "
-              v-permission="
-                'Change Status of an Agent' |
-                  'Change Status of Admin' |
-                  'Change Status of a Superuser' |
-                  'Change Status of Operator' |
-                  'Change Status of an Individual'
-              "
+
               :color="item.user_status == 'Active' ? 'green' : 'red'"
               inset
               dense
@@ -133,18 +123,10 @@
             >
             </v-switch>
 
-            <v-switch
-              v-else-if="
-                loggedInUserRole !== item.role_name &&
-                loggedInUserID !== item.user_id
-              "
-              v-permission="
-                'Change Status of an Agent' |
-                  'Change Status of Admin' |
-                  'Change Status of a Superuser' |
-                  'Change Status of Operator' |
-                  'Change Status of an Individual'
-              "
+            <!-- <v-switch
+            
+            v-else-if="loggedInUserRole!=item.role_name && loggedInUserID!=item.user_id"
+           
               :color="item.user_status == 'Active' ? 'green' : 'red'"
               inset
               dense
@@ -153,7 +135,7 @@
               v-model="item.user_status"
               @change="enableDisableItem(item)"
             >
-            </v-switch>
+            </v-switch> -->
           </template>
 
           <template v-slot:item.status="{ item }">
@@ -164,26 +146,7 @@
 
           <template v-slot:item.actions="{ item }">
             <v-icon
-            v-permission="'Add User'"
-              v-if="
-                loggedInUserRole === item.role_name &&
-                loggedInUserID === item.user_id
-              "
-              size="22"
-              class="mx-1 fitPotPrimaryIcon"
-              @click="
-                isAddEdit = false;
-                showAddEditPage(item);
-              "
-              >mdi-square-edit-outline</v-icon
-            >
-            
-            <v-icon
             v-permission="'Edit User'"
-              v-else-if="
-                loggedInUserRole !== item.role_name &&
-                loggedInUserID !== item.user_id
-              "
               size="22"
               class="mx-1 fitPotPrimaryIcon"
               @click="
