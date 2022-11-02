@@ -2,11 +2,19 @@ import store from "../store/store";
 import Swal from "sweetalert2";
 import { ApiService } from "../helpers/apiService";
 export const Global = {
-  appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
-  profileImageUrl:
-    "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
-  propertyImageUrl:
-    "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
+  //Development Url Environment
+  // appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
+  // profileImageUrl:
+  //   "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
+  // propertyImageUrl:
+  //   "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
+
+  //Testing Url Environment
+    appBaseUrl: "https://peapiuat.dreamplesk.com/public/api/",
+    profileImageUrl:
+      "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
+    propertyImageUrl:
+      "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
   getBaseUrl() {
     return this.appBaseUrl;
   },
@@ -60,7 +68,7 @@ export const Global = {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes!",
-      timer:7000
+    
     });
   },
   async showAlert(title, text, icon) {
@@ -72,7 +80,7 @@ export const Global = {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Cancel",
-      timer:7000
+    
     });
   },
   //Change status color of Status

@@ -211,5 +211,35 @@ export const agentOperatorUsers = {
         }
       }
     },
+    async deleteItem(item) {
+      console.log(item);
+      const result = await Global.showConfirmationAlert(
+        `${this.entity} : ${item.full_name} `,
+        "Are you sure to Delete the User",
+        "warning"
+      );
+      if (result.isConfirmed) {
+        let payload = {
+          user_id: item.user_id,
+       
+        };
+
+        this.isLoaderActive = true;
+        ApiService.post(`deleteUser`, payload)
+          .then((response) => {
+            this.isLoaderActive = false;
+
+            Global.showSuccessAlert(true, "success", response.data.message);
+
+            this.getUsers();
+          })
+          .catch((error) => {
+            this.isLoaderActive = false;
+            if (error.response.status != 401 || error.response.status != 403) {
+              Global.showErrorAlert(true, "error", "Something went wrong");
+            }
+          });
+      }
+    },
   },
 };

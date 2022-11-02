@@ -519,7 +519,14 @@
                       v-model="rELicence"
                       :rules="validationRulesRequired"
                       hide-details="auto"
-                    ></v-text-field>
+                    >
+                    <template #label>
+                      RE Licence
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                  </v-text-field>
                   </v-col>
 
                   <v-col cols="12" md="9" sm="12">
@@ -534,7 +541,14 @@
                       small-chips
                       multiple
                       label="Associated Agency"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Associated Agency
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                  </v-autocomplete>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -563,7 +577,14 @@
                       :rules="validationRulesRequired"
                       small-chips
                       label="Select Associated Broker"
-                    ></v-autocomplete>
+                    >
+                    <template #label>
+                      Select Associated Broker
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                  </v-autocomplete>
                   </v-col>
                 </v-row>
 

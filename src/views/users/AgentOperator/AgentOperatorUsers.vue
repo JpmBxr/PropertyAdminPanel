@@ -147,6 +147,7 @@
           <template v-slot:item.actions="{ item }">
             <v-icon
             v-permission="'Edit User'"
+          
               size="22"
               class="mx-1 fitPotPrimaryIcon"
               @click="
@@ -155,16 +156,13 @@
               "
               >mdi-square-edit-outline</v-icon
             >
-            <!-- <v-icon
-              v-if="
-                loggedInUserRole === item.role_name &&
-                loggedInUserID === item.user_id
-              "
+            <v-icon
+            v-permission="'Delete User'"
               size="22"
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"
               >mdi-delete-outline</v-icon
-            > -->
+            >
           </template>
         </v-data-table>
       </transition>
