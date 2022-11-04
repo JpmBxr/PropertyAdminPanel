@@ -118,6 +118,7 @@
               item.is_role_active
             }}</v-chip>
           </template>
+          
         </v-data-table>
       </transition>
       <!--start of Add / edit -->
