@@ -54,6 +54,7 @@
                 <v-row class="mt-4">
                   <v-col cols="12" md="3" sm="12">
                     <v-autocomplete
+                    v-if="false"
                       v-model="item.role_id"
                       :items="userTypeItems"
                       :disabled="isItemLoading"

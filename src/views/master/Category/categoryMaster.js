@@ -66,7 +66,8 @@ export const categoryMaster = {
       //excel
       excelFields: {
         ID: "id",
-        Name: "name",
+        Name: "product_category_name",
+        Status: "product_category_status"
       },
       excelFileName:
         "CategoryMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
@@ -251,10 +252,10 @@ export const categoryMaster = {
             }
           });
       } else {
-        if (item.is_role_active == "Inactive") {
-          item.is_role_active = "Active";
+        if (item.product_category_status == "Inactive") {
+          item.product_category_status = "Active";
         } else {
-          item.is_role_active = "Inactive";
+          item.product_category_status = "Inactive";
         }
       }
     },

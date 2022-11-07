@@ -67,6 +67,7 @@ export const capabilityMaster = {
       excelFields: {
         ID: "capability_id",
         Name: "capability_name",
+        Status: "capability_status",
       },
       excelFileName:
         "CapabilityMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",

@@ -67,9 +67,10 @@ export const productModeMaster = {
       excelFields: {
         ID: "product_mode_id",
         Name: "product_mode",
+        Status: "product_mode_status",
       },
       excelFileName:
-        "productModeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "ProductMode" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

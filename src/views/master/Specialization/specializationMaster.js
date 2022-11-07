@@ -66,11 +66,11 @@ export const specializationMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Name: "specialization",
+        Status: "specialization_status",
       },
       excelFileName:
-        "SpecializationMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "Specialization" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

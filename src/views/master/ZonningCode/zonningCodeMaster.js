@@ -66,11 +66,11 @@ export const zonningCodeMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Name: "zonning_code",
+        Status: "zonning_code_status"
       },
       excelFileName:
-        "ZonningCodeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "ZonningCode" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

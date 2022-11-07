@@ -67,9 +67,10 @@ export const propertyTypeMaster = {
       excelFields: {
         ID: "property_type_id",
         Name: "property_type",
+        SDtatus: "property_type_status",
       },
       excelFileName:
-        "productModeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "Property_Type" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

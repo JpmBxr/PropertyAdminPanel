@@ -65,11 +65,11 @@ export const propertyClassificationMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Property_classification: "property_classification",
+        Property_classification_status: "property_classification_status",
       },
       excelFileName:
-        "productModeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "PropertyClassification" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },
@@ -246,10 +246,10 @@ export const propertyClassificationMaster = {
             }
           });
       } else {
-        if (item.is_role_active == "Inactive") {
-          item.is_role_active = "Active";
+        if (item.property_classification_status == "Inactive") {
+          item.property_classification_status = "Active";
         } else {
-          item.is_role_active = "Inactive";
+          item.property_classification_status = "Inactive";
         }
       }
     },

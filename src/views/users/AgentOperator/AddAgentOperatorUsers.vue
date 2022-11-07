@@ -539,7 +539,6 @@
                       chips
                       :rules="validationRulesRequired"
                       small-chips
-                      multiple
                       label="Associated Agency"
                     >
                     <template #label>

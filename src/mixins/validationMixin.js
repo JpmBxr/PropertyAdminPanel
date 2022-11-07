@@ -47,7 +47,7 @@ export const validationMixin = {
       //Zip Codeis optional
       validationRules_zipCodeWithMax6Char: [
         (v) => !!v || "Please provide a valid Zip Code",
-        (v) => /^(\d{6})$/.test(v) || "Zip Code must be of 6 digits",
+        (v) => /^(\d{4})$/.test(v) || "Zip Code must be of 4 digits",
       ],
 
       validationRules_otpWithMax6Char: [

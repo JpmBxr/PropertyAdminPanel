@@ -15,6 +15,7 @@ export const Global = {
       "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
     propertyImageUrl:
       "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
+
   getBaseUrl() {
     return this.appBaseUrl;
   },

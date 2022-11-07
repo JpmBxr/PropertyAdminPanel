@@ -98,16 +98,16 @@ export const barangayMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Barangay_name: "barangay_name",
+        Town_name: "town_name",
+        Province_name: "province_name",
+        Zip_code: "zip_code",
+        Adjacent_barangay: "adjacent_barangay",
+        Status: "barangay_status",
       },
-      excelFileName: "TownMaster_" + moment().format("DD/MM/YYYY") + ".xls",
+      excelFileName: "Barangay" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
-  },
-
-  created() {
-    this.$laravel.setPermissions(this.userPermissionDataProps);
   },
 
   computed: {
@@ -134,6 +134,7 @@ export const barangayMaster = {
     this.getProvinceWithoutPagination();
     this.getTownWithoutPagination();
     this.getBarangayWithoutPagination();
+    this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   methods: {
     // fetch roles
@@ -221,8 +222,6 @@ export const barangayMaster = {
 
     //show add edit dialog
    showAddEditDialog(item) {
-
-    console.log(item);
       this.getBarangayWithoutPagination();
       if (item == null && this.isAddEdit == true) {
         this.addEditText = `Add New ${this.entity}`;
@@ -250,7 +249,6 @@ export const barangayMaster = {
 
     // add edit role
     addEditItem() {
-      console.log(this.item.adjacent_barangay_id);
       if (this.$refs.holdingFormAddEdit.validate()) {
         if (this.isAddEdit) {
           // save
@@ -357,10 +355,10 @@ export const barangayMaster = {
             }
           });
       } else {
-        if (item.is_role_active == "Inactive") {
-          item.is_role_active = "Active";
+        if (item.barangay_status == "Inactive") {
+          item.barangay_status = "Active";
         } else {
-          item.is_role_active = "Inactive";
+          item.barangay_status = "Inactive";
         }
       }
     },

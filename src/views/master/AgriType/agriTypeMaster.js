@@ -70,7 +70,7 @@ export const agriTypeMaster = {
         Status: "agri_type_status",
       },
       excelFileName:
-        "agryTypeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "AgriType" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

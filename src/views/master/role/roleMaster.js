@@ -37,13 +37,6 @@ export const roleMaster = {
           width: "20%",
           align: "start",
         },
-        // {
-        //   text: "Actions",
-        //   value: "actions",
-        //   sortable: false,
-        //   width: "25%",
-        //   align: "end",
-        // },
       ],
 
       pagination: {},
@@ -64,11 +57,11 @@ export const roleMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
         Name: "name",
+        Status: "is_role_active",
       },
       excelFileName:
-        "RoleMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "Role" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

@@ -66,10 +66,10 @@ export const provinceMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Name: "province_name",
+        Status: "province_status",
       },
-      excelFileName: "ProvinceMaster_" + moment().format("DD/MM/YYYY") + ".xls",
+      excelFileName: "Province" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },
@@ -188,7 +188,7 @@ export const provinceMaster = {
           let payload = {
             provinceId: this.item.province_id,
             provinceName: this.item.province_name,
-            provinceStatus: this.item.province_status,
+            provinceStatus: "Active",
             updatedBy: Global.loggedInUser,
           };
           this.isDialogLoaderActive = true;
@@ -230,6 +230,7 @@ export const provinceMaster = {
         this.isLoaderActive = true;
         ApiService.post(`Update${this.endPoint}`, payload)
           .then((response) => {
+            
             this.isLoaderActive = false;
 
             Global.showSuccessAlert(true, "success", response.data.message);
@@ -243,10 +244,10 @@ export const provinceMaster = {
             }
           });
       } else {
-        if (item.provinceStatus == "Inactive") {
-          item.provinceStatus = "Active";
+        if (item.province_status == "Inactive") {
+          item.province_status = "Active";
         } else {
-          item.provinceStatus = "Inactive";
+          item.province_status = "Inactive";
         }
       }
     },

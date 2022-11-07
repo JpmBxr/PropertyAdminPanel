@@ -66,11 +66,11 @@ export const userSkillsMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        User_skills: "user_skills",
+        Status: "user_skills_status"
       },
       excelFileName:
-        "UserSkillsMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "UserSkills" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

@@ -65,7 +65,6 @@ export const subdivisionMaster = {
           width: "5%",
           align: "start",
         },
-
         {
           text: "Actions",
           value: "actions",
@@ -81,7 +80,6 @@ export const subdivisionMaster = {
       townItems: [],
       provinceItems: [],
       barangayItems: [],
-
       adjacentSubdivisionsItems: [],
 
       // search
@@ -99,10 +97,14 @@ export const subdivisionMaster = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Subdivision_name: "subdivision_name",
+        Barangay_name: "barangay_name",
+        Town_name: "town_name",
+        Province_name: "province_name",
+        Zip_code: "zip_code",
+        Subdivision_status: "subdivision_status",
       },
-      excelFileName: "TownMaster_" + moment().format("DD/MM/YYYY") + ".xls",
+      excelFileName: "Subdivision" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },
@@ -171,7 +173,6 @@ export const subdivisionMaster = {
       ApiService.get("GetBarangayWithoutPagination", {})
         .then((response) => {
           this.isLoaderActive = false;
-console.log(response.data.resultData);
           this.barangayItems = response.data.resultData;
         })
         .catch((error) => {

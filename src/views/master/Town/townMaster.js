@@ -93,14 +93,11 @@ export const townMaster = {
 
       //excel
       excelFields: {
-        // town_id: 1,
-        // town_name: "Town-1",
-        // town_status: "Active",
-        // is_town_city: "Town",
-        // adjacent_town: "Town-1,Town-2",
-        // created_at: "19-03-2022",
-        // province_id: 1,
-        // province_name: "Province-1",
+        Town_name: "town_name",
+        Town_city: "is_town_city",
+        Province_name: "province_name",
+        Adjacent_town: "adjacent_town",
+        Town_status: "town_status",
       },
       excelFileName: "TownMaster_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
