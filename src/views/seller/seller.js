@@ -79,11 +79,13 @@ export const seller = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Seller_name: "seller_name",
+        Property_owner_name: "property_owner_name",
+        Phone: "phone_1",
+        email_address: "email_address",
       },
       excelFileName:
-        "productModeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "Seller" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },
@@ -159,6 +161,35 @@ export const seller = {
           name: "AddSeller",
           params: { sellerId: item.seller_id },
         });
+      }
+    },
+
+    async deleteItem(item) {
+      console.log(item);
+      const result = await Global.showConfirmationAlert(
+        `${this.entity} : ${item.seller_name} `,
+        "Are you sure to Delete the Seller",
+        "warning"
+      );
+      if (result.isConfirmed) {
+        let payload = {
+          seller_id: item.seller_id,
+       
+        };
+
+        this.isLoaderActive = true;
+        ApiService.post(`deleteSeller`, payload)
+          .then((response) => {
+            this.isLoaderActive = false;
+            Global.showSuccessAlert(true, "success", response.data.message);
+            this.get();
+          })
+          .catch((error) => {
+            this.isLoaderActive = false;
+            if (error.response.status != 401 || error.response.status != 403) {
+              Global.showErrorAlert(true, "error", "Something went wrong");
+            }
+          });
       }
     },
   },

@@ -9,6 +9,7 @@
       ></v-progress-circular>
     </v-overlay>
     <v-card class="mb-10">
+    
       <v-row class="ml-4 mr-4 mt-1 mb-4">
         <v-toolbar-title dark color="primary">
           <v-list-item two-line>
@@ -166,6 +167,7 @@
           </template>
         </v-data-table>
       </transition>
+      
       <!--start of Add / edit -->
      
       <!--end of add/edit -->
@@ -185,6 +187,7 @@ export default agentOperatorUsers;
   transition-property: opacity;
   transition-timing-function: ease;
 }
+
 
 .fade-enter,
 .fade-leave-active {

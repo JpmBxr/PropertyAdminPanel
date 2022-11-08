@@ -167,7 +167,7 @@ export const addAgentOperatorUsers = {
   created() {
 
     this.setOpenProperty();
-    this.getTownWithoutPagination();
+    // this.getTownWithoutPagination();
     this.getProvinceWithoutPagination();
     this.getUserSkillWithoutPagination();
     this.getUserTypeItemWithoutPagination();
@@ -248,6 +248,7 @@ export const addAgentOperatorUsers = {
       this.isLoaderActive = true;
       ApiService.get("webGetRolesWithoutPagination", {})
         .then((response) => {
+          
           this.isLoaderActive = false;
 
           this.userTypeItems = response.data.resultData;
@@ -343,12 +344,49 @@ export const addAgentOperatorUsers = {
 
 
     changeProvince() {
+      this.isLoaderActive = true;
+      ApiService.get("GetBarangayWithoutPagination", {
+        townId: this.town,
+      })
+        .then((response) => {
+          this.isLoaderActive = false;
 
+          this.barangayItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
+    changeTown() {
+      this.isLoaderActive = true;
+      ApiService.get("GetTownWithoutPagination", {
+      
+        provinceId: this.province,
+      })
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.townItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+
+
+    },
+
+    changeBarangay() {
 
       this.isLoaderActive = true;
       ApiService.get("GetBarangayWithoutPagination", {
         townId: this.town,
-        provinceId: this.province,
+  
       })
         .then((response) => {
           this.isLoaderActive = false;
@@ -364,14 +402,12 @@ export const addAgentOperatorUsers = {
 
 
     },
-
-    changeBarangay() {
+    changeSubdivision() {
 
       this.isLoaderActive = true;
       ApiService.get("GetSubdivisionWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
         barangayId: this.barangay,
+  
       })
         .then((response) => {
           this.isLoaderActive = false;
@@ -392,18 +428,18 @@ export const addAgentOperatorUsers = {
     },
 
     changeUserType() {
-      console.log("-------->" ,this.UserType);
-
-      if (this.UserType.name == "Agent" || this.UserType.name == "Operator") {
+      console.log("C-------->" ,this.UserType);
+      if(this.UserType.name == "Agent" )
+      {
+        this.sameAsAgency=true;
         this.isAgentOperator = true;
-      } else {
+      }
+      else
+      {
+        this.sameAsAgency=false;
         this.isAgentOperator = false;
       }
     },
-
-
-
-
 
 
     // add edit role
@@ -544,7 +580,4 @@ export const addAgentOperatorUsers = {
       }
     },
   }
-
-
-
 };

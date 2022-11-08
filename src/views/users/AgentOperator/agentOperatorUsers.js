@@ -87,11 +87,14 @@ export const agentOperatorUsers = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        full_name: "full_name",
+        role_name: "role_name",
+        Primary_Phone:"phone_1",
+        user_email:"user_email",
+        user_status:"user_status"
       },
       excelFileName:
-        "productModeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "User" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

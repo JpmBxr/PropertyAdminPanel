@@ -342,9 +342,9 @@
                       @keypress="acceptNotCharacter"
                       @change="changeProvince"
                       small-chips
-                      label="Select Provinces of Operations"
+                      label="Select Province"
                       ><template #label>
-                        Select Provinces of Operations
+                        Select Province
                         <span class="red--text">
                           <strong>*</strong>
                         </span>

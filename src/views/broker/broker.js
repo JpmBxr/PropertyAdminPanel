@@ -75,10 +75,11 @@ export const broker = {
 
       //excel
       excelFields: {
-        broker_name: "broker_name",
-        email_address: "email_address",
-        phone_1: "phone_1",
-        broker_license_number: "broker_license_number",
+        Broker_name: "broker_name",
+        ERmail_address: "email_address",
+        Phone_1: "phone_1",
+        Broker_license_number: "broker_license_number",
+        Status: "status",
       },
       excelFileName:
         "Broker" + "_" + moment().format("DD/MM/YYYY") + ".xls",
