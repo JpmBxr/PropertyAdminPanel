@@ -22,7 +22,6 @@ export const addAgency = {
       provinceItems: [],
       barangayItems: [],
       subdivisionItems: [],
-      floorItems: ["Basement", "Ground", "First", "Second"],
       pagination: {},
       entity: "Add Agency",
       isFormAddEditValid: false,
@@ -32,7 +31,7 @@ export const addAgency = {
 
       // add edit
       defaultItem: {},
-      
+
       item: {},
       item_s: {},
       addEditDialog: false,
@@ -55,12 +54,14 @@ export const addAgency = {
 
     await this.getAgencyProvinceItems();
     await this.getTownWithoutPagination();
+    await this.getBarangayWithoutPagination();
 
     if (this.$route.params.agencyId != 0) {
       this.isSwitchVisible = true;
       this.isAddEdit = false;
       await this.getAgencyById(this.$route.params.agencyId);
       this.changeProvince();
+      this.changeTown();
       this.changeBarangay();
     }
   },
@@ -137,93 +138,84 @@ export const addAgency = {
     //#endregion
 
     //#region getAgencyProvinceItems
-    getAgencyProvinceItems() {
+    async getAgencyProvinceItems() {
       this.isLoaderActive = true;
-      ApiService.get("GetProvinceWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.agencyProvinceItems = response.data.resultData;
-        })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+      try {
+        const response = await ApiService.get("GetProvinceWithoutPagination", {})
+        this.agencyProvinceItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#region 
 
     //#region getTownWithoutPagination
-    getTownWithoutPagination() {
+    async getTownWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.townItems = response.data.resultData;
-          //console.log(this.townItems[0]);
+      try {
+        const response = await ApiService.get("GetTownWithoutPagination", {
+          provinceId: this.item.address_province_id,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.townItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region getBarangayWithoutPagination
-    getBarangayWithoutPagination() {
-      console.log(this.town);
+    async getBarangayWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetBarangayWithoutPagination", {
-        townId: this.item.town_id,
-        provinceId: this.item.address_province_id,
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.barangayItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetBarangayWithoutPagination", {
+          townId: this.item.town_id
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.barangayItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region getSubdivisionWithoutPagination
-    getSubdivisionWithoutPagination() {
+    async getSubdivisionWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetSubdivisionWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
-        barangayId: this.barangay,
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.subdivisionItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetSubdivisionWithoutPagination", {
+          barangayId: this.item.barangay_id,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.subdivisionItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region Change
-    changeProvince() {
-      this.getBarangayWithoutPagination();
+    async changeProvince() {
+      await this.getTownWithoutPagination();
     },
-
-    changeBarangay() {
-      this.getSubdivisionWithoutPagination();
+    async changeTown() {
+      await this.getBarangayWithoutPagination();
+    },
+    async changeBarangay() {
+      await this.getSubdivisionWithoutPagination();
     },
     //#endregion
 

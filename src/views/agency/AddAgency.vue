@@ -181,7 +181,7 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       ><template #label>
-                        Select Provinces of Operations
+                        Select Provinces Of Operations
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -304,29 +304,6 @@
                   <v-col cols="12" md="4" sm="12">
                     <v-autocomplete
                       :disabled="isItemLoading"
-                      v-model="item.town_id"
-                      :items="townItems"
-                      item-text="town_name"
-                      item-value="town_id"
-                      dense
-                      chips
-                      :rules="validationRulesRequired"
-                      @keypress="acceptNotCharacter"
-                      small-chips
-                      label="Select Town"
-                    >
-                      <template #label>
-                        Select Town
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
-                    </v-autocomplete>
-                  </v-col>
-
-                  <v-col cols="12" md="4" sm="12">
-                    <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="item.address_province_id"
                       :items="provinceItems"
                       item-text="province_name"
@@ -340,13 +317,39 @@
                       label="Select Province"
                     >
                       <template #label>
-                        Select Provinces of Operations
+                        Select Province
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
                       </template>
                     </v-autocomplete>
                   </v-col>
+
+                  <v-col cols="12" md="4" sm="12">
+                    <v-autocomplete
+                      :disabled="isItemLoading"
+                      v-model="item.town_id"
+                      :items="townItems"
+                      item-text="town_name"
+                      item-value="town_id"
+                      dense
+                      chips
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                      @change="changeTown"
+                      small-chips
+                      label="Select Town"
+                    >
+                      <template #label>
+                        Select Town
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
+
+      
                 </v-row>
 
                 <v-row>
@@ -380,19 +383,12 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
                       label="Select Subdivision"
                     >
-                    <template #label>
-                      Select Subdivision
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
@@ -413,22 +409,20 @@
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
-                    <v-autocomplete
-                      v-model="item.floor"
-                      :items="floorItems"
+                    <v-text-field
+                    v-model="item.floor"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
                       label="Select Floor or Level"
+                      :rules="validationRulesRequired"
                     >
                     <template #label>
                       Select Floor or Level
                         <span class="red--text">
-                          <strong>*</strong>
                         </span>
                       </template>
-                    </v-autocomplete>
+                     </v-text-field>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>

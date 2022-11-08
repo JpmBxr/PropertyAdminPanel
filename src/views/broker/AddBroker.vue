@@ -52,60 +52,6 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
                 <v-row class="mt-4">
-                  <v-col cols="12" md="3" sm="12">
-                    <v-autocomplete
-                    v-if="false"
-                      v-model="item.role_id"
-                      :items="userTypeItems"
-                      :disabled="isItemLoading"
-                      item-text="name"
-                      item-value="id"
-                      dense
-                      chips
-                      :rules="validationRulesRequired"
-                      @keypress="acceptNotCharacter"
-                      small-chips
-                    >
-                      <template #label>
-                        Select User Type
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
-                    </v-autocomplete>
-                  </v-col>
-
-                  <v-col cols="12" md="3" sm="12">
-                    <v-switch
-                      v-if="isSwitchVisible"
-                      class="p-0 m-0"
-                      dense
-                      color="primary"
-                      v-model="item.status"
-                      :value="item.status == 'Active' ? true : false"
-                      flat
-                      label="Inactive Broker"
-                      false-value="Active"
-                      true-value="Inactive"
-                    ></v-switch>
-                  </v-col>
-
-                  <v-col
-                    cols="12"
-                    md="6"
-                    sm="12"
-                    v-if="item.status == 'Inactive'"
-                  >
-                    <v-text-field
-                      dense
-                      label="Reason for Inactive"
-                      v-model="item.notes_about_broker"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-
-                </v-row>
-                <v-row>
                   <v-col cols="12" md="4" sm="12">
                     <v-text-field
                       dense
@@ -242,6 +188,7 @@
                       </template></v-autocomplete
                     >
                   </v-col>
+
                   <v-col cols="12" md="4" sm="12">
                     <v-autocomplete
                       v-model="item.capability_id"
@@ -253,6 +200,47 @@
                       multiple
                       @keypress="acceptNotCharacter"
                     ></v-autocomplete>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12" md="2" sm="12">
+                    <v-switch
+                      v-if="isSwitchVisible"
+                      class="p-0 m-0"
+                      dense
+                      color="primary"
+                      v-model="item.status"
+                      :value="item.status == 'Active' ? true : false"
+                      flat
+                      label="Inactive Broker"
+                      false-value="Active"
+                      true-value="Inactive"
+                    ></v-switch>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                    md="8"
+                    sm="12"
+                    v-if="item.status == 'Inactive'"
+                  >
+                    <v-text-field
+                      dense
+                      hide-details="auto"
+                      label="Reason for Inactive"
+                      v-model="item.reason_for_inactive"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12" md="12" sm="12">
+                    <v-textarea
+                    dense
+                    v-model="item.notes_about_broker"
+                    label="Notes About Broker"
+                    ></v-textarea>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>
@@ -408,15 +396,8 @@
                       chips
                       small-chips
                       label="Select Subdivision"
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Subdivision
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
@@ -438,13 +419,12 @@
                   </v-col>
               
                   <v-col cols="12" md="3" sm="12">
-                    <v-autocomplete
+                    <v-text-field
                       v-model="item.floor"
-                      :items="floorItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
+                      :rules="validationRulesRequired"
                       label="Select Floor or Level"
                     >
                     <template #label>
@@ -453,7 +433,7 @@
                           <strong>*</strong>
                         </span>
                       </template>
-                    </v-autocomplete>
+                    </v-text-field>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>

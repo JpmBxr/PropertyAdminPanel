@@ -337,8 +337,6 @@ export const addAgentOperatorUsers = {
           }
         }
       }
-
-      console.log(array);
       this.userTypeItems = array;
     },
 
@@ -428,7 +426,6 @@ export const addAgentOperatorUsers = {
     },
 
     changeUserType() {
-      console.log("C-------->" ,this.UserType);
       if(this.UserType.name == "Agent" )
       {
         this.sameAsAgency=true;
