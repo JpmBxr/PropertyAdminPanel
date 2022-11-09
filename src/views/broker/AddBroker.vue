@@ -350,9 +350,9 @@
                       item-value="town_id"
                       dense
                       chips
-                      @change="changeTown"
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
+                      @change="changeTown"
                       small-chips
                       label="Select Town"
                       ><template #label>
@@ -373,11 +373,11 @@
                       :items="barangayItems"
                       item-text="barangay_name"
                       item-value="barangay_id"
-                      @change="changeBarangay"
                       dense
                       chips
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
+                      @change="changeBarangay"
                       small-chips
                       label="Select Barangay"
                       ><template #label>
@@ -399,7 +399,6 @@
                       chips
                       small-chips
                       label="Select Subdivision"
-                  
                       @keypress="acceptNotCharacter"
                     >
                     <template #label>

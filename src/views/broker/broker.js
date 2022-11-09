@@ -76,7 +76,7 @@ export const broker = {
       //excel
       excelFields: {
         Broker_name: "broker_name",
-        ERmail_address: "email_address",
+        Email_address: "email_address",
         Phone_1: "phone_1",
         Broker_license_number: "broker_license_number",
         Status: "status",

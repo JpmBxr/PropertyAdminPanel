@@ -85,11 +85,14 @@ export const brokerAssociation = {
 
       //excel
       excelFields: {
-        ID: "id",
-        Name: "name",
+        Name: "broker_association_name",
+        Contact_person: "contact_person",
+        Email_address: "email_address",
+        Phone: "phone_1",
+        Status: "broker_association_status",
       },
       excelFileName:
-        "productModeMaster" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+        "BrokerAssociation" + "_" + moment().format("DD/MM/YYYY") + ".xls",
       //end
     };
   },

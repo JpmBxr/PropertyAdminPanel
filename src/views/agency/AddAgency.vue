@@ -360,11 +360,11 @@
                       :items="barangayItems"
                       item-text="barangay_name"
                       item-value="barangay_id"
-                      @change="changeBarangay"
                       dense
                       chips
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
+                      @change="changeBarangay"
                       small-chips
                       label="Select Barangay"
                     >

@@ -82,7 +82,7 @@ export const seller = {
         Seller_name: "seller_name",
         Property_owner_name: "property_owner_name",
         Phone: "phone_1",
-        email_address: "email_address",
+        Email: "email_address",
       },
       excelFileName:
         "Seller" + "_" + moment().format("DD/MM/YYYY") + ".xls",

@@ -12,22 +12,23 @@ export const addBrokerAssociation = {
       tableItems: [],
       tableDataLoading: false,
 
-      //end
       // Data
       pnlSettings: null,
-      brokerProvinceItems: [],
+
+      brokerAssociationProvinceItems: [],
       brokerCapabilitiesItems: [],
       brokerSpecializationItems: [],
-      broker_association_name: null,
-      brokerAssociationItems: [],
-      townItems: [],
+
+    
       provinceItems: [],
+      townItems: [],
       barangayItems: [],
       subdivisionItems: [],
+
       pagination: {},
       entity: "Broker Association",
       isItemLoading: false,
-      floorItems: ["Basement", "Ground", "First", "Second"],
+     
       // search
       searchText: "",
 
@@ -43,15 +44,23 @@ export const addBrokerAssociation = {
       //end
     };
   },
-  created() {
-    this.getBrokerProvinceItems();
-    this.getTownWithoutPagination();
+  async created() {
+   await this.getAgencySpecilizationWithoutPagination();
+   await this.getProvinceWithoutPagination();
+   await this.getCapabilityWithoutPagination();
+
+
+   await this.getBrokerAssociationProvinceItems();
+  //  await this.getTownWithoutPagination();
+  //  await this.getBarangayWithoutPagination();
+  //  await this.getSubdivisionWithoutPagination();
 
     if (this.$route.params.brokerAssociationId != 0) {
       this.isSwitchVisible = true;
       this.isAddEdit = false;
       this.getBrokerAssociationById(this.$route.params.brokerAssociationId);
       this.changeProvince();
+      this.changeTown();
       this.changeBarangay();
     }
   },
@@ -66,114 +75,163 @@ export const addBrokerAssociation = {
   },
 
   methods: {
-    //#region getBrokerProvinceItems
-    getBrokerProvinceItems() {
-      this.isLoaderActive = true;
-      ApiService.get("GetProvinceWithoutPagination", {})
-        .then((response) => {
+      //#region getAgencySpecilizationWithoutPagination
+      async getAgencySpecilizationWithoutPagination() {
+        this.isLoaderActive = true;
+        try {
+          const response = await ApiService.get("GetSpecializationWithoutPagination", {})
+          this.brokerSpecializationItems = response.data.resultData;
           this.isLoaderActive = false;
-
-          this.provinceItems = response.data.resultData;
-        })
-        .catch((error) => {
+        } catch (error) {
           this.isLoaderActive = false;
           if (error.response.status != 401 && error.response.status != 403) {
             Global.showErrorAlert(true, "error", "Something went wrong");
           }
-        });
+        }
+      },
+      //#endregion
+  
+      //#region getProvinceWithoutPagination
+      async getProvinceWithoutPagination() {
+        this.isLoaderActive = true;
+        try {
+          const response = await ApiService.get("GetProvinceWithoutPagination", {})
+          this.provinceItems = response.data.resultData;
+          this.isLoaderActive = false;
+        } catch (error) {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        }
+      },
+      //#endregion
+  
+      //#region getCapabilityWithoutPagination
+      async getCapabilityWithoutPagination() {
+        this.isLoaderActive = true;
+        try {
+          const response = await ApiService.get("GetCapabilityWithoutPagination", {})
+          this.brokerCapabilitiesItems = response.data.resultData;
+          this.isLoaderActive = false;
+        } catch (error) {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        }
+      },
+      //#endregion
+  
+
+
+    //#region getBrokerProvinceItems
+   async getBrokerAssociationProvinceItems() {
+      this.isLoaderActive = true;
+      try {
+        const response = await  ApiService.get("GetProvinceWithoutPagination", {})
+        this.brokerAssociationProvinceItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region getTownWithoutPagination
-    getTownWithoutPagination() {
+    async getTownWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.townItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetTownWithoutPagination", {
+          provinceId: this.item.address_province_id,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.townItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion 
 
     //#region getBarangayWithoutPagination
-    getBarangayWithoutPagination() {
+    async getBarangayWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetBarangayWithoutPagination", {
-        townId: this.item.town_id,
-        provinceId: this.item.province_id,
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.barangayItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetBarangayWithoutPagination", {
+          townId: this.item.town_id
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.barangayItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region getSubdivisionWithoutPagination
-    getSubdivisionWithoutPagination() {
+    async getSubdivisionWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetSubdivisionWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
-        barangayId: this.barangay,
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.subdivisionItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetSubdivisionWithoutPagination", {
+          barangayId: this.item.barangay_id,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.subdivisionItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
-    //#region Change
-    changeProvince() {
-      this.getBarangayWithoutPagination();
+     //#region Change
+    async changeProvince() {
+      await this.getTownWithoutPagination();
     },
-
-    changeBarangay() {
-      this.getSubdivisionWithoutPagination();
+    async changeTown() {
+      await this.getBarangayWithoutPagination();
+    },
+    async changeBarangay() {
+      await this.getSubdivisionWithoutPagination();
     },
     //#endregion
 
     //#region getBrokerById
-    getBrokerAssociationById(brokerAssociationId) {
+    async getBrokerAssociationById(brokerAssociationId) {
       this.isLoaderActive = true;
-      ApiService.get("getBrokerAssociationById", {
-        broker_association_id: brokerAssociationId,
-
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-          this.item_s = this.item = response.data.resultData[0];
-          this.item = this.item_s;
-
+      try {
+        ApiService.get("getBrokerAssociationById", {
+          broker_association_id: brokerAssociationId,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.item_s = response.data.resultData;
+        console.log("item_s--------->" , this.item_s);
+        const { specialization_id, capability_id, province_id, ...rest } = response.data.resultData[0]
+        const _res = {
+          ...rest,
+          specialization_id: specialization_id ? this.brokerSpecializationItems.filter((c) => specialization_id.split(",").includes(String(c.specialization_id))).map(v => v) : "",
+          capability_id: capability_id ? this.brokerCapabilitiesItems.filter((c) => capability_id.split(",").includes(String(c.capability_id))).map(v => v) : "",
+          province_id: province_id ? this.provinceItems.filter((c) => province_id.split(",").includes(String(c.province_id))).map(v => v) : ""
+        }
+        this.item = _res;
+        console.log("item------>", this.item);
+        // this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
@@ -189,13 +247,18 @@ export const addBrokerAssociation = {
             phone_2: this.item.phone_2,
             email_address: this.item.email_address,
 
-            province_id: this.item.province_id,
+            specialization_id:this.item.specialization_id!= null? this.item.specialization_id.toString():null,
+            province_id: this.item.province_id!= null?this.item.province_id.toString():null,
+            capability_id: this.item.capability_id!= null?this.item.capability_id.toString():null,
+
+            status: this.item.status,
+            reason_for_inactive: this.item.reason_for_inactive,
 
             unit_number: this.item.unit_number,
             house_number: this.item.house_number,
             street_name: this.item.street_name,
             building_name: this.item.building_name,
-            status: this.item.status,
+           
             address_province_id: this.item.address_province_id,
             town_id: this.item.town_id,
             barangay_id: this.item.barangay_id,
@@ -227,6 +290,10 @@ export const addBrokerAssociation = {
 
         } else {
           // update
+          let specialization_id = Array.isArray(this.item.specialization_id) && this.item.specialization_id.length ? ["number", "string"].includes(typeof this.item.specialization_id[0]) ? this.item.specialization_id.join(",") : this.item.specialization_id.map(v => v.specialization_id).join(",") : ""
+          let province_id = Array.isArray(this.item.province_id) && this.item.province_id.length ? ["number", "string"].includes(typeof this.item.province_id[0]) ? this.item.province_id.join(",") : this.item.province_id.map(v => v.province_id).join(",") : ""
+          let capability_id = Array.isArray(this.item.capability_id) && this.item.capability_id.length ? ["number", "string"].includes(typeof this.item.capability_id[0]) ? this.item.capability_id.join(",") : this.item.capability_id.map(v => v.capability_id).join(",") : ""
+
           let payload = {
 
             broker_association_name: this.item.broker_association_name,
@@ -234,21 +301,28 @@ export const addBrokerAssociation = {
             phone_1: this.item.phone_1,
             phone_2: this.item.phone_2,
             email_address: this.item.email_address,
-            province_id: this.item.province_id,
+
+            specialization_id,
+            province_id,
+            capability_id,
+
+            status: this.item.status,
+            reason_for_inactive: this.item.reason_for_inactive,
+            
             unit_number: this.item.unit_number,
             house_number: this.item.house_number,
             street_name: this.item.street_name,
             building_name: this.item.building_name,
-            status: this.item.status,
+
             address_province_id: this.item.address_province_id,
             town_id: this.item.town_id,
             barangay_id: this.item.barangay_id,
             subdivision_id: this.item.subdivision_id,
+
             zip_code: this.item.zip_code,
             floor: this.item.floor,
 
             broker_association_id: this.item.broker_association_id,
-
             created_by: Global.loggedInUser,
           };
           this.isLoaderActive = true;

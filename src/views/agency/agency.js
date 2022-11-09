@@ -88,7 +88,7 @@ export const agency = {
         contact_person:"contact_person",
         phone_1:"phone_1",
         email_address: "email_address",
-        actions:"actions",
+        status:"status",
         
       },
       excelFileName:

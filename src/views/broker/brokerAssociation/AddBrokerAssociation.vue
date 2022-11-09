@@ -138,6 +138,52 @@
 
                 <v-row>
                   <v-col cols="12" md="4" sm="12">
+                    <v-autocomplete
+                      v-model="item.specialization_id"
+                      :items="brokerSpecializationItems"
+                      label="Select Specialization"
+                      item-text="specialization"
+                      item-value="specialization_id"
+                      dense
+                      multiple
+                      @keypress="acceptNotCharacter"
+                    ></v-autocomplete>
+                  </v-col>
+
+                  <v-col cols="12" md="4" sm="12">
+                    <v-autocomplete
+                      v-model="item.province_id"
+                      :items="brokerAssociationProvinceItems"
+                      item-text="province_name"
+                      item-value="province_id"
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                      dense
+                      multiple
+                      ><template #label>
+                        Select Provinces of Operations
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template></v-autocomplete
+                    >
+                  </v-col>
+                  <v-col cols="12" md="4" sm="12">
+                    <v-autocomplete
+                      v-model="item.capability_id"
+                      :items="brokerCapabilitiesItems"
+                      label="Select Capabilities"
+                      item-text="capability_name"
+                      item-value="capability_id"
+                      dense
+                      multiple
+                      @keypress="acceptNotCharacter"
+                    ></v-autocomplete>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12" md="4" sm="12">
                     <v-switch
                       v-if="isSwitchVisible"
                       class="p-0 m-0"
@@ -259,6 +305,7 @@
                       chips
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
+                      @change="changeTown"
                       small-chips
                       label="Select Town"
                       ><template #label>

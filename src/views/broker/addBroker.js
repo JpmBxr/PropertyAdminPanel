@@ -11,28 +11,28 @@ export const addBroker = {
       totalItemsInDB: 0,
       tableItems: [],
       tableDataLoading: false,
-      //end
+     
       // Data
       pnlSettings: null,
+
+      brokerAssociationItems: [],
       brokerProvinceItems: [],
       brokerCapabilitiesItems: [],
       brokerSpecializationItems: [],
      
-      brokerAssociationItems: [],
-      townItems: [],
       provinceItems: [],
+      townItems: [],
       barangayItems: [],
       subdivisionItems: [],
+
       pagination: {},
       entity: "Add Broker",
-      isFormAddEditValid: false,
       isItemLoading: false,
 
       // search
       searchText: "",
 
       // add edit
-      defaultItem: {},
       item: {},
       addEditDialog: false,
       isFormAddEditValid: false,
@@ -49,15 +49,20 @@ export const addBroker = {
    await this.getAgencySpecilizationWithoutPagination();
    await this.getProvinceWithoutPagination();
    await this.getCapabilityWithoutPagination();
-   await this.getBarangayWithoutPagination();
+
+   
    await this.getBrokerProvinceItems();
-   await this.getTownWithoutPagination();
+  // await this.getTownWithoutPagination();
+  //  await this.getBarangayWithoutPagination();
+  //  await this.getSubdivisionWithoutPagination();
+   
 
     if (this.$route.params.brokerId != 0) {
       this.isSwitchVisible = true;
       this.isAddEdit = false;
       this.getBrokerById(this.$route.params.brokerId);
       this.changeProvince();
+      this.changeTown();
       this.changeBarangay();
     }
   },
@@ -128,20 +133,18 @@ export const addBroker = {
     //#endregion
 
     //#region getBrokerProvinceItems
-    getBrokerProvinceItems() {
+    async getBrokerProvinceItems() {
       this.isLoaderActive = true;
-      ApiService.get("GetProvinceWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.brokerProvinceItems = response.data.resultData;
-        })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+      try {
+        const response = await ApiService.get("GetProvinceWithoutPagination", {})
+        this.brokerProvinceItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
@@ -211,7 +214,6 @@ export const addBroker = {
     async changeBarangay() {
       await this.getSubdivisionWithoutPagination();
     },
-   
     //#endregion
 
     //#region getBrokerById
@@ -277,6 +279,7 @@ export const addBroker = {
             town_id: this.item.town_id,
             barangay_id: this.item.barangay_id,
             subdivision_id: this.item.subdivision_id,
+
             zip_code: this.item.zip_code,
             floor: this.item.floor,
 
@@ -318,8 +321,8 @@ export const addBroker = {
 
             broker_association_id,
             specialization_id,
-            capability_id,
             province_id,
+            capability_id,
 
             status: this.item.status,
             reason_for_inactive: this.item.reason_for_inactive,
@@ -334,6 +337,7 @@ export const addBroker = {
             town_id: this.item.town_id,
             barangay_id: this.item.barangay_id,
             subdivision_id: this.item.subdivision_id,
+
             zip_code: this.item.zip_code,
             floor: this.item.floor,
 
