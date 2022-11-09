@@ -17,6 +17,7 @@ export const addBroker = {
       brokerProvinceItems: [],
       brokerCapabilitiesItems: [],
       brokerSpecializationItems: [],
+     
       brokerAssociationItems: [],
       townItems: [],
       provinceItems: [],
@@ -48,17 +49,15 @@ export const addBroker = {
    await this.getAgencySpecilizationWithoutPagination();
    await this.getProvinceWithoutPagination();
    await this.getCapabilityWithoutPagination();
-
+   await this.getBarangayWithoutPagination();
    await this.getBrokerProvinceItems();
    await this.getTownWithoutPagination();
-   await this.getBarangayWithoutPagination();
 
     if (this.$route.params.brokerId != 0) {
       this.isSwitchVisible = true;
       this.isAddEdit = false;
       this.getBrokerById(this.$route.params.brokerId);
       this.changeProvince();
-      this.changeTown();
       this.changeBarangay();
     }
   },
@@ -129,18 +128,20 @@ export const addBroker = {
     //#endregion
 
     //#region getBrokerProvinceItems
-    async getBrokerProvinceItems() {
+    getBrokerProvinceItems() {
       this.isLoaderActive = true;
-      try {
-        const response = await ApiService.get("GetProvinceWithoutPagination", {})
-        this.brokerProvinceItems = response.data.resultData;
-        this.isLoaderActive = false;
-      } catch (error) {
-        this.isLoaderActive = false;
-        if (error.response.status != 401 && error.response.status != 403) {
-          Global.showErrorAlert(true, "error", "Something went wrong");
-        }
-      }
+      ApiService.get("GetProvinceWithoutPagination", {})
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.brokerProvinceItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
     },
     //#endregion
 
@@ -148,7 +149,9 @@ export const addBroker = {
     async getTownWithoutPagination() {
       this.isLoaderActive = true;
       try {
-        const response = await ApiService.get("GetTownWithoutPagination", {})
+        const response = await ApiService.get("GetTownWithoutPagination", {
+          provinceId: this.item.address_province_id,
+        })
         this.townItems = response.data.resultData;
         this.isLoaderActive = false;
       } catch (error) {
@@ -164,9 +167,8 @@ export const addBroker = {
     async getBarangayWithoutPagination() {
       this.isLoaderActive = true;
       try {
-        const response = await  ApiService.get("GetBarangayWithoutPagination", {
-          townId: this.item.town_id,
-          provinceId: this.item.address_province_id,
+        const response = await ApiService.get("GetBarangayWithoutPagination", {
+          townId: this.item.town_id
         })
         this.barangayItems = response.data.resultData;
         this.isLoaderActive = false;
@@ -183,10 +185,8 @@ export const addBroker = {
     async getSubdivisionWithoutPagination() {
       this.isLoaderActive = true;
       try {
-        const response = await  ApiService.get("GetSubdivisionWithoutPagination", {
-          townId: this.town,
-          provinceId: this.province,
-          barangayId: this.barangay,
+        const response = await ApiService.get("GetSubdivisionWithoutPagination", {
+          barangayId: this.item.barangay_id,
         })
         this.subdivisionItems = response.data.resultData;
         this.isLoaderActive = false;
@@ -200,6 +200,8 @@ export const addBroker = {
     //#endregion
 
     //#region Change
+
+    //#region Change
     async changeProvince() {
       await this.getTownWithoutPagination();
     },
@@ -209,6 +211,7 @@ export const addBroker = {
     async changeBarangay() {
       await this.getSubdivisionWithoutPagination();
     },
+   
     //#endregion
 
     //#region getBrokerById
@@ -256,10 +259,10 @@ export const addBroker = {
             phone_2: this.item.phone_2,
             email_address: this.item.email_address,
 
-            broker_association_id: this.item.broker_association_id.toString(),
-            specialization_id: this.item.specialization_id.toString(),
-            province_id: this.item.province_id.toString(),
-            capability_id: this.item.capability_id.toString(),
+            broker_association_id:this.item.broker_association_id!= null? this.item.broker_association_id.toString():null,
+            specialization_id:this.item.specialization_id!= null? this.item.specialization_id.toString():null,
+            province_id: this.item.province_id!= null?this.item.province_id.toString():null,
+            capability_id: this.item.capability_id!= null?this.item.capability_id.toString():null,
 
             status: this.item.status,
             reason_for_inactive: this.item.reason_for_inactive,
@@ -277,7 +280,6 @@ export const addBroker = {
             zip_code: this.item.zip_code,
             floor: this.item.floor,
 
-            role_id: this.item.role_id,
             created_by: Global.loggedInUser,
           };
           this.isLoaderActive = true;
@@ -336,8 +338,6 @@ export const addBroker = {
             floor: this.item.floor,
 
             broker_id: this.item.broker_id,
-            user_id: this.item.user_id,
-            role_id: this.item.role_id,
             created_by: Global.loggedInUser,
           };
           this.isLoaderActive = true;

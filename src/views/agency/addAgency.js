@@ -264,9 +264,9 @@ export const addAgency = {
             email_address_secondary: this.item.email_address_secondary,
             phone_1: this.item.phone_1,
             phone_2: this.item.phone_2,
-            specialization_id: this.item.specialization_id.toString(),
-            province_id: this.item.province_id.toString(),
-            capability_id: this.item.capability_id.toString(),
+            specialization_id:this.item.specialization_id != null? this.item.specialization_id.toString():null,
+            province_id:   this.item.province_id != null ?this.item.province_id.toString()   : null,
+            capability_id: this.item.capability_id != null ? this.item.capability_id.toString(): null,
             status: this.item.status,
             reason_for_inactive: this.item.reason_for_inactive,
 

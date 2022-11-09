@@ -87,7 +87,7 @@
                   <v-col cols="12" md="4" sm="12">
                     <v-text-field
                       dense
-                      label="Contact Person"
+                      label="Contact Person Name"
                       v-model="item.contact_person"
                       :rules="validationRulesRequired"
                       hide-details="auto"
@@ -420,6 +420,7 @@
                     <template #label>
                       Select Floor or Level
                         <span class="red--text">
+                          <strong>*</strong>
                         </span>
                       </template>
                      </v-text-field>

@@ -50,6 +50,18 @@ export const validationMixin = {
         (v) => /^(\d{4})$/.test(v) || "Zip Code must be of 4 digits",
       ],
 
+      validationRules_zipCode4DigitOptional: [
+        (v) => {
+          if (v) {
+            return (
+              /^(\d{4})$/.test(v) || "Zip Code must be of 4 digits"
+            );
+          } else {
+            return true;
+          }
+        },
+      ],
+
       validationRules_otpWithMax6Char: [
         (v) => !!v || "Provide valid OTP",
         (v) => (v && v.length > 5) || "OTP must be of 6 characters",
