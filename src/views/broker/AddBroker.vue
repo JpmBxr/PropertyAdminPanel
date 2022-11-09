@@ -419,31 +419,17 @@
                       hide-details="auto"
                       :rules="validationRules_zipCode4DigitOptional"
                     >
-                    <template #label>
-                      Zip Code
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
               
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
                     v-model="item.floor"
-                    
                       dense
                       chips
-                 
                       small-chips
-                      label="Select Floor or Level"
+                      label="Floor or Level"
                     >
-                    <template #label>
-                      Select Floor or Level
-                        <span class="red--text">
-                     
-                        </span>
-                      </template>
                 </v-text-field>
                   </v-col>
                 </v-row>

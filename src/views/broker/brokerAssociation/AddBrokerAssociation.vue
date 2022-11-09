@@ -72,13 +72,13 @@
                   <v-col cols="12" md="6" sm="12">
                     <v-text-field
                       dense
-                      label="Contact Person"
+                      label="Contact Person Name"
                       v-model="item.contact_person"
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
                       <template #label>
-                        Contact Person
+                        Contact Person Name
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -193,15 +193,8 @@
                       dense
                       label="House/Lot Number"
                       v-model="item.house_number"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                    <template #label>
-                      House/Lot Number
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" sm="12">
@@ -228,15 +221,8 @@
                       dense
                       label="Property/Building Name"
                       v-model="item.building_name"
-                      :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Property/Building Name
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
 
@@ -253,9 +239,9 @@
                       @keypress="acceptNotCharacter"
                       @change="changeProvince"
                       small-chips
-                      label="Select Provinces of Operations"
+                      label="Select Province"
                       ><template #label>
-                        Select Provinces of Operations
+                        Select Province
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -315,19 +301,12 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
                       label="Select Subdivision"
                     >
-                    <template #label>
-                      Select Subdivision
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-autocomplete>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
@@ -337,34 +316,20 @@
                       label="Zip Code"
                       v-model="item.zip_code"
                       hide-details="auto"
-                      :rules="validationRules_zipCodeWithMax6Char"
+                      :rules="validationRules_zipCode4DigitOptional"
                     >
-                    <template #label>
-                      Zip Code
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-text-field>
                   </v-col>
                   
                   <v-col cols="12" md="3" sm="12">
-                    <v-autocomplete
+                    <v-text-field
                       v-model="item.floor"
-                      :items="floorItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
-                      label="Select Floor or Level"
+                      label="Floor or Level"
                     >
-                    <template #label>
-                      Select Floor or Level
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
-                    </v-autocomplete>
+                    </v-text-field>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>
