@@ -40,7 +40,7 @@ export const approveUser = {
           text: "Phone",
           value: "phone_1",
           width: "15%",
-          sortable: false,
+          sortable: true,
           align: "start",
         },
         {
@@ -111,7 +111,7 @@ export const approveUser = {
     getUsers() {
       let { page, itemsPerPage, sortDesc, sortBy } = this.pagination;
       sortDesc = sortDesc.length > 0 && sortDesc[0] ? "desc" : "asc";
-      sortBy = sortBy.length == 0 ? "user_id" : sortBy[0];
+      sortBy = sortBy.length == 0 ? "full_name" : sortBy[0];
       let payload = {
         sortColumn: sortBy,
         sortOrder: sortDesc,

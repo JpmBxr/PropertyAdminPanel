@@ -33,14 +33,14 @@ export const soldRent = {
         {
           text: "Street Name",
           value: "street_name",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
         {
           text: "Building Name",
           value: "property_building_name",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },

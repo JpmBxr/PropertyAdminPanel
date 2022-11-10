@@ -33,21 +33,21 @@ export const seller = {
         {
           text: "Owner Name",
           value: "property_owner_name",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
         {
             text: "Phone",
             value: "phone_1",
-            sortable: false,
+            sortable: true,
             width: "20%",
             align: "start",
           },
         {
           text: "Email",
           value: "email_address",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
@@ -73,7 +73,7 @@ export const seller = {
       addEditDialog: false,
       isFormAddEditValid: false,
       isAddEdit: true,
-      addUpdateButtonText: "Add Role",
+      addUpdateButtonText: "Add Seller",
       addEditText: "Add",
       //end
 

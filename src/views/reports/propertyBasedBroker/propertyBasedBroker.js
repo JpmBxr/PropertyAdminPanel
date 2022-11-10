@@ -34,7 +34,7 @@ export const propertyBasedBroker = {
                     text: "Agent Name",
                     value: "agent_name",
                     width: "20%",
-                    sortable: false,
+                    sortable: true,
                     align: "start",
                 },
                 {
@@ -48,7 +48,7 @@ export const propertyBasedBroker = {
                     text: "Property Name",
                     value: "property_name",
                     width: "20%",
-                    sortable: false,
+                    sortable: true,
                     align: "start",
                 },
                 {
@@ -110,7 +110,7 @@ export const propertyBasedBroker = {
         get() {
             let { page, itemsPerPage, sortDesc, sortBy } = this.pagination;
             sortDesc = sortDesc.length > 0 && sortDesc[0] ? "desc" : "asc";
-            sortBy = sortBy.length == 0 ? `broker_association_id` : sortBy[0];
+            sortBy = sortBy.length == 0 ? `seller_name` : sortBy[0];
             let payload = {
                 sortColumn: sortBy,
                 sortOrder: sortDesc,

@@ -223,6 +223,7 @@ export const addBroker = {
         const response = await ApiService.get("getBrokerById", {
           broker_id: brokerId,
         })
+        this.isLoaderActive = false;
         this.item_s = response.data.resultData;
 
         console.log("item_s--------->" , this.item_s);

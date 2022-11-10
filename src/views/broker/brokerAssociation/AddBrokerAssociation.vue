@@ -275,7 +275,7 @@
                   <v-col cols="12" md="4" sm="12">
                     <v-autocomplete
                       :disabled="isItemLoading"
-                      v-model="item.province_id"
+                      v-model="item.address_province_id"
                       :items="provinceItems"
                       item-text="province_name"
                       item-value="province_id"

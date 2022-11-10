@@ -52,9 +52,9 @@ export const addAgency = {
     await this.getCapabilityWithoutPagination();
 
     await this.getAgencyProvinceItems();
-    await this.getTownWithoutPagination();
-    await this.getBarangayWithoutPagination();
-    await this.getSubdivisionWithoutPagination();
+    // await this.getTownWithoutPagination();
+    // await this.getBarangayWithoutPagination();
+    // await this.getSubdivisionWithoutPagination();
 
     if (this.$route.params.agencyId != 0) {
       this.isSwitchVisible = true;

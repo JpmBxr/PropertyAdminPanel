@@ -33,21 +33,21 @@ export const brokerAssociation = {
         {
           text: "Contact Person",
           value: "contact_person",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
         {
           text: "Email",
           value: "email_address",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
         {
           text: "Phone",
           value: "phone_1",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
@@ -79,7 +79,7 @@ export const brokerAssociation = {
       addEditDialog: false,
       isFormAddEditValid: false,
       isAddEdit: true,
-      addUpdateButtonText: "Add Role",
+      addUpdateButtonText: "Add Broker Association",
       addEditText: "Add",
       //end
 
@@ -123,7 +123,7 @@ export const brokerAssociation = {
     get() {
       let { page, itemsPerPage, sortDesc, sortBy } = this.pagination;
       sortDesc = sortDesc.length > 0 && sortDesc[0] ? "desc" : "asc";
-      sortBy = sortBy.length == 0 ? "name" : sortBy[0];
+      sortBy = sortBy.length == 0 ? "broker_association_name" : sortBy[0];
       let payload = {
         sortColumn: sortBy,
         sortOrder: sortDesc,

@@ -41,7 +41,7 @@ export const agency = {
         {
           text: "Contact Person",
           value: "contact_person",
-          sortable: false,
+          sortable: true,
           width: "20%",
           align: "start",
         },
@@ -123,7 +123,7 @@ export const agency = {
     get() {
       let { page, itemsPerPage, sortDesc, sortBy } = this.pagination;
       sortDesc = sortDesc.length > 0 && sortDesc[0] ? "desc" : "asc";
-      sortBy = sortBy.length == 0 ? `agency_id` : sortBy[0];
+      sortBy = sortBy.length == 0 ? `agency_name` : sortBy[0];
       let payload = {
         sortColumn: sortBy,
         sortOrder: sortDesc,

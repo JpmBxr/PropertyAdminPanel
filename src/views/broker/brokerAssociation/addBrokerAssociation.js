@@ -34,6 +34,7 @@ export const addBrokerAssociation = {
 
       // add edit
       item: {},
+      item_s: {},
       addEditDialog: false,
       isFormAddEditValid: false,
       isAddEdit: true,
@@ -214,7 +215,9 @@ export const addBrokerAssociation = {
         ApiService.get("getBrokerAssociationById", {
           broker_association_id: brokerAssociationId,
         })
+        this.isLoaderActive = false;
         this.item_s = response.data.resultData;
+        alert(this.item_s)
         console.log("item_s--------->" , this.item_s);
         const { specialization_id, capability_id, province_id, ...rest } = response.data.resultData[0]
         const _res = {
@@ -240,6 +243,7 @@ export const addBrokerAssociation = {
       if (this.$refs.holdingFormAddEdit.validate()) {
         if (this.isAddEdit == true) {
           // save
+          console.log(this.item.address_province_id);
           let payload = {
             broker_association_name: this.item.broker_association_name,
             contact_person: this.item.contact_person,
