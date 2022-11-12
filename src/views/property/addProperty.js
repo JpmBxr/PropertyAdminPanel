@@ -12,6 +12,7 @@ export const addProperty = {
              isLoaderActive: false,
              pnlSettings: null,
              // Basic Information
+
              agentId:
                this.propertyDataProps != null
                  ? this.propertyDataProps.agent_id
@@ -202,6 +203,38 @@ export const addProperty = {
                this.propertyDataProps != null
                  ? this.propertyDataProps.minimum_rental_period_sale
                  : null,
+             dateFirstAdded:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.date_first_added
+                   : null,
+             dateLastModified:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.date_last_modified
+                   : null,
+             dateLastStatusChange:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.date_last_status_change
+                   : null,
+             dateSuspended:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.date_suspended
+                   : null,
+             suspendedReason:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.suspended_reason
+                   : null,
+             userType:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.user_type
+                   : null,
+             dateModifiedOperator:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.date_modified_operator
+                   : null,
+             operatorName:
+                this.propertyDataProps != null
+                   ? this.propertyDataProps.operator_name
+                   : null,
              //Items
              propertyClassificationItems: [],
              productCategoryItems: [],
@@ -715,6 +748,7 @@ export const addProperty = {
                     agri_type: this.agryId,
                     furnishing: this.furnishing,
                     status: this.status,
+                    suspendedReason: this.suspendedReason,
                   };
 
                   this.isLoaderActive = true;

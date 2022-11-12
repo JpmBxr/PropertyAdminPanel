@@ -304,9 +304,23 @@
                     </v-autocomplete>
                   </v-col>
 
-                  <v-col cols="4">
+               
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+            <v-expansion-panel v-if="propertyDataProps!=null">
+              <v-expansion-panel-header class="grey lighten-3">
+                <div>
+                  <v-icon color="success" class="mr-4"
+                    >mdi-account-circle</v-icon
+                  >
+                  <strong>Property Status</strong>
+                </div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content eager>
+              <v-row class="mt-4">
+                 <v-col cols="4">
                     <v-autocomplete
-                    v-if="propertyDataProps!=null"
                       v-model="status"
                       :items="statusItems"
                       label="Select Status"
@@ -315,10 +329,104 @@
                       dense
                     ></v-autocomplete>
                   </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
 
+                   <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date First Added"
+                      v-model="dateFirstAdded"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                    </v-col>
+
+                  <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date Last Modified"
+                      v-model="dateLastModified"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date Last Status Change"
+                      v-model="dateLastStatusChange"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date Suspended"
+                      v-model="dateSuspended"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date Modified Operator"
+                      v-model="dateModifiedOperator"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field
+                      dense
+                      label="User Type"
+                      v-model="userType"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="6">
+                    <v-text-field
+                      dense
+                      label="Operator Name"
+                      v-model="operatorName"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12">
+                    <v-textarea
+                      rows="3"
+                      dense
+                      label="Suspended Reason"
+                      v-model="suspendedReason"
+                      hide-details="auto"
+                      v-if="status == 'Suspended'"
+                    >
+                    </v-textarea>
+                  </v-col>
+                </v-row>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
             <v-expansion-panel>
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
@@ -516,7 +624,7 @@
                     >mdi-home-map-marker</v-icon
                   >
                   <strong
-                    >Property : House | Apartment | Townhouse | Condo</strong
+                    >Property : Dwelling</strong
                   >
                 </div>
               </v-expansion-panel-header>
