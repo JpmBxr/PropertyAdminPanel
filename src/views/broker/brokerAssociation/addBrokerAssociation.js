@@ -212,12 +212,12 @@ export const addBrokerAssociation = {
     async getBrokerAssociationById(brokerAssociationId) {
       this.isLoaderActive = true;
       try {
-        ApiService.get("getBrokerAssociationById", {
+       const response = await ApiService.get("getBrokerAssociationById", {
           broker_association_id: brokerAssociationId,
         })
         this.isLoaderActive = false;
         this.item_s = response.data.resultData;
-        alert(this.item_s)
+       
         console.log("item_s--------->" , this.item_s);
         const { specialization_id, capability_id, province_id, ...rest } = response.data.resultData[0]
         const _res = {
@@ -230,6 +230,7 @@ export const addBrokerAssociation = {
         console.log("item------>", this.item);
         // this.isLoaderActive = false;
       } catch (error) {
+        console.log(error);
         this.isLoaderActive = false;
         if (error.response.status != 401 && error.response.status != 403) {
           Global.showErrorAlert(true, "error", "Something went wrong");

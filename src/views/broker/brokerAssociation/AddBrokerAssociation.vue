@@ -207,7 +207,7 @@
                     <v-text-field
                       dense
                       label="Reason for Inactive"
-                      v-model="item.notes_about_broker"
+                      v-model="item.reason_for_inactive"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>

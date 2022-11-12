@@ -150,7 +150,9 @@ export const townMaster = {
     },
     getTownWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
+      ApiService.get("GetTownWithoutPagination", {
+        
+      })
         .then((response) => {
           this.isLoaderActive = false;
 
