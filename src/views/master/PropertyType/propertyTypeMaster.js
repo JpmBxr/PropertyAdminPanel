@@ -26,7 +26,14 @@ export const propertyTypeMaster = {
         {
           text: "Name",
           value: "property_type",
-          width: "50%",
+          width: "25%",
+          sortable: true,
+          align: "start",
+        },
+        {
+          text: "Dwelling Type",
+          value: "dwelling_type",
+          width: "25%",
           sortable: true,
           align: "start",
         },
@@ -56,6 +63,8 @@ export const propertyTypeMaster = {
       // add edit
       defaultItem: {},
       item: {},
+      dwellingTypeItems: ["Yes" , "No"],
+      dwelling_type: null,
       addEditDialog: false,
       isFormAddEditValid: false,
       isAddEdit: true,
@@ -164,6 +173,7 @@ export const propertyTypeMaster = {
           // save
           let payload = {
             property_type: this.item.property_type,
+            dwelling_type: this.item.dwelling_type,
             created_by: Global.loggedInUser,
           };
           this.isDialogLoaderActive = true;
@@ -189,6 +199,7 @@ export const propertyTypeMaster = {
           let payload = {
             property_type: this.item.property_type,
             property_type_id: this.item.property_type_id,
+            dwelling_type: this.item.dwelling_type,
             property_type_status: this.item.property_type_status,
             updated_by: Global.loggedInUser,
           };

@@ -29,7 +29,9 @@ export const addProperty = {
                  ?this.propertyDataProps.isFeatured=="1"?"Yes":"No"
                  : null,
              featureItems: ["Yes", "No"],
-             furnishing: null,
+             furnishing:  this.propertyDataProps != null
+             ? this.propertyDataProps.furnishing
+             : null,
 
              priceAsked:
                this.propertyDataProps != null
@@ -237,23 +239,24 @@ export const addProperty = {
              provinceItems: [],
              barangayItems: [],
              subdivisionItems: [],
+
              //Property Type Items
-             numberBedroomsItems: ["One", "Two", "Three", "Four", "Five"],
-             numberToiletsItems: ["One", "Two", "Three", "Four", "Five"],
-             carSpacesUncoveredItems: ["One", "Two", "Three", "Four", "Five"],
-             garageSpacesCoveredItems: ["One", "Two", "Three", "Four", "Five"],
+             numberBedroomsItems: ["1", "2", "3", "4", "5"],
+             numberToiletsItems:["1", "2", "3", "4", "5"],
+             carSpacesUncoveredItems: ["1", "2", "3", "4", "5"],
+             garageSpacesCoveredItems: ["1", "2", "3", "4", "5"],
              furnishingItems: [
                "None",
-               "Basic – with stove and refrigerator",
-               "Semi - basic, plus some furniture",
-               "Fully – ready for occupation",
+               "Fully Furnished",
+               "Semi Furnished",
+               "Basic Furnishing",
              ],
 
              //For Rent
              minimumRentalPeriodItems: ["Day", "Week", "Month", "Negotiable"],
              maximumRentalPeriodItems: ["Day", "Week", "Month"],
              dayMonthRentDueItems: Global.monthDays,
-             garageSpacesCoveredItems: ["One", "Two", "Three", "Four", "Five"],
+             garageSpacesCoveredItems:  ["1", "2", "3", "4", "5"],
              periodCanExtendItems: Global.yesNo,
              //Sale
              productModeItems: ["Newly Built", "Renovated", "For Resale"],
@@ -328,15 +331,14 @@ export const addProperty = {
              //end
            };
          },
-         created() {
+         async created() {
            //get agent
            this.getAgent();
            //get seller
            this.getSeller();
-           //get town
-           this.getTown();
+         
            //get province
-           this.getProvince();
+           await this.getProvince();
 
            //get property classification
            this.getPropertyClassification();
@@ -351,6 +353,7 @@ export const addProperty = {
            if(this.propertyDataProps!=null)
            {
             this.changeProvince();
+            this.changeTown();
             this.changeBarangay();
            }
            //get Status
@@ -397,45 +400,7 @@ export const addProperty = {
                  }
                });
            },
-
-           //get town
-           getTown() {
-             this.isLoaderActive = true;
-             ApiService.get("GetTownWithoutPagination", {})
-               .then((response) => {
-                 this.isLoaderActive = false;
-
-                 this.townItems = response.data.resultData;
-               })
-               .catch((error) => {
-                 this.isLoaderActive = false;
-                 if (
-                   error.response.status != 401 &&
-                   error.response.status != 403
-                 ) {
-                   Global.showErrorAlert(true, "error", "Something went wrong");
-                 }
-               });
-           },
-           //get province
-           getProvince() {
-             this.isLoaderActive = true;
-             ApiService.get("GetProvinceWithoutPagination", {})
-               .then((response) => {
-                 this.isLoaderActive = false;
-
-                 this.provinceItems = response.data.resultData;
-               })
-               .catch((error) => {
-                 this.isLoaderActive = false;
-                 if (
-                   error.response.status != 401 &&
-                   error.response.status != 403
-                 ) {
-                   Global.showErrorAlert(true, "error", "Something went wrong");
-                 }
-               });
-           },
+          
            // get property classification
            getPropertyClassification() {
              this.isLoaderActive = true;
@@ -513,50 +478,91 @@ export const addProperty = {
                  }
                });
            },
-           changeProvince() {
-             this.isLoaderActive = true;
-             ApiService.get("GetBarangayWithoutPagination", {
-               townId: this.town,
-               provinceId: this.province,
-             })
-               .then((response) => {
-                 this.isLoaderActive = false;
+         
 
-                 this.barangayItems = response.data.resultData;
-               })
-               .catch((error) => {
-                 this.isLoaderActive = false;
-                 if (
-                   error.response.status != 401 &&
-                   error.response.status != 403
-                 ) {
-                   Global.showErrorAlert(true, "error", "Something went wrong");
-                 }
-               });
-           },
+            //#region getBrokerProvinceItems
+    async getProvince() {
+      this.isLoaderActive = true;
+      try {
+        const response = await ApiService.get("GetProvinceWithoutPagination", {})
+        this.provinceItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
+    },
+    //#endregion
 
-           changeBarangay() {
-             this.isLoaderActive = true;
-             ApiService.get("GetSubdivisionWithoutPagination", {
-               townId: this.town,
-               provinceId: this.province,
-               barangayId: this.barangay,
-             })
-               .then((response) => {
-                 this.isLoaderActive = false;
+    //#region getTownWithoutPagination
+    async getTownWithoutPagination() {
+      this.isLoaderActive = true;
+      try {
+        const response = await ApiService.get("GetTownWithoutPagination", {
+          provinceId: this.province,
+        })
+        this.townItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
+    },
+    //#endregion 
 
-                 this.subdivisionItems = response.data.resultData;
-               })
-               .catch((error) => {
-                 this.isLoaderActive = false;
-                 if (
-                   error.response.status != 401 &&
-                   error.response.status != 403
-                 ) {
-                   Global.showErrorAlert(true, "error", "Something went wrong");
-                 }
-               });
-           },
+    //#region getBarangayWithoutPagination
+    async getBarangayWithoutPagination() {
+      this.isLoaderActive = true;
+      try {
+        const response = await ApiService.get("GetBarangayWithoutPagination", {
+          townId: this.town
+        })
+        this.barangayItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
+    },
+    //#endregion
+
+    //#region getSubdivisionWithoutPagination
+    async getSubdivisionWithoutPagination() {
+      this.isLoaderActive = true;
+      try {
+        const response = await ApiService.get("GetSubdivisionWithoutPagination", {
+          barangayId: this.barangay,
+        })
+        this.subdivisionItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
+    },
+    //#endregion
+
+    //#region Change
+
+    //#region Change
+    async changeProvince() {
+      await this.getTownWithoutPagination();
+    },
+    async changeTown() {
+      await this.getBarangayWithoutPagination();
+    },
+    async changeBarangay() {
+      await this.getSubdivisionWithoutPagination();
+    },
+    //#endregion
 
            // add Property
            addEditItem() {

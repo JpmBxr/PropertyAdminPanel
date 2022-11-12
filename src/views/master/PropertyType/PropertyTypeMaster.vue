@@ -199,6 +199,25 @@
                       </template>
                     </v-text-field>
                   </v-col>
+
+                  <v-col cols="12" md="12" class="pb-1">
+                    <v-select
+                      v-model="item.dwelling_type"
+                      :items="dwellingTypeItems"
+                      dense
+                      outlined
+                      :rules="validationRulesRequired"
+                    >
+                      <template #label>
+                        Select Dwelling
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template></v-select
+                    >
+                  </v-col>
+
+
                 </v-row>
               </v-form>
             </v-card-text>
