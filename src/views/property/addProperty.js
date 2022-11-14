@@ -75,6 +75,24 @@ export const addProperty = {
                  ? this.propertyDataProps.agri_type
                  : null,
              agryItems: [],
+             priceRented:
+                this.propertyDataProps != null
+                 ? this.propertyDataProps.price_rented
+                 : null,
+             priceSoldFor:
+                this.propertyDataProps != null
+                 ? this.propertyDataProps.price_sold_for
+                 : null,
+             zonalValue:
+                this.propertyDataProps != null
+                 ? this.propertyDataProps.zonal_value
+                 : null,
+             zonningCode:
+                this.propertyDataProps != null
+                 ? this.propertyDataProps.zonning_code
+                 : null,
+
+
 
              selectDate: null,
              //Address
@@ -154,11 +172,11 @@ export const addProperty = {
              minimumRentalPeriod:
                this.propertyDataProps != null
                  ? this.propertyDataProps.minimum_rental_period_rent
-                 : null,
+                 : 6,
              maximumRentalPeriod:
                this.propertyDataProps != null
                  ? this.propertyDataProps.car_spaces_rent
-                 : null,
+                 : 12,
              dayMonthRentDue:
                this.propertyDataProps != null
                  ? this.propertyDataProps.date_of_month_rent_due
@@ -176,6 +194,8 @@ export const addProperty = {
                      .substr(0, 10),
              menuCurrentRentalExpires: false,
              menuDateRentalStarted: false,
+             menuDateSoldSwitchOn:false,
+             menuActiveDateSwitchOn:false,
              dateRentalStarted:
                this.propertyDataProps != null
                  ? this.propertyDataProps.date_rental_started
@@ -235,12 +255,25 @@ export const addProperty = {
                 this.propertyDataProps != null
                    ? this.propertyDataProps.operator_name
                    : null,
+             rentalPricingUnit:
+               this.propertyDataProps != null
+             ? this.propertyDataProps.rental_pricing_unit
+             : "Month",
+            dateSold:
+             this.propertyDataProps != null
+           ? this.propertyDataProps.date_sold
+           : null,
+             associatedBroker:
+             this.propertyDataProps != null
+               ? this.propertyDataProps.associated_broker_id
+               : null,
              //Items
              propertyClassificationItems: [],
              productCategoryItems: [],
              propertyTypeItems: [],
              floorLevelItems: ["Basement", "Ground", "First", "Second"],
              agencyProvinceItems: [],
+             associatedBrokerItems: [],
              status:  this.propertyDataProps != null
              ? this.propertyDataProps.status
              : null,
@@ -274,10 +307,10 @@ export const addProperty = {
              subdivisionItems: [],
 
              //Property Type Items
-             numberBedroomsItems: ["1", "2", "3", "4", "5"],
-             numberToiletsItems:["1", "2", "3", "4", "5"],
-             carSpacesUncoveredItems: ["1", "2", "3", "4", "5"],
-             garageSpacesCoveredItems: ["1", "2", "3", "4", "5"],
+             numberBedroomsItems: ["0","1", "2", "3", "4", "5","6","7","8","9","99"],
+             numberToiletsItems:["0","1", "2", "3", "4", "5","6","7","8","9","99"],
+             carSpacesUncoveredItems: ["0","1", "2", "3", "4", "5","6","7","8","9","99"],
+             garageSpacesCoveredItems: ["0","1", "2", "3", "4", "5","6","7","8","9","99"],
              furnishingItems: [
                "None",
                "Fully Furnished",
@@ -286,16 +319,27 @@ export const addProperty = {
              ],
 
              //For Rent
+             rentalPricingUnitItems:[ "Month","Day", "Week","Session","Hour"],
              minimumRentalPeriodItems: ["Day", "Week", "Month", "Negotiable"],
              maximumRentalPeriodItems: ["Day", "Week", "Month"],
              dayMonthRentDueItems: Global.monthDays,
-             garageSpacesCoveredItems:  ["1", "2", "3", "4", "5"],
+             garageSpacesCoveredItems:  ["0","1", "2", "3", "4", "5","6","7","8","9","99"],
              periodCanExtendItems: Global.yesNo,
              //Sale
              productModeItems: ["Newly Built", "Renovated", "For Resale"],
              saleSwitchOn:
                this.propertyDataProps != null
                  ? this.propertyDataProps.sale_switch_on
+                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                     .toISOString()
+                     .substr(0, 10),
+             dateSoldSwitchOn:   this.propertyDataProps != null
+             ? this.propertyDataProps.date_sold
+             : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                 .toISOString()
+                 .substr(0, 10),
+             activedateSwitchOn:   this.propertyDataProps != null
+                 ? this.propertyDataProps.active_property_date_limit
                  : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
                      .toISOString()
                      .substr(0, 10),
@@ -365,7 +409,11 @@ export const addProperty = {
            };
          },
          async created() {
+        
+          //get broker
+           this.getBroker();
            //get agent
+        
            this.getAgent();
            //get seller
            this.getSeller();
@@ -390,10 +438,29 @@ export const addProperty = {
             this.changeBarangay();
            }
            //get Status
-           this.getStatus();
+          
+        
          },
 
          methods: {
+          //get broker without pagination
+          getBroker() {
+         
+            this.isLoaderActive = true;
+            ApiService.get("GetBrokerWithoutPagination", {})
+              .then((response) => {
+                this.isLoaderActive = false;
+      
+                this.associatedBrokerItems = response.data.resultData;
+              })
+              .catch((error) => {
+                this.isLoaderActive = false;
+                if (error.response.status != 401 && error.response.status != 403) {
+                  Global.showErrorAlert(true, "error", "Something went wrong");
+                }
+              });
+          },
+      
            //get agent
            getAgent() {
              this.isLoaderActive = true;
@@ -749,6 +816,11 @@ export const addProperty = {
                     furnishing: this.furnishing,
                     status: this.status,
                     suspendedReason: this.suspendedReason,
+                    priceRented:this.priceRented,
+                    priceSoldFor:this.priceSoldFor,
+                    zonalValue:this.zonalValue,
+                    zonningCode:this.zonningCode,
+                    active_date:this.activedateSwitchOn
                   };
 
                   this.isLoaderActive = true;

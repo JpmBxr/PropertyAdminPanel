@@ -54,7 +54,7 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
                 <v-row class="mt-4">
-                  <v-col cols="12">
+                  <v-col cols="6">
                     <v-autocomplete
                       v-model="agentId"
                       :items="agentItems"
@@ -73,7 +73,25 @@
                     </template>
                     </v-autocomplete>
                   </v-col>
+
+                  <v-col cols="6">
+                    <v-autocomplete
+                    v-model="associatedBroker"
+                      :items="associatedBrokerItems"
+                      item-text="broker_name"
+                      item-value="broker_id"
+                      dense
+                    >
+                    <template #label>
+                      Associated Broker
+                      <span class="red--text">
+                        <strong>*</strong>
+                      </span>
+                    </template>
+                    </v-autocomplete>
+                  </v-col>
                 </v-row>
+                
                 <v-row>
                   <v-col cols="6">
                     <v-autocomplete
@@ -119,7 +137,7 @@
                       label="Price Asked"
                       v-numeric
                       v-model="priceAsked"
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_upto2Decimal"
                       hide-details="auto"
                     >
                     <template #label>
@@ -133,14 +151,14 @@
                   <v-col cols="4">
                     <v-text-field
                       dense
-                      label="Land Area"
+                      label="Land Area in SQ.M"
                       v-model="landArea"
                       v-numeric
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
                     <template #label>
-                      Land Area
+                      Land Area in SQ.M
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -152,13 +170,13 @@
                     <v-text-field
                       dense
                       v-numeric
-                      label="Building Area"
+                      label="Building Area in SQ.M"
                       v-model="buildingArea"
                       hide-details="auto"
                       :rules="validationRulesRequired"
                     >
                     <template #label>
-                      Building Area
+                      Building Area in SQ.M
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -247,7 +265,7 @@
                     <v-autocomplete
                       v-model="productCategory"
                       :items="productCategoryItems"
-                      label="Select Category"
+                      label="Select Product Category"
                       item-text="product_category_name"
                       item-value="product_category_id"
                       dense
@@ -255,7 +273,7 @@
                       @keypress="acceptNotCharacter"
                     >
                     <template #label>
-                      Select Category
+                      Select Product Category
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -288,7 +306,7 @@
                     <v-autocomplete
                       v-model="agryId"
                       :items="agryItems"
-                      label="Select Agri Type"
+                      label="Select Agricultral  Type"
                       item-text="agri_type_name"
                       item-value="agri_type_id"
                       dense
@@ -296,7 +314,7 @@
                       @keypress="acceptNotCharacter"
                     >
                     <template #label>
-                      Select Agri Type
+                      Select Agricultural Type
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -389,7 +407,7 @@
                 </v-row>
 
                 <v-row>
-                  <v-col cols="6">
+                  <v-col cols="3">
                     <v-text-field
                       dense
                       label="User Type"
@@ -400,7 +418,7 @@
                     </v-text-field>
                   </v-col>
 
-                  <v-col cols="6">
+                  <v-col cols="3">
                     <v-text-field
                       dense
                       label="Operator Name"
@@ -410,7 +428,95 @@
                     >
                     </v-text-field>
                   </v-col>
+
+                  <v-col cols="3">
+                    <v-text-field
+                      dense
+                      v-numeric
+                      label="Price Rented"
+                      v-model="priceRented"
+                      hide-details="auto"
+                    >
+                    </v-text-field>
+                  </v-col>
                 </v-row>
+
+                <v-row>
+                  <v-col cols="3">
+                    <v-text-field
+                      dense
+                      v-numeric
+                      label="Price Sold For"
+                      v-model="priceSoldFor"
+                      hide-details="auto"
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="3">
+                    <v-text-field
+                      dense
+                      v-numeric
+                      label="Zonal Value"
+                      v-model="zonalValue"
+                      hide-details="auto"
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="3">
+                    <v-text-field
+                      dense
+                      v-numeric
+                      label="Zonning Code"
+                      v-model="zonningCode"
+                      hide-details="auto"
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="3">
+                    <v-menu
+                      ref="menuActiveDateSwitchOn"
+                      v-model="menuActiveDateSwitchOn"
+                      :close-on-content-click="false"
+                      :return-value.sync="activedateSwitchOn"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="activedateSwitchOn"
+                          label="Active Date Limit"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          dense
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker v-model="activedateSwitchOn" no-title scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="menuActiveDateSwitchOn = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.menuActiveDateSwitchOn.save(activedateSwitchOn)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-menu>
+                  </v-col>
+                </v-row>
+
 
                 <v-row>
                   <v-col cols="12">
@@ -739,26 +845,26 @@
                     </v-text-field>
                   </v-col>
                   <v-col cols="3">
-                    <v-autocomplete
+                    <v-text-field
                       v-model="minimumRentalPeriod"
-                      :items="minimumRentalPeriodItems"
+                      v-numeric
                       dense
                       chips
-                      @keypress="acceptNotCharacter"
+                  
                       small-chips
                       label="Minimum Rental Period"
-                    ></v-autocomplete>
+                      ></v-text-field>
                   </v-col>
                   <v-col cols="3">
-                    <v-autocomplete
+                    <v-text-field
                       v-model="maximumRentalPeriod"
-                      :items="maximumRentalPeriodItems"
+                      v-numeric
                       dense
                       chips
-                      @keypress="acceptNotCharacter"
+                 
                       small-chips
                       label="Maximum Rental Period"
-                    ></v-autocomplete>
+                      ></v-text-field>
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
@@ -766,6 +872,7 @@
                       :items="dayMonthRentDueItems"
                       dense
                       chips
+                
                       @keypress="acceptNotCharacter"
                       small-chips
                       label="Day of Month Rent Due"
@@ -782,6 +889,17 @@
                       @keypress="acceptNotCharacter"
                       small-chips
                       label="Period Can Extend"
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col cols="3">
+                    <v-autocomplete
+                      v-model="rentalPricingUnit"
+                      :items="rentalPricingUnitItems"
+                      dense
+                      chips
+                      @keypress="acceptNotCharacter"
+                      small-chips
+                      label="Rental Pricing Unit"
                     ></v-autocomplete>
                   </v-col>
                   <v-col cols="3">
@@ -944,7 +1062,7 @@
                       dense
                       label="Sale Price Asked"
                       v-model="salePriceAsked"
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_upto2Decimal"
                       hide-details="auto"
                     >
                     <template #label>
@@ -959,29 +1077,59 @@
                   <v-col cols="3">
                     <v-text-field
                       dense
-                      label="Price/SqM"
+                      label="Price per SqM"
                       v-model="pricePerSqm"
                       hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="3">
-                    <v-autocomplete
-                      v-model="productMode"
-                      :items="productModeItems"
-                      dense
-                      chips
-                      :rules="validationRulesRequired"
-                      @keypress="acceptNotCharacter"
-                      small-chips
-                      label="Product Mode"
+                      :rules="validationRules_upto2Decimal"
                     >
                     <template #label>
-                      Product Mode
+                      Price per SqM
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
                       </template>
-                    </v-autocomplete>
+                  </v-text-field>
+                 
+                  </v-col>
+                  <v-col cols="3">
+                    <v-menu
+                      ref="menuDateSoldSwitchOn"
+                      v-model="menuDateSoldSwitchOn"
+                      :close-on-content-click="false"
+                      :return-value.sync="dateSoldSwitchOn"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="dateSoldSwitchOn"
+                          label="Date Sold"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          dense
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker v-model="dateSoldSwitchOn" no-title scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="menuDateSoldSwitchOn = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.menuDateSoldSwitchOn.save(dateSoldSwitchOn)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-menu>
                   </v-col>
                   <v-col cols="3">
                     <v-menu
@@ -996,7 +1144,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="saleSwitchOn"
-                          label="Sale Switch ON"
+                          label="View Sale Switch ON"
                           prepend-icon="mdi-calendar"
                           readonly
                           v-bind="attrs"
