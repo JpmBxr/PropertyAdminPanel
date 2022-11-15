@@ -25,6 +25,7 @@
           </v-list-item>
         </v-toolbar-title>
         <v-spacer></v-spacer>
+
         <v-btn
         v-permission="'Add Property'"
           :disabled="isLoaderActive"
@@ -37,13 +38,29 @@
       </v-row>
 
       <v-row class="ml-4 mr-4 mt-1 mb-4">
+      <v-col cols="8">
         <v-text-field
           class="mt-4"
           v-model="searchText"
           label="Search"
+          placeholder="Search By Seller Name | Barangay | Town | Subdivision "
           prepend-inner-icon="mdi-magnify"
           @input="searchInfo"
         ></v-text-field>
+      </v-col>
+
+      <v-col cols="4">
+        <v-autocomplete
+          class="mt-8"
+          v-model="product_category_id"
+          :items="productCategoryItems"
+          label="Select Product Catego-ry"
+          dense
+          item-text="text"
+          item-value="value"
+          @change="getPropertyList"
+          ></v-autocomplete>
+        </v-col>
       </v-row>
 
       <transition name="fade" mode="out-in">

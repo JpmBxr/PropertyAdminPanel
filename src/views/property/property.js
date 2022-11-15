@@ -31,6 +31,17 @@ export const property = {
              //Property Search
              searchText: "",
              propertyItem: {},
+             product_category_id: null,
+             productCategoryItems: [
+            {
+               value: 1,
+               text: "For Rent"
+             },
+             {
+               value: 3,
+               text: "For Sale"
+             }
+             ],
 
              // add edit
              entity: "Property Listing",
@@ -53,7 +64,7 @@ export const property = {
                `allproperty?searchText=${
                  this.searchText
                }&user_id=${secureLS.get(Global.userId)}`,
-               {}
+               {product_category_id: this.product_category_id}
              )
                .then((response) => {
                  this.isLoaderActive = false;

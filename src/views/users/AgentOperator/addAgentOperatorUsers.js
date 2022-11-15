@@ -120,10 +120,11 @@ export const addAgentOperatorUsers = {
         this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.self_broker != null
           ? this.addAgentOperatorDataProps.self_broker
           : null,
-      associatedBroker:
-        this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.associated_broker_id != null
-          ? this.addAgentOperatorDataProps.associated_broker_id
-          : null,
+      // associatedBroker:
+      //   this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.associated_broker_id != null
+      //     ? this.addAgentOperatorDataProps.associated_broker_id
+      //     : null,
+      associatedBroker:[],
       reasonInactive: null,
       inactiveUser: this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.user_status != null
         ? this.addAgentOperatorDataProps.user_status
@@ -149,7 +150,7 @@ export const addAgentOperatorUsers = {
       isFormAddEditValid: false,
       isItemLoading: false,
       isAgentOperator: false,
-
+     
       // search
       searchText: "",
 
@@ -176,6 +177,30 @@ export const addAgentOperatorUsers = {
 
     this.removeItemFromArray(this.userTypeItems, secureLS.get(Global.roleName));
     if (this.addAgentOperatorDataProps != null) {
+      this.getBrokerWithoutPagination();
+      let x=this.addAgentOperatorDataProps.associated_broker_id;
+      let y=x.replace(/, +/g, ",").split(",").map(Number); 
+      console.log("yy-------",y);
+     
+      console.log("-------",this.addAgentOperatorDataProps.associated_broker_id);
+      for(let i=0;i<y.length;i++)
+      {
+        console.log("-------",y[i]);
+        this.associatedBroker.push(y[i]);
+      }
+      // this.associatedBroker=[20,21];
+      console.log("pppppppppppppppp",this.associatedBroker);
+      if(this.addAgentOperatorDataProps.role_id == 26 )
+      {
+        this.sameAsAgency=true;
+        this.isAgentOperator = true;
+      }
+      else
+      {
+        this.sameAsAgency=false;
+        this.isAgentOperator = false;
+      }
+
       this.changeProvince();
       this.changeBarangay();
     }
