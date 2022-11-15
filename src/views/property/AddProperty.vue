@@ -837,11 +837,10 @@
                   <v-col cols="3">
                     <v-text-field
                       dense
+                      v-numeric
                       label="Rental Price Asked"
                       v-model="rentalPriceAsked"
                       :rules="validationRulesRequired"
-                      @keypress="acceptNotCharacter"
-                      
                       hide-details="auto"
                     >
                     <template #label>
