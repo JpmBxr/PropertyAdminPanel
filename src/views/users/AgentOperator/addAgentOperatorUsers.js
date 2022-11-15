@@ -324,21 +324,16 @@ export const addAgentOperatorUsers = {
     },
 
     setOpenProperty() {
+      
       if (
-        secureLS.get(Global.roleName) === "Agent" ||
-        secureLS.get(Global.roleName) === "Owner-Agent" ||
-        secureLS.get(Global.roleName) === "Owner-Agent"
-      ) {
-        this.openPropertyLimitIsDisabled = true;
-        this.openPropertyLimit = 5;
-      } else if (secureLS.get(Global.roleName) === "Operator") {
-        this.openPropertyLimitIsDisabled = true;
-        this.openPropertyLimit = 999;
-      } else if (
-        secureLS.get(Global.roleName) === "Admin " ||
-        secureLS.get(Global.roleName) === "Super Admin "
+        secureLS.get(Global.roleName) === "Admin" ||
+        secureLS.get(Global.roleName) === "Super Admin" 
+  
       ) {
         this.openPropertyLimitIsDisabled = false;
+        this.openPropertyLimit = 5;
+      } else  {
+        this.openPropertyLimitIsDisabled = true;
         this.openPropertyLimit = 999;
       }
     },

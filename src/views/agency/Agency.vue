@@ -48,9 +48,9 @@
           :loading="tableDataLoading"
           :loading-text="tableLoadingDataText"
           :server-items-length="totalItemsInDB"
-          :items-per-page="15"
+          :items-per-page="7"
           :footer-props="{
-            itemsPerPageOptions: [15, 20, 25],
+            itemsPerPageOptions: [7, 20, 25],
           }"
         >
           <template v-slot:no-data>
