@@ -50,7 +50,10 @@
         <v-list two-line class="pb-16">
           <v-list-item-group active-class="pink--text">
             <template v-for="(item, index) in propertyListItem">
-              <v-card :key="item.id">
+              <v-card :key="item.id"
+              @click="goToEditProperty(item)"
+              >
+              
                 <v-list-item>
                   <template v-slot:default="{ active }">
                     <v-list-item-avatar

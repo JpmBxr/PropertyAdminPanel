@@ -496,7 +496,15 @@
                           dense
                         ></v-text-field>
                       </template>
-                      <v-date-picker v-model="activedateSwitchOn" no-title scrollable>
+                      <v-date-picker 
+                         v-model="activedateSwitchOn" 
+                         no-title 
+                         scrollable
+                         :landscape="landscape" 
+                         :reactive="reactive" 
+                         :min="nowDate" 
+                         :max="getEndDate"
+                         >
                         <v-spacer></v-spacer>
                         <v-btn
                           text

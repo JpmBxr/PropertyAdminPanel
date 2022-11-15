@@ -343,6 +343,13 @@ export const addProperty = {
                  : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
                      .toISOString()
                      .substr(0, 10),
+            nowDate: new Date().toISOString().slice(0,10),
+            date: new Date(), 
+           
+            landscape: false,
+            reactive: false,
+
+
              menuSaleSwitchOn: false,
              //Details & Features
              heatingTypeItems: ["Forced Air"],
@@ -408,6 +415,14 @@ export const addProperty = {
              //end
            };
          },
+
+         computed: {
+          getEndDate() {
+           var endDate = new Date(this.date.getFullYear(), this.date.getMonth() + 12, 10);
+           return endDate.toISOString().slice(0,10)
+          }
+        },
+
          async created() {
         
           //get broker
