@@ -745,6 +745,7 @@ export const addProperty = {
                    agri_type: this.agryId,
                    furnishing: this.furnishing,
                    domain: this.domain,
+                   associatedBroker:this.associatedBroker
                  };
 
                  this.isLoaderActive = true;
@@ -841,6 +842,7 @@ export const addProperty = {
                     zonningCode:this.zonningCode,
                     active_date:this.activedateSwitchOn,
                     domain: this.domain,
+                    associatedBroker:this.associatedBroker
                   };
 
                   this.isLoaderActive = true;
