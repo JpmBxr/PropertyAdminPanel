@@ -271,7 +271,10 @@ export const addProperty = {
              propertyClassificationItems: [],
              productCategoryItems: [],
              propertyTypeItems: [],
-             floorLevelItems: ["Basement", "Ground", "First", "Second"],
+             domainItems: ["Personal", "Agency"],
+             domain:  this.propertyDataProps != null
+             ? this.propertyDataProps.domain
+             : null,
              agencyProvinceItems: [],
              associatedBrokerItems: [],
              status:  this.propertyDataProps != null
@@ -741,6 +744,7 @@ export const addProperty = {
                    created_by: secureLS.get(Global.userId),
                    agri_type: this.agryId,
                    furnishing: this.furnishing,
+                   domain: this.domain,
                  };
 
                  this.isLoaderActive = true;
@@ -835,7 +839,8 @@ export const addProperty = {
                     priceSoldFor:this.priceSoldFor,
                     zonalValue:this.zonalValue,
                     zonningCode:this.zonningCode,
-                    active_date:this.activedateSwitchOn
+                    active_date:this.activedateSwitchOn,
+                    domain: this.domain,
                   };
 
                   this.isLoaderActive = true;
