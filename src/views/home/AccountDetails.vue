@@ -238,6 +238,7 @@
                   <v-row>
                     <v-col cols="12" md="3" sm="12">
                       <v-switch
+                      v-if="false"
                         class="p-0 m-0"
                         dense
                         color="primary"
@@ -289,7 +290,7 @@
                 </v-expansion-panel-content>
               </v-expansion-panel>
   
-              <v-expansion-panel v-if="sameAsAgency == false">
+              <v-expansion-panel v-if="false">
                 <v-expansion-panel-header class="grey lighten-4">
                   <div>
                     <v-icon color="success" class="mr-4"
@@ -314,7 +315,6 @@
                         label="House/Lot Number"
                         v-model="houseLotNumber"
                         hide-details="auto"
-                        :rules="validationRulesRequired"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" md="6" sm="12">
@@ -322,7 +322,6 @@
                         dense
                         label="Street Name"
                         v-model="streetName"
-                        :rules="validationRulesRequired"
                         hide-details="auto"
                       >
                         <template #label>
@@ -341,7 +340,6 @@
                         dense
                         label="Property/Building Name"
                         v-model="propertyBuildingName"
-                        :rules="validationRulesRequired"
                         hide-details="auto"
                       ></v-text-field>
                     </v-col>
@@ -355,7 +353,6 @@
                         item-value="town_id"
                         dense
                         chips
-                        :rules="validationRulesRequired"
                         small-chips
                         label="Select Town"
                         @keypress="acceptNotCharacter"
@@ -378,7 +375,6 @@
                         item-value="province_id"
                         dense
                         chips
-                        :rules="validationRulesRequired"
                         @change="changeProvince"
                         small-chips
                         label="Select Province"
@@ -405,7 +401,6 @@
                         @change="changeBarangay"
                         dense
                         chips
-                        :rules="validationRulesRequired"
                         small-chips
                         label="Select Barangay"
                         @keypress="acceptNotCharacter"
@@ -429,7 +424,6 @@
                         chips
                         small-chips
                         label="Select Subdivision"
-                        :rules="validationRulesRequired"
                         @keypress="acceptNotCharacter"
                       ></v-autocomplete>
                     </v-col>
@@ -440,7 +434,6 @@
                       label="Zip Code"
                       v-model="zipCode"
                       hide-details="auto"
-                      :rules="validationRules_zipCodeWithMax6Char"
                     >
                     <template #label>
                       Zip Code
@@ -456,7 +449,6 @@
                       :items="floorLevelItems"
                       dense
                       chips
-                      :rules="validationRulesRequired"
                       small-chips
                       label="Select Floor or Level"
                     >
@@ -472,7 +464,7 @@
                 </v-expansion-panel-content>
               </v-expansion-panel>
   
-              <v-expansion-panel>
+              <v-expansion-panel v-if="false">
                 <v-expansion-panel-header class="grey lighten-3">
                   <div>
                     <v-icon color="success" class="mr-4"
@@ -533,7 +525,7 @@
                 </v-expansion-panel-content>
               </v-expansion-panel>
   
-              <v-expansion-panel v-if="isAgentOperator">
+              <v-expansion-panel v-if="false">
                 <v-expansion-panel-header class="grey lighten-4">
                   <div>
                     <v-icon color="success" class="mr-4">mdi-account-cog</v-icon>
