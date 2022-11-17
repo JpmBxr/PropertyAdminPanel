@@ -54,7 +54,7 @@
           class="mt-8"
           v-model="product_category_id"
           :items="productCategoryItems"
-          label="Select Product Catego-ry"
+          label="Select Product Category"
           dense
           item-text="text"
           item-value="value"
