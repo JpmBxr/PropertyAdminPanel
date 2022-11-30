@@ -1,5 +1,6 @@
 import { validationMixin } from "../../mixins/validationMixin";
 import { Global } from "../../helpers/global";
+import { ApiService } from "../../helpers/apiService";
 import { mapActions } from "vuex";
 export const login = {
   mixins: [validationMixin],
@@ -13,6 +14,11 @@ export const login = {
       password: "",
       isPasswordVisible: false,
       CompanyName: Global.CompanyName,
+
+      item:{},
+      forgetPassDialog: false,
+      isFormForgetPassValid: false,
+      isDialogLoaderActive: false,
     };
   },
   //#endregion
@@ -48,6 +54,53 @@ export const login = {
         // Internet not found
         Global.showErrorAlert(true, "error", "Internet not found", null);
       }
+    },
+    //#endregion
+
+     // forgetPassItem
+     forgetPassItem(item) {
+          // save
+          let payload = {
+            forget_email: item.forget_email,
+          };
+          this.isDialogLoaderActive = true;
+          ApiService.post(`forget_password`, payload)
+            .then((response) => {
+              this.isDialogLoaderActive = false;
+              Global.showSuccessAlert(true, "success", response.data.message);
+              this.close();
+             
+            })
+            .catch((error) => {
+              this.isDialogLoaderActive = false;
+              if (
+                error.response.status != 401 ||
+                error.response.status != 403
+              ) {
+                Global.showErrorAlert(true, "error", "Something went wrong");
+              }
+            });
+     },
+
+    //#region  show forget Pass Dialog
+    showforgetPassDialog(item) {
+      if (item == null && this.isforgetPass == true) {
+        this.forgetPassText = `Change Password `
+        this.forgetPassDialog = true;
+      } else {
+        this.item = Object.assign({}, item);
+        this.forgetPassText = `Forget Password `
+        this.forgetPassDialog = true;
+      }
+    },
+    //#endregion
+
+     //#region  to close the dialog
+    close() {
+      this.forgetPassDialog = false;
+      setTimeout(() => {
+        this.item = Object.assign({}, {});
+      }, 300);
     },
     //#endregion
   },

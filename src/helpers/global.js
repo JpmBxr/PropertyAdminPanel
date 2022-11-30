@@ -8,6 +8,7 @@ export const Global = {
     "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
   propertyImageUrl:
     "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
+  featuredagent: "https://peapiuat.dreamplesk.com/public/uploads/featuredagent/images/",
 
   //Testing Url Environment
     // appBaseUrl: "https://peapiuat.dreamplesk.com/public/api/",
@@ -15,6 +16,7 @@ export const Global = {
     //   "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
     // propertyImageUrl:
     //   "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
+    // featuredagent: "https://peapiuat.dreamplesk.com/public/uploads/featuredagent/images/",
 
   getBaseUrl() {
     return this.appBaseUrl;

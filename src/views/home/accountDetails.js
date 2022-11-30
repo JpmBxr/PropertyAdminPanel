@@ -504,6 +504,7 @@ export const accountDetails = {
           this.isLoaderActive = true;
           ApiService.post(`UpdateProfile`, postData)
             .then((response) => {
+              console.log(" ---", response);
               this.isLoaderActive = false;
               this.close();
               this.$router.push({

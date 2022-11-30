@@ -23,6 +23,11 @@ export const home = {
       accountDetailsItem: [],
       isLoaderActive: false,
 
+      item:{},
+      forgetPassDialog: false,
+      isFormForgetPassValid: false,
+      isDialogLoaderActive: false,
+
       //#endregion
       //#region - Side Bar Data
       sideMenu: true,
@@ -544,6 +549,56 @@ export const home = {
       });
     },
     //#endregion
+
+     // forgetPassItem
+     forgetPassItem(item) {
+      // save
+      let payload = {
+        current_password: item.current_password,
+        new_password: item.new_password,
+        confirm_password: item.confirm_password,
+        user_id: secureLS.get(Global.userId),
+      };
+      this.isDialogLoaderActive = true;
+      ApiService.post(`change_password`, payload)
+        .then((response) => {
+          this.isDialogLoaderActive = false;
+          Global.showSuccessAlert(true, "success", response.data.message);
+          this.close();
+         
+        })
+        .catch((error) => {
+          this.isDialogLoaderActive = false;
+          if (
+            error.response.status != 401 ||
+            error.response.status != 403
+          ) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+ },
+
+//#region  show forget Pass Dialog
+showforgetPassDialog(item) {
+  if (item == null && this.isforgetPass == true) {
+    this.forgetPassText = `Change Password `
+    this.forgetPassDialog = true;
+  } else {
+    this.item = Object.assign({}, item);
+    this.forgetPassText = `Change Password `
+    this.forgetPassDialog = true;
+  }
+},
+//#endregion
+
+ //#region  to close the dialog
+close() {
+  this.forgetPassDialog = false;
+  setTimeout(() => {
+    this.item = Object.assign({}, {});
+  }, 300);
+},
+//#endregion
   },
   //#endregion
 };
