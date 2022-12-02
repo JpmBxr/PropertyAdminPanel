@@ -420,9 +420,6 @@ export const home = {
     mini() {
       return this.toggleMini;
     },
-    isLoaderActive() {
-      return this.$store.state.login.isLoaderActive;
-    },
   },
   //#endregion
   //#region - Created Section

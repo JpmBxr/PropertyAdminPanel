@@ -89,7 +89,7 @@ export const login = {
         this.forgetPassDialog = true;
       } else {
         this.item = Object.assign({}, item);
-        this.forgetPassText = `Forget Password `
+        this.forgetPassText = `Forgot Password ?`
         this.forgetPassDialog = true;
       }
     },
