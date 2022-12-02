@@ -3,6 +3,7 @@ import { ApiService } from "../../../helpers/apiService";
 import { Global } from "../../../helpers/global";
 import router from "../../../router/router";
 import SecureLS from "secure-ls";
+
 var secureLS = new SecureLS({ encodingType: "aes" });
 const state = {
   isLoaderActive: false,
@@ -39,8 +40,7 @@ const actions = {
           secureLS.set(Global.userId, response.data.userData.user_id);
           secureLS.set(Global.roleName, response.data.roleData[0].name);
           secureLS.set(Global.roleId, response.data.roleData[0].role_id);
-
-          // secureLS.set(Global.profileImage, response.data.profile_image);
+          secureLS.set(Global.coverImage,response.data.userData.profileImage)
 
           commit(types.IS_LOGGED_IN, true);
           router.push({

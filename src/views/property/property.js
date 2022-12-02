@@ -52,6 +52,7 @@ export const property = {
 
          created() {
            this.propertyImageUrl = Global.propertyImageUrl;
+           this.previewProperty = Global.previewProperty;
            this.getPropertyList();
            this.$laravel.setPermissions(this.userPermissionDataProps);
          },

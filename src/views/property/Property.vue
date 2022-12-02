@@ -141,6 +141,16 @@
                       >
                         <v-icon>mdi-pencil-circle</v-icon>
                       </v-btn>
+
+                      <a 
+                      color="info"
+                      class="white--text pr-2"
+                      target="_blank"
+                      :href="previewProperty + item.slug"
+                      >
+                      <v-icon 
+                     class="mdi-eye">mdi-eye</v-icon>
+                     </a>
                     </v-list-item-action>
                   </template>
                 </v-list-item>

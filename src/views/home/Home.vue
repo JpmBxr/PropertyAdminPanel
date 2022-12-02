@@ -20,8 +20,16 @@
     >
       <v-list dense class="sidepanel">
         <v-list-item class="px-2">
-          <v-avatar size="40" class="ml-1 mr-2" color="primary">
-            <span class="white--text text-h6">{{ loggedUserInitials }}</span>
+          <v-avatar size="50" class="ml-1 mr-2" color="primary">
+            <!-- <span class="white--text text-h6">{{ loggedUserInitials }}</span> -->
+            <img
+              
+              inset
+              dense
+              max-height="50"
+              max-width="50"
+              :src="coverImage"
+            >
           </v-avatar>
 
           <v-list-item link class="pl-0">
@@ -736,9 +744,17 @@
           <v-list>
             <v-list-item>
               <v-avatar size="60" class="ml-1 mr-2" color="primary">
-                <span class="white--text text-h5">{{
+                <!-- <span class="white--text text-h5">{{
                   loggedUserInitials
-                }}</span>
+                }}</span> -->
+
+                <img
+                inset
+                dense
+                max-height="50"
+                max-width="50"
+               :src="coverImage"
+               >
               </v-avatar>
 
               <v-list-item-content>
@@ -806,7 +822,7 @@
       </v-menu>
     </v-app-bar>
 
-    <!--start of Add Otp -->
+    <!--start  -->
     <v-dialog
         transition="dialog-top-transition"
         v-model="forgetPassDialog"

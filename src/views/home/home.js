@@ -3,6 +3,7 @@ import { Global } from "../../helpers/global";
 import SecureLS from "secure-ls";
 import { ApiService } from "@/helpers/apiService";
 import router from "../../router/router";
+
 const secureLS = new SecureLS({ encodingType: "aes" });
 import { mapActions, mapGetters } from "vuex";
 export const home = {
@@ -43,6 +44,9 @@ export const home = {
         secureLS.get(Global.lastNameKey).substring(0, 1),
 
       roleName: secureLS.get(Global.roleName),
+
+      coverImage: null, 
+     
 
       //#endregion
       menuClass: Global.menuClass,
@@ -396,6 +400,7 @@ export const home = {
     };
   },
   //#endregion
+
   //#region - Mounted Section
   mounted() {
     window.onpopstate = (event) => {
@@ -426,6 +431,9 @@ export const home = {
     this.getLoggedUserRolePermission();
     this.get();
     this.getAccountDetails();
+
+    this.coverImage=Global.featuredagent+ secureLS.get(Global.coverImage);
+    console.log("url",this.coverImage);
   },
   //#endregion
   //#region - Method Section

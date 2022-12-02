@@ -1,6 +1,8 @@
 import { Global } from "../../helpers/global";
 import { validationMixin } from "../../mixins/validationMixin.js";
 import { ApiService } from "../../helpers/apiService";
+import SecureLS from "secure-ls";
+var secureLS = new SecureLS({ encodingType: "aes" });
 export const accountDetails = {
   props: ["userPermissionDataProps", "AccountDetailsDataProps"],
   mixins: [validationMixin],
@@ -453,6 +455,7 @@ export const accountDetails = {
           ApiService.post(`SaveUser`, postData)
             .then((response) => {
               this.isLoaderActive = false;
+              
               this.close();
               Global.showSuccessAlert(true, "success", response.data.message);
             })
@@ -504,7 +507,8 @@ export const accountDetails = {
           this.isLoaderActive = true;
           ApiService.post(`UpdateProfile`, postData)
             .then((response) => {
-              console.log(" ---", response);
+              console.log("response=========>", response);
+              secureLS.set(Global.coverImage, response.data.coverImage);
               this.isLoaderActive = false;
               this.close();
               this.$router.push({
