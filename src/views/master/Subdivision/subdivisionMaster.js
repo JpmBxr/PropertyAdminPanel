@@ -113,7 +113,7 @@ export const subdivisionMaster = {
     this.getProvinceWithoutPagination();
     this.getTownWithoutPagination();
     this.getBarangayWithoutPagination();
-    this.getSubdivisionWithoutPagination();
+    this.getAdjacentSubdivisionWithoutPagination();
     this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   computed: {
@@ -183,9 +183,9 @@ export const subdivisionMaster = {
         });
     },
 
-    getSubdivisionWithoutPagination() {
+    getAdjacentSubdivisionWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetSubdivisionWithoutPagination", {})
+      ApiService.get("GetAdjacentSubdivisionWithoutPagination", {})
         .then((response) => {
           this.isLoaderActive = false;
 
@@ -238,13 +238,12 @@ export const subdivisionMaster = {
 
     //show add edit dialog
     showAddEditDialog(item) {
-      this.getSubdivisionWithoutPagination();
+      this.getAdjacentSubdivisionWithoutPagination();
       if (item == null && this.isAddEdit == true) {
         this.addEditText = `Add New ${this.entity}`;
         this.addEditDialog = true;
         this.addUpdateButtonText = " Add ";
       } else {
-        console.log(item);
         if (typeof item.adjacent_subdivision_id == "string") {
           item.adjacent_subdivision_id = item.adjacent_subdivision_id
             .split(",")

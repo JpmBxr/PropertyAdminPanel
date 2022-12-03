@@ -277,7 +277,7 @@
                       v-model="item.adjacent_subdivision_id"
                       :items="adjacentSubdivisionsItems"
                       label="Select Adjacent Subdivisions"
-                      item-text="subdivision_name"
+                      item-text="adjacentSubdivision"
                       item-value="subdivision_id"
                       multiple
                       chips

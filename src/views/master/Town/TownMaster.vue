@@ -243,7 +243,7 @@
                     <v-autocomplete
                       v-model="item.adjacent_town_id"
                       :items="adjacentTownsItems"
-                      item-text="town_name"
+                      item-text="adjacentTown"
                       item-value="town_id"
                       label=" Select Adjacent Towns"
                       multiple

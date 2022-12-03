@@ -128,7 +128,7 @@ export const townMaster = {
 
   created() {
     this.getProvinceWithoutPagination();
-    this.getTownWithoutPagination();
+    this.getAdjacentTownWithoutPagination();
     this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   methods: {
@@ -148,9 +148,10 @@ export const townMaster = {
           }
         });
     },
-    getTownWithoutPagination() {
+
+    getAdjacentTownWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {
+      ApiService.get("GetAdjacentTownWithoutPagination", {
         
       })
         .then((response) => {
@@ -204,7 +205,7 @@ export const townMaster = {
 
     //show add edit dialog
     showAddEditDialog(item) {
-      this.getTownWithoutPagination();
+      this.getAdjacentTownWithoutPagination();
 
       if (item == null && this.isAddEdit == true) {
         this.addEditText = `Add New ${this.entity}`;

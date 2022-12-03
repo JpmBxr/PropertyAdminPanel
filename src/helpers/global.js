@@ -8,19 +8,18 @@ export const Global = {
     "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
   propertyImageUrl:
     "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
- 
   previewProperty: "https://pecustomer.dreamplesk.com/public/singleproperty/",
   featuredagent: "https://mgtspe.dreamplesk.com/public/uploads/featuredagent/images/",
 
 
-  //Testing Url Environment
+  // Testing Url Environment
     // appBaseUrl: "https://peapiuat.dreamplesk.com/public/api/",
     // profileImageUrl:
     //   "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
     // propertyImageUrl:
     //   "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
     // featuredagent: "https://peapiuat.dreamplesk.com/public/uploads/featuredagent/images/",
-   // previewProperty: "https://pecustomeruat.dreamplesk.com/public/singleproperty/",
+    // previewProperty: "https://pecustomeruat.dreamplesk.com/public/singleproperty/",
      
 
   getBaseUrl() {
