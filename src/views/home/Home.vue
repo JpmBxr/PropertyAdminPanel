@@ -647,6 +647,13 @@
               <v-icon>mdi-bell</v-icon>
             </v-badge>
           </v-btn>
+
+          <v-list-item-content class="initials">
+              <v-list-item-title>
+                <h3>{{ loggedUserFullName }}</h3>
+              </v-list-item-title>
+          <v-list-item-subtitle> {{ roleName }} </v-list-item-subtitle>
+          </v-list-item-content>
         </template>
 
         <v-card max-width="550" class="mx-auto" v-if="unreadNotifiction > 0">
@@ -950,6 +957,10 @@ import { home } from "../home/home.js";
 export default home;
 </script>
 <style>
+
+.initials{
+ margin-left: 750px;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.9s;
