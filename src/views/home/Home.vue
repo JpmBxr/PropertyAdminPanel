@@ -242,7 +242,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-point-of-sale</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Category</v-list-item-title>
+              <v-list-item-title>Product Category</v-list-item-title>
             </v-list-item>
 
             <v-list-item

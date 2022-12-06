@@ -150,7 +150,7 @@
       <v-dialog
         transition="dialog-top-transition"
         v-model="addEditDialog"
-        max-width="700"
+        max-width="600"
         scrollable
         :fullscreen="$vuetify.breakpoint.smAndDown"
         persistent
@@ -218,78 +218,18 @@
                 </v-row>
 
                 <v-row class="mx-auto d-flex">
-                  <v-col cols="12" md="6" class="pb-1">
-                    <v-select
-                      v-model="item.town_id"
-                      :items="townItems"
-                      label="Select Town"
-                      item-text="town_name"
-                      item-value="town_id"
-                      :rules="validationRulesRequired"
-                      dense
-                      ><template #label>
-                        Select Town
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template></v-select
-                    >
-                  </v-col>
-
-                  <v-col cols="12" md="6" class="pb-1">
-                    <v-select
-                      v-model="item.province_id"
-                      :items="provinceItems"
-                      label="Select Province"
-                      :rules="validationRulesRequired"
-                      item-text="province_name"
-                      item-value="province_id"
-                      dense
-                      ><template #label>
-                        Select Province
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template></v-select
-                    >
-                  </v-col>
-                </v-row>
-
-                <v-row class="mx-auto d-flex">
-                  <v-col cols="12" md="3" class="pb-1 mt-4">
-                    <v-text-field
-                      v-model="item.zip_code"
-                      dense
-                      v-numeric
-                      :rules="validationRules_zipCodeWithMax6Char"
-                    >
-                      <template #label>
-                        Zip Code
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
-                    </v-text-field>
-                  </v-col>
-
-                  <v-col cols="12" md="9" class="pb-1">
+                  <v-col cols="12" md="12" class="pb-1">
                     <v-autocomplete
                       v-model="item.adjacent_subdivision_id"
                       :items="adjacentSubdivisionsItems"
-                      label="Select Adjacent Subdivisions"
+                      label=" Select Adjacent Subdivisions"
                       item-text="adjacentSubdivision"
                       item-value="subdivision_id"
                       multiple
                       chips
                       small-chips
                       @keypress="acceptNotCharacter"
-                      ><template #label>
-                        Select Adjacent Subdivisions
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template></v-autocomplete
-                    >
+                      ></v-autocomplete>
                   </v-col>
                 </v-row>
               </v-form>

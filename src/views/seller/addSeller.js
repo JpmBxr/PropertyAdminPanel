@@ -196,6 +196,7 @@ export const addSeller = {
             town_id: this.item.town_id,
             subdivision_id: this.item.subdivision_id,
             notes_about_seller:this.item.notes_about_seller,
+            user_id: secureLS.get(Global.userId),
           };
           this.isLoaderActive = true;
           ApiService.post("saveSeller", payload)
@@ -236,6 +237,7 @@ export const addSeller = {
             town_id: this.item.town_id,
             subdivision_id: this.item.subdivision_id,
             notes_about_seller:this.item.notes_about_seller,
+            user_id: secureLS.get(Global.userId),
 
           };
           this.isLoaderActive = true;

@@ -156,7 +156,7 @@ export const barangayMaster = {
     },
     getTownWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
+      ApiService.get("getTownProvinceDetails", {})
         .then((response) => {
           this.isLoaderActive = false;
 

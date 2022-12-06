@@ -213,7 +213,7 @@
                       v-model="item.town_id"
                       :items="townItems"
                       label="Select Town"
-                      item-text="town_name"
+                      item-text="townProvince"
                       item-value="town_id"
                       :rules="validationRulesRequired"
                       dense

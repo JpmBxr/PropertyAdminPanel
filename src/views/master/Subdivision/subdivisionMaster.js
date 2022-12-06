@@ -110,8 +110,6 @@ export const subdivisionMaster = {
   },
 
   created() {
-    this.getProvinceWithoutPagination();
-    this.getTownWithoutPagination();
     this.getBarangayWithoutPagination();
     this.getAdjacentSubdivisionWithoutPagination();
     this.$laravel.setPermissions(this.userPermissionDataProps);
@@ -137,37 +135,6 @@ export const subdivisionMaster = {
     },
   },
   methods: {
-    getProvinceWithoutPagination() {
-      this.isLoaderActive = true;
-      ApiService.get("GetProvinceWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.provinceItems = response.data.resultData;
-        })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
-    },
-
-    getTownWithoutPagination() {
-      this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.townItems = response.data.resultData;
-        })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
-    },
     getBarangayWithoutPagination() {
       this.isLoaderActive = true;
       ApiService.get("GetBarangayWithoutPagination", {})

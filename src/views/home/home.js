@@ -124,7 +124,7 @@ export const home = {
           to: "/home/master/capability/capability-master",
         },
         {
-          text: "Category",
+          text: "Product Category",
           icon: "mdi-point-of-sale",
           to: "/home/master/category/category-master",
         },

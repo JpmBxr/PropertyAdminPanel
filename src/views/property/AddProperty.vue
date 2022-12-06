@@ -81,13 +81,8 @@
                       item-text="broker_name"
                       item-value="broker_id"
                       dense
+                      label = "Associated Broker"
                     >
-                    <template #label>
-                      Associated Broker
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
                     </v-autocomplete>
                   </v-col>
 
@@ -96,13 +91,8 @@
                     v-model="domain"
                       :items="domainItems"
                       dense
+                      label = "Domain"
                     >
-                    <template #label>
-                      Domain
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
                     </v-autocomplete>
                   </v-col>
                 </v-row>
@@ -116,15 +106,8 @@
                       item-text="seller_name"
                       item-value="seller_id"
                       dense
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Seller
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
                     </v-autocomplete>
                   </v-col>
                   <v-col cols="6">
@@ -188,14 +171,7 @@
                       label="Building Area in SQ.M"
                       v-model="buildingArea"
                       hide-details="auto"
-                      :rules="validationRulesRequired"
                     >
-                    <template #label>
-                      Building Area in SQ.M
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -209,7 +185,7 @@
                       hide-details="auto"
                     >
                     <template #label>
-                      Property Name
+                      Property Name upto 6 Words
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -227,7 +203,7 @@
                       hide-details="auto"
                     >
                     <template #label>
-                      Property Headline
+                      Property Headline upto 25 Words
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -246,7 +222,7 @@
                       :rules="validationRulesRequired"
                     >
                     <template #label>
-                      Property Description
+                      Property Description upto 500 Words
                       <span class="red--text">
                         <strong>*</strong>
                       </span>
@@ -556,6 +532,7 @@
                 </v-row>
                 </v-expansion-panel-content>
               </v-expansion-panel>
+
             <v-expansion-panel>
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
@@ -746,7 +723,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel>
+            <v-expansion-panel v-if="propertyType != 1">
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
                   <v-icon color="success" class="mr-4"
