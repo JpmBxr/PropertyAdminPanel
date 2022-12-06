@@ -7,6 +7,7 @@ export const addSeller = {
   data() {
     return {
       //newly added
+      agencyisvisible: true,
       isLoaderActive: false,
       totalItemsInDB: 0,
       tableItems: [],
@@ -41,15 +42,18 @@ export const addSeller = {
       //end
     };
   },
-  created() {
-    this.getBrokerProvinceItems();
-    this.getTownWithoutPagination();
+  async created() {
+    this.setAgencyVisible();
+    this.getAgencyWithoutPagination();
+    await this.getSellerProvinceItems();
 
     if (this.$route.params.sellerId != 0) {
       this.isAddEdit = false;
-      this.getSellerById(this.$route.params.sellerId);
+      await this.getSellerById(this.$route.params.sellerId);
       this.changeProvince();
+      this.changeTown();
       this.changeBarangay();
+      
     }
   },
   computed: {
@@ -63,14 +67,16 @@ export const addSeller = {
   },
 
   methods: {
-    //#region getBrokerProvinceItems
-    getBrokerProvinceItems() {
+     //#region getAgencyWithoutPagination
+     getAgencyWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetProvinceWithoutPagination", {})
+      ApiService.get("GetAgencyWithoutPagination", {
+      
+      })
         .then((response) => {
           this.isLoaderActive = false;
 
-          this.provinceItems = response.data.resultData;
+          this.agencyItems = response.data.resultData;
         })
         .catch((error) => {
           this.isLoaderActive = false;
@@ -78,99 +84,124 @@ export const addSeller = {
             Global.showErrorAlert(true, "error", "Something went wrong");
           }
         });
+    },
+    //#endregion
+
+    setAgencyVisible() {
+      
+      if (
+        secureLS.get(Global.roleName) === "Operator" ||
+        secureLS.get(Global.roleName) === "Super Admin" ||
+        secureLS.get(Global.roleName) === "Admin" 
+  
+      ) {
+        this.agencyisvisible = true;
+       
+      } else  {
+        this.agencyisvisible = false;
+     
+      }
+    },
+    
+     //#region getBrokerProvinceItems
+     async getSellerProvinceItems() {
+      this.isLoaderActive = true;
+      try {
+        const response = await ApiService.get("GetProvinceWithoutPagination", {})
+        this.provinceItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region getTownWithoutPagination
-    getTownWithoutPagination() {
+    async getTownWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.townItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetTownWithoutPagination", {
+          provinceId: this.item.province_id,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.townItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
-    //#endregion 
+    //#endregion
 
     //#region getBarangayWithoutPagination
-    getBarangayWithoutPagination() {
+    async getBarangayWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetBarangayWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.barangayItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetBarangayWithoutPagination", {
+          townId: this.item.town_id
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.barangayItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region getSubdivisionWithoutPagination
-    getSubdivisionWithoutPagination() {
+    async getSubdivisionWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetSubdivisionWithoutPagination", {
-        townId: this.town,
-        provinceId: this.province,
-        barangayId: this.barangay,
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.subdivisionItems = response.data.resultData;
+      try {
+        const response = await ApiService.get("GetSubdivisionWithoutPagination", {
+          barangayId: this.item.barangay_id,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
+        this.subdivisionItems = response.data.resultData;
+        this.isLoaderActive = false;
+      } catch (error) {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      }
     },
     //#endregion
 
     //#region Change
-    changeProvince() {
-      this.getBarangayWithoutPagination();
+    async changeProvince() {
+      await this.getTownWithoutPagination();
     },
-
-    changeBarangay() {
-      this.getSubdivisionWithoutPagination();
+    async changeTown() {
+      await this.getBarangayWithoutPagination();
+    },
+    async changeBarangay() {
+      await this.getSubdivisionWithoutPagination();
     },
     //#endregion
 
     //#region getBrokerById
-    getSellerById(sellerId) {
+    async getSellerById(sellerId) {
       this.isLoaderActive = true;
-      ApiService.get("getSellerById", {
-        seller_id: sellerId,
-
-      })
-        .then((response) => {
-          this.isLoaderActive = false;
-          this.item_s = this.item = response.data.resultData[0];
-          this.item = this.item_s;
-
+      try {
+        const response = await ApiService.get("getSellerById", {
+          seller_id: sellerId,
         })
-        .catch((error) => {
-          this.isLoaderActive = false;
+        this.isLoaderActive = false;
+        this.item_s = this.item = response.data.resultData[0];
+        this.item = this.item_s;
+      }
+      catch (error) {
+        this.isLoaderActive = false;
           if (error.response.status != 401 && error.response.status != 403) {
             Global.showErrorAlert(true, "error", "Something went wrong");
           }
-        });
+      }
     },
     //#endregion
 
@@ -195,8 +226,9 @@ export const addSeller = {
             barangay_id: this.item.barangay_id,
             town_id: this.item.town_id,
             subdivision_id: this.item.subdivision_id,
-            notes_about_seller:this.item.notes_about_seller,
+            agency_id:this.item.agency_id,
             user_id: secureLS.get(Global.userId),
+            notes_about_seller:this.item.notes_about_seller,
           };
           this.isLoaderActive = true;
           ApiService.post("saveSeller", payload)
@@ -238,6 +270,7 @@ export const addSeller = {
             subdivision_id: this.item.subdivision_id,
             notes_about_seller:this.item.notes_about_seller,
             user_id: secureLS.get(Global.userId),
+            agency_id:this.item.agency_id,
 
           };
           this.isLoaderActive = true;

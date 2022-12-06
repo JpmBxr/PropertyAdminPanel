@@ -52,7 +52,7 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
                 <v-row class="mt-4">
-                  <v-col cols="12" md="6" sm="12">
+                  <v-col cols="12" md="4" sm="12">
                     <v-text-field
                       dense
                       v-model="item.seller_name"
@@ -68,7 +68,7 @@
                     </v-text-field>
                   </v-col>
 
-                  <v-col cols="12" md="6" sm="12">
+                  <v-col cols="12" md="4" sm="12">
                     <v-text-field
                       dense
                       label="Owner Name"
@@ -76,6 +76,28 @@
                       hide-details="auto"
                     >
                     </v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="4" sm="12" v-if="agencyisvisible" >
+                    <v-autocomplete
+                      :disabled="isItemLoading"
+                      v-model="item.agency_id"
+                      :items="agencyItems"
+                      item-text="agency_name"
+                      item-value="agency_id"
+                      dense
+                      chips
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                    
+                      small-chips
+                      label="Select Province"
+                      ><template #label>
+                        Select Agency
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template></v-autocomplete
+                    >
                   </v-col>
                 </v-row>
 
@@ -232,6 +254,7 @@
                       @keypress="acceptNotCharacter"
                       small-chips
                       label="Select Town"
+                      @change="changeTown"
                       ><template #label>
                         Select Town
                         <span class="red--text">
@@ -272,19 +295,12 @@
                       :items="subdivisionItems"
                       item-text="subdivision_name"
                       item-value="subdivision_id"
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                       dense
                       chips
                       small-chips
                       label="Select Subdivision"
                     >
-                    <template #label>
-                      Select Subdivision
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
                     </v-autocomplete>
                   </v-col>
                   

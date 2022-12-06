@@ -7,6 +7,7 @@ export const seller = {
   data() {
     return {
       //newly added
+  
       isLoaderActive: false,
       isDialogLoaderActive: false,
       totalItemsInDB: 0,
@@ -26,7 +27,7 @@ export const seller = {
         {
           text: "Name",
           value: "seller_name",
-          width: "20%",
+          width: "15%",
           sortable: true,
           align: "start",
         },
@@ -34,14 +35,21 @@ export const seller = {
           text: "Owner Name",
           value: "property_owner_name",
           sortable: true,
-          width: "20%",
+          width: "15%",
+          align: "start",
+        },
+        {
+          text: "Agency Associated With",
+          value: "agency_name",
+          sortable: true,
+          width: "15%",
           align: "start",
         },
         {
             text: "Phone",
             value: "phone_1",
             sortable: true,
-            width: "20%",
+            width: "15%",
             align: "start",
           },
         {
@@ -123,6 +131,7 @@ export const seller = {
         itemsPerPage: itemsPerPage,
         searchText: this.searchText,
         page: page,
+        user_id: secureLS.get(Global.userId),
       };
       this.isLoaderActive = true;
       ApiService.get("GetSeller", payload)
