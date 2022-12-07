@@ -18,6 +18,7 @@ export const addProperty = {
                  ? this.propertyDataProps.agent_id
                  : null,
              agentItems: [],
+             agentItems2:[],
 
              sellerId:
                this.propertyDataProps != null
@@ -29,7 +30,9 @@ export const addProperty = {
                this.propertyDataProps != null
                  ?this.propertyDataProps.isFeatured=="1"?"Yes":"No"
                  : null,
-             featureItems: ["Yes", "No"],
+             isDomainVisible:false,
+             isAgentVisible:false,
+             featureItems: ["No", "Yes"],
              furnishing:  this.propertyDataProps != null
              ? this.propertyDataProps.furnishing
              : null,
@@ -189,9 +192,7 @@ export const addProperty = {
              currentRentalExpires:
                this.propertyDataProps != null
                  ? this.propertyDataProps.current_rental_expires
-                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-                     .toISOString()
-                     .substr(0, 10),
+                 : '',
              menuCurrentRentalExpires: false,
              menuDateRentalStarted: false,
              menuDateSoldSwitchOn:false,
@@ -199,17 +200,15 @@ export const addProperty = {
              dateRentalStarted:
                this.propertyDataProps != null
                  ? this.propertyDataProps.date_rental_started
-                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-                     .toISOString()
-                     .substr(0, 10),
+                 : '',
              menuRentalSwitchOn: false,
              rentalSwitchOn:
                this.propertyDataProps != null
                  ? this.propertyDataProps.rental_switch_on
-                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-                     .toISOString()
-                     .substr(0, 10),
-
+                 : '',
+                    //  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                    //  .toISOString()
+                    //  .substr(0, 10)
              //Sale
              salePriceAsked:
                this.propertyDataProps != null
@@ -333,14 +332,10 @@ export const addProperty = {
              saleSwitchOn:
                this.propertyDataProps != null
                  ? this.propertyDataProps.sale_switch_on
-                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-                     .toISOString()
-                     .substr(0, 10),
+                 : '',
              dateSoldSwitchOn:   this.propertyDataProps != null
              ? this.propertyDataProps.date_sold
-             : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-                 .toISOString()
-                 .substr(0, 10),
+             : '',
              activedateSwitchOn:   this.propertyDataProps != null
                  ? this.propertyDataProps.active_property_date_limit
                  : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
@@ -427,21 +422,18 @@ export const addProperty = {
         },
 
          async created() {
-        
           //get broker
            this.getBroker();
            //get agent
-        
            this.getAgent();
+           //getSecondaryAgent
+           this.getSecondaryAgent();
            //get seller
            this.getSeller();
-         
            //get province
            await this.getProvince();
-
            //get property classification
            this.getPropertyClassification();
-
            //get property type
            this.getPropertyType();
            //get product category
@@ -451,6 +443,8 @@ export const addProperty = {
            this.getAgriType();
            if(this.propertyDataProps!=null)
            {
+            this.isAgentVisible = true;
+            this.isDomainVisible = true;
             this.changeProvince();
             this.changeTown();
             this.changeBarangay();
@@ -499,10 +493,34 @@ export const addProperty = {
                });
            },
 
+           //getSecondaryAgent
+           getSecondaryAgent() {
+            this.isLoaderActive = true;
+            ApiService.get("GetAssociatedAgencyAgents", {
+              user_id: secureLS.get(Global.userId),
+            })
+              .then((response) => {
+                this.isLoaderActive = false;
+
+                this.agentItems2 = response.data.resultData;
+              })
+              .catch((error) => {
+                this.isLoaderActive = false;
+                if (
+                  error.response.status != 401 &&
+                  error.response.status != 403
+                ) {
+                  Global.showErrorAlert(true, "error", "Something went wrong");
+                }
+              });
+          },
+
            //get seller
            getSeller() {
              this.isLoaderActive = true;
-             ApiService.get("GetSellerWithoutPagination", {})
+             ApiService.get("GetSellerWithoutPagination", {
+              user_id: secureLS.get(Global.userId),
+             })
                .then((response) => {
                  this.isLoaderActive = false;
 

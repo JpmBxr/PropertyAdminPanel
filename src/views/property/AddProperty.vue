@@ -56,26 +56,6 @@
                 <v-row class="mt-4">
                   <v-col cols="4">
                     <v-autocomplete
-                      v-model="agentId"
-                      :items="agentItems"
-                      label="Agent"
-                      item-text="full_name"
-                      item-value="user_id"
-                      dense
-                      :rules="validationRulesRequired"
-                     
-                    >
-                    <template #label>
-                      Agent
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
-                    </v-autocomplete>
-                  </v-col>
-
-                  <v-col cols="4">
-                    <v-autocomplete
                     v-model="associatedBroker"
                       :items="associatedBrokerItems"
                       item-text="broker_name"
@@ -88,17 +68,57 @@
 
                   <v-col cols="4">
                     <v-autocomplete
+                    v-if="isDomainVisible"
                     v-model="domain"
                       :items="domainItems"
                       dense
                       label = "Domain"
+                      readonly
+                    >
+                    </v-autocomplete>
+                  </v-col>
+
+                  <v-col cols="4">
+                    <v-autocomplete
+                    v-if="isAgentVisible"
+                      v-model="agentId"
+                      :items="agentItems"
+                      label="Agent"
+                      item-text="full_name"
+                      item-value="user_id"
+                      dense
+                      readonly
                     >
                     </v-autocomplete>
                   </v-col>
                 </v-row>
                 
                 <v-row>
-                  <v-col cols="6">
+                  <v-col cols="3">
+                    <v-autocomplete
+                      v-model="secondary_agent_id"
+                      :items="agentItems2"
+                      label="Agent 2"
+                      item-text="full_name"
+                      item-value="secondary_agent_id"
+                      dense
+                    >
+                    </v-autocomplete>
+                  </v-col>
+
+                  <v-col cols="3">
+                    <v-autocomplete
+                      v-model="third_agent_id"
+                      :items="agentItems2"
+                      label="Agent 3"
+                      item-text="full_name"
+                      item-value="third_agent_id"
+                      dense
+                    >
+                    </v-autocomplete>
+                  </v-col>
+
+                  <v-col cols="3">
                     <v-autocomplete
                       v-model="sellerId"
                       :items="sellerItems"
@@ -110,24 +130,19 @@
                     >
                     </v-autocomplete>
                   </v-col>
-                  <v-col cols="6">
+                  <v-col cols="3">
                     <v-autocomplete
                       v-model="isFeatured"
                       :items="featureItems"
                       label="Featured Property"
                       dense
-                      :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
+                      placeholder="No"
                     >
-                    <template #label>
-                      Featured Property
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
                     </v-autocomplete>
                   </v-col>
                 </v-row>
+
                 <v-row>
                   <v-col cols="4">
                     <v-text-field
