@@ -143,7 +143,7 @@
             >
 
             <v-icon
-            v-permission="'Delete Master'"
+         
               size="22"
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"

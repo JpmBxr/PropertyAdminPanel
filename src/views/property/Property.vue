@@ -108,7 +108,8 @@
                           outlined
                           >Contact Agent</v-chip
                         >
-                        <v-chip color="primary" v-if="false"
+                        <v-chip color="primary" 
+                        @click="showAgentPhoneNumber(item)"
                           >View Phone No</v-chip
                         >
                       </v-chip-group>
@@ -170,8 +171,8 @@
 
                     <v-list-item-content>
                       <v-list-item-title
-                        ><strong>Seller : </strong>
-                        {{ item.seller_name }}</v-list-item-title
+                        ><strong>Agent : </strong>
+                        {{ item.agent_name }}</v-list-item-title
                       >
                     </v-list-item-content>
                     <v-row class="d-none d-md-flex d-lg-non">
