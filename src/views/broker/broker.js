@@ -29,6 +29,7 @@ export const broker = {
           width: "20%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Email",
@@ -36,6 +37,7 @@ export const broker = {
           sortable: true,
           width: "20%",
           align: "start",
+          class:"active"
         },
         {
           text: "Phone",
@@ -43,6 +45,7 @@ export const broker = {
           sortable: true,
           width: "15%",
           align: "start",
+          class:"active"
         },
         {
           text: "Broker License",
@@ -50,6 +53,7 @@ export const broker = {
           sortable: false,
           width: "15%",
           align: "start",
+          
         },
         {
           text: "Status",

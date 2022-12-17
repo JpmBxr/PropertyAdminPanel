@@ -22,6 +22,7 @@ export const agency = {
           width: "5%",
           sortable: false,
           align: "start",
+          class:"active"
         },
 
         {
@@ -30,6 +31,7 @@ export const agency = {
           width: "20%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Owner Name",
@@ -37,6 +39,7 @@ export const agency = {
           width: "15%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Contact Person",
@@ -44,6 +47,7 @@ export const agency = {
           sortable: true,
           width: "20%",
           align: "start",
+          class:"active"
         },
         {
           text: "Phone",
@@ -51,6 +55,7 @@ export const agency = {
           width: "10%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Email",
@@ -58,6 +63,7 @@ export const agency = {
           width: "15%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Status",
@@ -65,6 +71,7 @@ export const agency = {
           sortable: false,
           width: "20%",
           align: "start",
+          
         },
         {
           text: "Actions",

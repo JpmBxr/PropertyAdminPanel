@@ -27,6 +27,7 @@ export const agentOperatorUsers = {
           width: "30%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Role",
@@ -34,6 +35,7 @@ export const agentOperatorUsers = {
           width: "10%",
           sortable: true,
           align: "start",
+          class:"active"
         },
 
         {
@@ -42,6 +44,7 @@ export const agentOperatorUsers = {
           width: "15%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Email",
@@ -49,6 +52,7 @@ export const agentOperatorUsers = {
           width: "20%",
           sortable: true,
           align: "start",
+          class:"active"
         },
 
         {
@@ -57,6 +61,7 @@ export const agentOperatorUsers = {
           sortable: false,
           width: "10%",
           align: "start",
+          
         },
 
         {

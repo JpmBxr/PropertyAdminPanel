@@ -29,6 +29,7 @@ export const brokerAssociation = {
           width: "20%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Contact Person",
@@ -36,6 +37,7 @@ export const brokerAssociation = {
           sortable: true,
           width: "20%",
           align: "start",
+          class:"active"
         },
         {
           text: "Email",
@@ -43,6 +45,7 @@ export const brokerAssociation = {
           sortable: true,
           width: "20%",
           align: "start",
+          class:"active"
         },
         {
           text: "Phone",
@@ -50,6 +53,7 @@ export const brokerAssociation = {
           sortable: true,
           width: "20%",
           align: "start",
+          class:"active"
         },
         {
           text: "Status",
@@ -57,6 +61,7 @@ export const brokerAssociation = {
           sortable: false,
           width: "20%",
           align: "start",
+          
         },
         {
           text: "Actions",
