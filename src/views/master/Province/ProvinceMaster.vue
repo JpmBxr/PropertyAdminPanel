@@ -148,6 +148,7 @@
       </transition>
       <!--start of Add / edit -->
       <v-dialog
+   
         transition="dialog-top-transition"
         v-model="addEditDialog"
         max-width="400"
@@ -190,6 +191,7 @@
                       dense
                       outlined
                       :rules="validationRulesRequired"
+                 
                     >
                       <template #label>
                         Name

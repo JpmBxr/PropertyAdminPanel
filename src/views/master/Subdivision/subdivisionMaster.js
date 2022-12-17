@@ -29,6 +29,7 @@ export const subdivisionMaster = {
           width: "20%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Barangay",
@@ -36,6 +37,7 @@ export const subdivisionMaster = {
           sortable: false,
           width: "15%",
           align: "start",
+       
         },
         {
           text: "Town",
@@ -43,6 +45,7 @@ export const subdivisionMaster = {
           sortable: false,
           width: "15%",
           align: "start",
+     
         },
         {
           text: "Province",
@@ -50,6 +53,7 @@ export const subdivisionMaster = {
           sortable: false,
           width: "15%",
           align: "start",
+
         },
         {
           text: "Zip",
