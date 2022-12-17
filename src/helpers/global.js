@@ -3,13 +3,13 @@ import Swal from "sweetalert2";
 import { ApiService } from "../helpers/apiService";
 export const Global = {
   //Development Url Environment
-  // appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
-  // profileImageUrl:
-  //   "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
-  // propertyImageUrl:
-  //   "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
-  // previewProperty: "https://pecustomer.dreamplesk.com/public/singleproperty/",
-  // featuredagent: "https://mgtspe.dreamplesk.com/public/uploads/featuredagent/images/",
+  appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
+  profileImageUrl:
+    "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
+  propertyImageUrl:
+    "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
+  previewProperty: "https://pecustomer.dreamplesk.com/public/singleproperty/",
+  featuredagent: "https://mgtspe.dreamplesk.com/public/uploads/featuredagent/images/",
 
 
   // Testing Url Environment
@@ -24,13 +24,13 @@ export const Global = {
 
     //Client env
 
-    appBaseUrl: "https://prodpea.mgts.co.in/api/",
-    profileImageUrl:
-      "https://prodpea.mgts.co.in/storage/profile_images/",
-    propertyImageUrl:
-      "https://prodpea.mgts.co.in/uploads/featuredproperty/images/",
-    featuredagent: "https://prodpea.mgts.co.in/uploads/featuredagent/images/",
-    previewProperty: "https://prodpe.mgts.co.in/singleproperty/",
+    // appBaseUrl: "https://prodpea.mgts.co.in/api/",
+    // profileImageUrl:
+    //   "https://prodpea.mgts.co.in/storage/profile_images/",
+    // propertyImageUrl:
+    //   "https://prodpea.mgts.co.in/uploads/featuredproperty/images/",
+    // featuredagent: "https://prodpea.mgts.co.in/uploads/featuredagent/images/",
+    // previewProperty: "https://prodpe.mgts.co.in/singleproperty/",
 
   getBaseUrl() {
     return this.appBaseUrl;
