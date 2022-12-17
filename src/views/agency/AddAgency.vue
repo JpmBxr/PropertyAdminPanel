@@ -111,6 +111,7 @@
                       v-model="item.phone_1"
                       :rules="validationRules_mobile"
                       hide-details="auto"
+                      maxlength="12"
                     >
                       <template #label>
                         Primary Phone
@@ -128,6 +129,7 @@
                       v-model="item.phone_2"
                       hide-details="auto"
                       :rules="validationRules_alternatecontact"
+                      maxlength="12"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="3" sm="12">
