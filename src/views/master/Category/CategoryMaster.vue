@@ -130,7 +130,7 @@
             }}</v-chip>
           </template>
 
-          <template v-slot:item.actions="{ item }" v-if="false">
+          <template v-slot:item.actions="{ item }">
             <v-icon
             v-permission="'Edit Master'"
               size="22"

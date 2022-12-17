@@ -30,6 +30,7 @@ export const seller = {
           width: "15%",
           sortable: true,
           align: "start",
+          class: "active"
         },
         {
           text: "Owner Name",
@@ -37,6 +38,7 @@ export const seller = {
           sortable: true,
           width: "15%",
           align: "start",
+          class: "active"
         },
         {
           text: "Agency Associated With",
@@ -44,6 +46,7 @@ export const seller = {
           sortable: true,
           width: "15%",
           align: "start",
+          class: "active"
         },
         {
             text: "Phone",
@@ -51,6 +54,7 @@ export const seller = {
             sortable: true,
             width: "15%",
             align: "start",
+            class: "active"
           },
         {
           text: "Email",
@@ -58,13 +62,14 @@ export const seller = {
           sortable: true,
           width: "20%",
           align: "start",
+          class: "active"
         },
  
         {
           text: "Actions",
           value: "actions",
           sortable: false,
-          width: "25%",
+          width: "10%",
           align: "end",
         },
       ],

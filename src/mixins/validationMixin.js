@@ -11,6 +11,8 @@ export const validationMixin = {
       // mobile is required
       validationRules_mobile: [
         (v) => !!v || "Provide valid Mobile number",
+
+        // (v) => /^(\d{10})$/.test(v) || "Mobile number must be of 10 digits",
     
         // (v) => /^[6-9]\d{9}$/.test(v) || "Mobile number must start with 6/7/8/9",
       ],
@@ -18,7 +20,7 @@ export const validationMixin = {
       validationRules_alternatecontact: [
         (v) => {
           if (v) {
-          
+            // return /^(\d{10})$/.test(v) || "Mobile number must be of 10 digits";
           } else {
             return true;
           }

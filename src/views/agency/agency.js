@@ -28,7 +28,7 @@ export const agency = {
         {
           text: "Agency Name",
           value: "agency_name",
-          width: "20%",
+          width: "15%",
           sortable: true,
           align: "start",
           class:"active"
@@ -45,14 +45,14 @@ export const agency = {
           text: "Contact Person",
           value: "contact_person",
           sortable: true,
-          width: "20%",
+          width: "15%",
           align: "start",
           class:"active"
         },
         {
           text: "Phone",
           value: "phone_1",
-          width: "10%",
+          width: "15%",
           sortable: true,
           align: "start",
           class:"active"
@@ -69,7 +69,7 @@ export const agency = {
           text: "Status",
           value: "status",
           sortable: false,
-          width: "20%",
+          width: "10%",
           align: "start",
           
         },
@@ -77,7 +77,7 @@ export const agency = {
           text: "Actions",
           value: "actions",
           sortable: false,
-          width: "25%",
+          width: "15%",
           align: "end",
         },
       ],

@@ -26,7 +26,7 @@ export const broker = {
         {
           text: "Name",
           value: "broker_name",
-          width: "20%",
+          width: "15%",
           sortable: true,
           align: "start",
           class:"active"
@@ -35,7 +35,7 @@ export const broker = {
           text: "Email",
           value: "email_address",
           sortable: true,
-          width: "20%",
+          width: "15%",
           align: "start",
           class:"active"
         },
@@ -59,14 +59,14 @@ export const broker = {
           text: "Status",
           value: "status",
           sortable: false,
-          width: "20%",
+          width: "10%",
           align: "start",
         },
         {
           text: "Actions",
           value: "actions",
           sortable: false,
-          width: "25%",
+          width: "10%",
           align: "end",
         },
       ],

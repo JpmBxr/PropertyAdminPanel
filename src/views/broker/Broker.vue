@@ -113,7 +113,6 @@
               >mdi-square-edit-outline</v-icon
             >
             <v-icon
-          
               size="22"
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"
