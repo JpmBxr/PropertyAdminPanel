@@ -191,16 +191,24 @@
                       dense
                       outlined
                       :rules="validationRulesRequired"
-                 
+                      @keyup="showExistDialog()"
                     >
+                
                       <template #label>
-                        Name
+                        Name       
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
                       </template>
+                 
+
                     </v-text-field>
+                    <span class="red--text">
+                          <strong>{{ addExistProvinceText }}</strong>
+                        </span>
+                    
                   </v-col>
+                  
                 </v-row>
               </v-form>
             </v-card-text>
@@ -214,6 +222,7 @@
                 @click="addEditItem()"
                 :disabled="!isFormAddEditValid"
               >
+          
                 {{ addUpdateButtonText }}
               </v-btn>
             </v-card-actions>

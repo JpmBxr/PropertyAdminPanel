@@ -8,6 +8,7 @@ export const validationMixin = {
             ? "Field is required"
             : null,
       ],
+      
       // mobile is required
       validationRules_mobile: [
         (v) => !!v || "Provide valid Mobile number",

@@ -62,6 +62,7 @@ export const provinceMaster = {
       isFormAddEditValid: false,
       isAddEdit: true,
       addUpdateButtonText: "Add " + this.entity,
+      addExistProvinceText:'',
       addEditText: "Add",
       //end
 
@@ -281,6 +282,39 @@ export const provinceMaster = {
             }
           });
         }
+    },
+    async showExistDialog() {
+      let payload = {
+        provinceName: this.item.province_name,
+          };
+ 
+      ApiService.post(`provinceExist`, payload)
+        .then((response) => {
+          if(response.data.status=="exist"){
+           this.addExistProvinceText = "Province Already Exist"
+        //  document.getElementsByClassName('v-messages__message').innerHTML="Province Already Exist";
+          // Global.showAlert(
+          //   `Already Exist`,
+           
+          // );
+          console.log(response.data.status)
+          }
+          else if(response.data.status=="notexist"){
+            console.log(response.data.status)
+            this.addExistProvinceText = ""
+          }
+       
+        })
+        .catch((error) => {
+          this.isDialogLoaderActive = false;
+          if (
+            error.response.status != 401 ||
+            error.response.status != 403
+          ) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+  
     },
   },
 };
