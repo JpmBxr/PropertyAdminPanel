@@ -303,6 +303,9 @@ export const provinceMaster = {
             console.log(response.data.status)
             this.addExistProvinceText = ""
           }
+          setTimeout(() => {
+            this.addExistProvinceText="";
+          }, 9000)
        
         })
         .catch((error) => {
