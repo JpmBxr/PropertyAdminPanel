@@ -29,6 +29,7 @@ export const townMaster = {
           width: "20%",
           sortable: true,
           align: "start",
+          class:"active"
         },
         {
           text: "Town/City",
@@ -36,6 +37,7 @@ export const townMaster = {
           sortable: false,
           width: "10%",
           align: "start",
+       
         },
         {
           text: "Province",

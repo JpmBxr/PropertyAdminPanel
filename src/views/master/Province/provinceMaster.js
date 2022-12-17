@@ -29,6 +29,7 @@ export const provinceMaster = {
           width: "50%",
           sortable: true,
           align: "start",
+          class:"active",
         },
         {
           text: "Status",
