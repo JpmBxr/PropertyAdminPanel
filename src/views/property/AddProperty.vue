@@ -676,7 +676,7 @@
                       </template>
                     </v-autocomplete>
                   </v-col>
-                  <v-col cols="3">
+                  <v-col cols="3" >
                     <v-autocomplete
                       v-model="subdivision"
                       :items="subdivisionItems"
@@ -684,25 +684,21 @@
                       item-value="subdivision_id"
                       dense
                       chips
-                      :rules="validationRulesRequired"
+                     
                       small-chips
                       label="Select Subdivision"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Subdivision
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
+                  
                     </v-autocomplete>
                   </v-col>
-                  <v-col cols="3">
+                  <v-col cols="3"  v-if="propertyDataProps!=null">
                     <v-text-field
                       dense
                       label="Zip Code"
                       v-model="zipCode"
                       :rules="validationRules_zipCode4DigitOptional"
+                      readonly
                     >
                     </v-text-field>
                   </v-col>
