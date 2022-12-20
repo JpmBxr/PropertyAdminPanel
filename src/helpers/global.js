@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { ApiService } from "../helpers/apiService";
 export const Global = {
   //Development Url Environment
-   appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
+  appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
   profileImageUrl:
     "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
   propertyImageUrl:
@@ -15,10 +15,10 @@ export const Global = {
   // Testing Url Environment
     // appBaseUrl: "https://peapiuat.dreamplesk.com/api/",
     // profileImageUrl:
-    //   "https://peapiuat.dreamplesk.com/storage/profile_images/",
+    //   "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
     // propertyImageUrl:
-    //   "https://peapiuat.dreamplesk.com/uploads/featuredproperty/images/",
-    // featuredagent: "https://peapiuat.dreamplesk.com/uploads/featuredagent/images/",
+    //   "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
+    // featuredagent: "https://peapiuat.dreamplesk.com/public/uploads/featuredagent/images/",
     // previewProperty: "https://pecustomeruat.dreamplesk.com/singleproperty/",
     
 

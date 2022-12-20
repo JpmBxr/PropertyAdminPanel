@@ -934,7 +934,7 @@
             </v-card-actions>
           </v-card>
         </template>
-             </v-dialog>
+    </v-dialog>
             <!--end of add Pass -->
 
     <transition name="fade" mode="out-in">
