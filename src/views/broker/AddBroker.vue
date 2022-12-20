@@ -14,7 +14,9 @@
         v-model="isFormAddEditValid"
         lazy-validation
       >
+      
         <v-row class="ml-4 mr-4 mt-1 mb-4">
+         
           <v-toolbar-title dark color="primary">
             <v-list-item two-line>
               <v-list-item-content>
@@ -30,6 +32,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-toolbar-title>
+          
           <v-spacer></v-spacer>
           <v-btn
             class="white--text primary-button mx-0 mr-4 mt-4"
@@ -39,6 +42,8 @@
             <v-icon right dark> mdi-plus </v-icon>
           </v-btn>
         </v-row>
+    
+
         <transition name="fade" mode="out-in">
           <v-expansion-panels class="px-4 pb-4" v-model="pnlSettings">
             <v-expansion-panel>

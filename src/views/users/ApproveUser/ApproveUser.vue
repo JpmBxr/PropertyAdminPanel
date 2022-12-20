@@ -32,13 +32,15 @@
           :items="dataTableRowNumbering"
           item-key="id"
           :options.sync="pagination"
+          fixed-header
+          height="450"
           class="elevation-0"
           :loading="tableDataLoading"
           :loading-text="tableLoadingDataText"
           :server-items-length="totalItemsInDB"
-          :items-per-page="15"
+          :items-per-page="7"
           :footer-props="{
-            itemsPerPageOptions: [15, 20, 25],
+            itemsPerPageOptions: [7, 15, 25, 50],
           }"
         >
           <template v-slot:no-data>

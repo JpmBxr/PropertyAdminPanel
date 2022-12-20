@@ -45,12 +45,14 @@
           item-key="id"
           :options.sync="pagination"
           class="elevation-0"
+          fixed-header
+          height="450"
           :loading="tableDataLoading"
           :loading-text="tableLoadingDataText"
           :server-items-length="totalItemsInDB"
           :items-per-page="7"
           :footer-props="{
-            itemsPerPageOptions: [7, 20, 25],
+            itemsPerPageOptions: [7, 15, 25, 50],
           }"
         >
           <template v-slot:no-data>

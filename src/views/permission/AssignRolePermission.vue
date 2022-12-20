@@ -55,7 +55,7 @@
           item-key="permission_id"
           groupable
           fixed-header
-          height="500"
+          height="450"
           class="elevation-1"
           hide-default-footer
           disable-pagination

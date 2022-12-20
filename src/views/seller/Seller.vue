@@ -43,6 +43,8 @@
           :headers="tableHeader"
           :items="dataTableRowNumbering"
           item-key="id"
+          fixed-header
+          height="450"
           :options.sync="pagination"
           class="elevation-0"
           :loading="tableDataLoading"
@@ -50,7 +52,7 @@
           :server-items-length="totalItemsInDB"
           :items-per-page="7"
           :footer-props="{
-            itemsPerPageOptions: [7, 20, 25],
+            itemsPerPageOptions: [7, 15, 25, 50],
           }"
         >
           <template v-slot:no-data>
