@@ -81,15 +81,17 @@
           :headers="tableHeader"
           :items="dataTableRowNumbering"
           item-key="id"
+          fixed-header
+          height="450"
           dense
           :options.sync="pagination"
           class="elevation-0"
           :loading="tableDataLoading"
           :loading-text="tableLoadingDataText"
           :server-items-length="totalItemsInDB"
-          :items-per-page="15"
+          :items-per-page="7"
           :footer-props="{
-            itemsPerPageOptions: [200, 300, 500, 1000],
+            itemsPerPageOptions: [7, 15, 25, 50],
           }"
         >
           <template v-slot:no-data>
