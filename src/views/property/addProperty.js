@@ -17,6 +17,14 @@ export const addProperty = {
                this.propertyDataProps != null
                  ? this.propertyDataProps.agent_id
                  : null,
+             secondary_agent_id:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.agent2
+                 : null,
+             third_agent_id:
+               this.propertyDataProps != null
+                   ? this.propertyDataProps.agent3
+                   : null,
              agentItems: [],
              agentItems2:[],
 
@@ -37,7 +45,7 @@ export const addProperty = {
              ? this.propertyDataProps.furnishing
              : null,
 
-             priceAsked:
+             salePriceAsked:
                this.propertyDataProps != null
                  ? this.propertyDataProps.price_asked
                  : null,
@@ -210,10 +218,7 @@ export const addProperty = {
                     //  .toISOString()
                     //  .substr(0, 10)
              //Sale
-             salePriceAsked:
-               this.propertyDataProps != null
-                 ? this.propertyDataProps.sale_price
-                 : null,
+         
              pricePerSqm:
                this.propertyDataProps != null
                  ? this.propertyDataProps.price_per_sq_m
@@ -428,6 +433,7 @@ export const addProperty = {
            this.getAgent();
            //getSecondaryAgent
            this.getSecondaryAgent();
+         
            //get seller
            this.getSeller();
            //get province
@@ -495,6 +501,7 @@ export const addProperty = {
 
            //getSecondaryAgent
            getSecondaryAgent() {
+           
             this.isLoaderActive = true;
             ApiService.get("GetAssociatedAgencyAgents", {
               user_id: secureLS.get(Global.userId),
@@ -702,15 +709,17 @@ export const addProperty = {
 
            // add Property
            addEditItem() {
+          
              console.log(this.$refs.holdingFormAddEdit.validate());
              if (this.$refs.holdingFormAddEdit.validate()) {
                if (this.isAddEdit && this.propertyDataProps==null) {
                  // save
+                
                  let payload = {
                    seller_id: this.sellerId,
                    user_type: secureLS.get(Global.roleId),
                    user_id: secureLS.get(Global.userId),
-                   price_asked: this.priceAsked,
+                   price_asked: this.salePriceAsked,
                    land_area: this.landArea,
                    building_area: this.buildingArea,
                    property_name: this.propertyName,
@@ -742,13 +751,15 @@ export const addProperty = {
                    year: moment().format("YYYY"),
                    isFeatured: this.isFeatured == "Yes" ? 1 : 0,
                    agent_id: this.agentId,
+                   secondary_agent_id:this.secondary_agent_id,
+                   third_agent_id:this.third_agent_id,
                    rental_price_asked: this.rentalPriceAsked,
                    minimum_rental_period_rent: this.minimumRentalPeriod,
                    car_spaces_rent: this.maximumRentalPeriod,
                    date_of_month_rent_due: this.dayMonthRentDue,
                    period_can_extend: this.periodCanExtend,
                    date_rental_started: this.dateRentalStarted,
-                   sale_price: this.salePriceAsked,
+                  
                    sale_switch_on: this.saleSwitchOn,
                    price_per_sq_m: this.pricePerSqm,
                    select_floor_level: this.floorLevel,
@@ -767,6 +778,7 @@ export const addProperty = {
                  };
 
                  this.isLoaderActive = true;
+                
                  ApiService.post(`saveproperty`, payload)
                    .then((response) => {
                      this.isLoaderActive = false;
@@ -776,9 +788,9 @@ export const addProperty = {
                        "success",
                        response.data.message
                      );
-                     this.$router.push({
-                       name: "PropertyList",
-                     });
+                    //  this.$router.push({
+                    //    name: "PropertyList",
+                    //  });
                    })
                    .catch((error) => {
                      this.isLoaderActive = false;
@@ -800,7 +812,7 @@ export const addProperty = {
                     seller_id: this.sellerId,
                     user_type: secureLS.get(Global.roleId),
                     user_id: secureLS.get(Global.userId),
-                    price_asked: this.priceAsked,
+                    price_asked: this.salePriceAsked,
                     land_area: this.landArea,
                     building_area: this.buildingArea,
                     property_name: this.propertyName,
@@ -832,6 +844,8 @@ export const addProperty = {
                     year: moment().format("YYYY"),
                     isFeatured: this.isFeatured == "Yes" ? 1 : 0,
                     agent_id: this.agentId,
+                    secondary_agent_id:this.secondary_agent_id,
+                    third_agent_id:this.third_agent_id,
                     rental_price_asked: this.rentalPriceAsked,
                     minimum_rental_period_rent: this.minimumRentalPeriod,
                     car_spaces_rent: this.maximumRentalPeriod,
