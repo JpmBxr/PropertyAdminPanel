@@ -279,7 +279,7 @@ export default subdivisionMaster;
     if (
       e.button === 0 &&
       closestDialog != null &&
-      e.target.classList.contains("v-toolbar__content__")
+      e.target.classList.contains("v-toolbar__content")
     ) {
       // element which can be used to move element
       d.el = closestDialog; // element which should be moved
