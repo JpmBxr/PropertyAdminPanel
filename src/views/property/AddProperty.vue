@@ -143,31 +143,15 @@
                   </v-col>
                 </v-row>
 
-                <!-- <v-row>
-                  <v-col cols="4">
-                    <v-text-field
-                      dense
-                      label="Price Asked"
-                      v-numeric
-                      v-model="priceAsked"
-                      :rules="validationRules_upto2Decimal"
-                      hide-details="auto"
-                    >
-                    <template #label>
-                      Price Asked
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
-                    </v-text-field>
-                  </v-col>
+                <v-row>
+              
                   <v-col cols="4">
                     <v-text-field
                       dense
                       label="Land Area in SQ.M"
                       v-model="landArea"
                       v-numeric
-                      :rules="validationRulesRequired"
+                      :rules="validationRules_upto2Decimal"
                       hide-details="auto"
                     >
                     <template #label>
@@ -185,11 +169,12 @@
                       v-numeric
                       label="Building Area in SQ.M"
                       v-model="buildingArea"
+                      :rules="validationRules_upto2DecimalBuildingArea"
                       hide-details="auto"
                     >
                     </v-text-field>
                   </v-col>
-                </v-row> -->
+                </v-row>
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
