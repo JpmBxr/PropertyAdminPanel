@@ -150,24 +150,16 @@
         </v-data-table>
       </transition>
 
-
-
       <v-dialog v-model="addEditDialog1" scrollable max-width="450px">
         <v-card>
           <v-card-title>sdfdsfsdfdsf</v-card-title>
 
-        
           <v-divider></v-divider>
-          <v-card-text style="height: 250px">
-          asdasdasdasdasds
-          </v-card-text>
+          <v-card-text style="height: 250px"> </v-card-text>
           <v-divider></v-divider>
-          <v-card-actions>
-       
-          </v-card-actions>
+          <v-card-actions> </v-card-actions>
         </v-card>
       </v-dialog>
-
 
       <!--start of Add / edit -->
       <v-dialog
@@ -176,14 +168,7 @@
         max-width="600"
         scrollable
         :fullscreen="$vuetify.breakpoint.smAndDown"
-     
-        id="mydiv"
       >
-        <!-- :id="index"
-        @mousemove="draging(index)"
-        @mousedown="drag(index)"
-        @mouseup="drop(index)" -->
-
         <template v-slot:default="dialog">
           <v-overlay :value="isDialogLoaderActive" color="primary">
             <v-progress-circular
@@ -198,9 +183,7 @@
               dark
               :max-height="$vuetify.breakpoint.smAndDown ? 56 : '20vh'"
             >
-              <v-toolbar-title>{{
-                addEditText
-              }}</v-toolbar-title>
+              <v-toolbar-title>{{ addEditText }}</v-toolbar-title>
               <v-spacer></v-spacer><v-spacer></v-spacer>
               <v-btn icon dark @click="addEditDialog = false">
                 <v-icon>mdi-close</v-icon>
@@ -285,11 +268,10 @@
   </v-container>
 </template>
 <script>
-
 import { subdivisionMaster } from "../Subdivision/subdivisionMaster";
 export default subdivisionMaster;
 
-(function () {
+(function() {
   // make vuetify dialogs movable
   const d = {};
   document.addEventListener("mousedown", (e) => {
@@ -297,7 +279,7 @@ export default subdivisionMaster;
     if (
       e.button === 0 &&
       closestDialog != null &&
-      e.target.classList.contains("v-toolbar__content")
+      e.target.classList.contains("v-toolbar__content__")
     ) {
       // element which can be used to move element
       d.el = closestDialog; // element which should be moved
