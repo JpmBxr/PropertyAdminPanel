@@ -148,6 +148,26 @@
           </template>
         </v-data-table>
       </transition>
+
+
+
+      <v-dialog v-model="addEditDialog1" scrollable max-width="450px">
+        <v-card>
+          <v-card-title>sdfdsfsdfdsf</v-card-title>
+
+        
+          <v-divider></v-divider>
+          <v-card-text style="height: 250px">
+          asdasdasdasdasds
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+       
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
       <!--start of Add / edit -->
       <v-dialog
         transition="dialog-top-transition"
@@ -155,7 +175,8 @@
         max-width="600"
         scrollable
         :fullscreen="$vuetify.breakpoint.smAndDown"
-        persistent
+     
+        id="mydiv"
       >
         <template v-slot:default="dialog">
           <v-overlay :value="isDialogLoaderActive" color="primary">
@@ -165,13 +186,13 @@
               color="primary"
             ></v-progress-circular>
           </v-overlay>
-          <v-card>
+          <v-card id="mydivheader">
             <v-toolbar
               color="primary"
               dark
               :max-height="$vuetify.breakpoint.smAndDown ? 56 : '20vh'"
             >
-              <v-toolbar-title class="popup-header">{{
+              <v-toolbar-title>{{
                 addEditText
               }}</v-toolbar-title>
               <v-spacer></v-spacer><v-spacer></v-spacer>
@@ -258,8 +279,66 @@
   </v-container>
 </template>
 <script>
+
 import { subdivisionMaster } from "../Subdivision/subdivisionMaster";
 export default subdivisionMaster;
+
+(function () {
+  // make vuetify dialogs movable
+  const d = {};
+  document.addEventListener("mousedown", (e) => {
+    const closestDialog = e.target.closest(".v-dialog.v-dialog--active");
+    if (
+      e.button === 0 &&
+      closestDialog != null &&
+      e.target.classList.contains("v-toolbar__content")
+    ) {
+      // element which can be used to move element
+      d.el = closestDialog; // element which should be moved
+      d.mouseStartX = e.clientX;
+      d.mouseStartY = e.clientY;
+      d.elStartX = d.el.getBoundingClientRect().left;
+      d.elStartY = d.el.getBoundingClientRect().top;
+      d.el.style.position = "fixed";
+      d.el.style.margin = 0;
+      d.oldTransition = d.el.style.transition;
+      d.el.style.transition = "none";
+    }
+  });
+  document.addEventListener("mousemove", (e) => {
+    if (d.el === undefined) return;
+    d.el.style.left =
+      Math.min(
+        Math.max(d.elStartX + e.clientX - d.mouseStartX, 0),
+        window.innerWidth - d.el.getBoundingClientRect().width
+      ) + "px";
+    d.el.style.top =
+      Math.min(
+        Math.max(d.elStartY + e.clientY - d.mouseStartY, 0),
+        window.innerHeight - d.el.getBoundingClientRect().height
+      ) + "px";
+  });
+  document.addEventListener("mouseup", () => {
+    if (d.el === undefined) return;
+    d.el.style.transition = d.oldTransition;
+    d.el = undefined;
+  });
+  setInterval(() => {
+    // prevent out of bounds
+    const dialog = document.querySelector(".v-dialog.v-dialog--active");
+    if (dialog === null) return;
+    dialog.style.left =
+      Math.min(
+        parseInt(dialog.style.left),
+        window.innerWidth - dialog.getBoundingClientRect().width
+      ) + "px";
+    dialog.style.top =
+      Math.min(
+        parseInt(dialog.style.top),
+        window.innerHeight - dialog.getBoundingClientRect().height
+      ) + "px";
+  }, 100);
+})();
 </script>
 
 <style scoped>
