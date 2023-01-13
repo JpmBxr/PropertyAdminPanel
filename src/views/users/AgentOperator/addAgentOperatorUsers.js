@@ -165,16 +165,19 @@ export const addAgentOperatorUsers = {
       //end
     };
   },
-  created() {
+  async  created() {
 
     this.setOpenProperty();
-    // this.getTownWithoutPagination();
-    this.getProvinceWithoutPagination();
-    this.getUserSkillWithoutPagination();
-    this.getUserTypeItemWithoutPagination();
-    this.getAgencyWithoutPagination();
-    this.getBrokerWithoutPagination();
-
+    await   this.fetchAgencyAddress();
+    await   this.getProvinceWithoutPagination();
+    await   this.getUserSkillWithoutPagination();
+    await   this.getUserTypeItemWithoutPagination();
+    await   this.getAgencyWithoutPagination();
+    await   this.getBrokerWithoutPagination();
+    await   this.changeProvince();
+    await   this.changeTown();
+    await   this.changeBarangay();
+    await   this.changeSubdivision();
     this.removeItemFromArray(this.userTypeItems, secureLS.get(Global.roleName));
     if (this.addAgentOperatorDataProps != null) {
       this.getBrokerWithoutPagination();
@@ -201,8 +204,7 @@ export const addAgentOperatorUsers = {
         this.isAgentOperator = false;
       }
 
-      this.changeProvince();
-      this.changeBarangay();
+
     }
   },
   computed: {
@@ -237,6 +239,35 @@ export const addAgentOperatorUsers = {
           }
         });
     },
+ async   fetchAgencyAddress(){
+    this.isLoaderActive = true;
+    await  ApiService.get("GetAssociatedAgencyAddressWithoutPagination", {
+        associated_agency_id:this.AssociatedAgency
+      })
+      .then((response) => {
+        this.isLoaderActive = false;
+
+        this.unitNumber = response.data.resultData.unit_number;
+        this.houseLotNumber=response.data.resultData.house_number;
+        this.streetName=response.data.resultData.street_name;
+        this.propertyBuildingName=response.data.resultData.building_name;
+        this.province=response.data.resultData.address_province_id;
+        this.town=response.data.resultData.town_id;
+        this.barangay=response.data.resultData.barangay_id;  
+        this.subdivision=response.data.resultData.subdivision_id;
+        this.zipCode=response.data.resultData.zip_code;
+        this.floorLevel=response.data.resultData.floor;
+      })
+      .catch((error) => {
+        this.isLoaderActive = false;
+        if (error.response.status != 401 && error.response.status != 403) {
+          Global.showErrorAlert(true, "error", "Something went wrong");
+        }
+      });
+
+    
+    },
+    
     getProvinceWithoutPagination() {
       this.isLoaderActive = true;
       ApiService.get("GetProvinceWithoutPagination", {})

@@ -205,7 +205,7 @@
                 <v-row>
                   <v-col cols="12" md="3" sm="12">
                     <v-switch
-                    v-if="sameAsAgency==true"
+                  
                       class="p-0 m-0"
                       dense
                       color="primary"
@@ -214,6 +214,7 @@
                       label="Same as Agency"
                       true-value="1"
                       false-value="0"
+                      @change="fetchAgencyAddress"
                     ></v-switch>
                   </v-col>
 
@@ -255,7 +256,9 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel v-if="sameAsAgency==true">
+            <v-expansion-panel
+           
+            >
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
                   <v-icon color="success" class="mr-4"
