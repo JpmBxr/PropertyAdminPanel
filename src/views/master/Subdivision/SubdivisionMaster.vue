@@ -26,7 +26,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
-        v-permission="'Add Master'"
+          v-permission="'Add Master'"
           :disabled="tableDataLoading"
           class="white--text primary-button mx-0 d-none d-md-block mt-4 mr-4"
           @click="
@@ -38,6 +38,7 @@
           <v-icon right dark> mdi-plus </v-icon>
         </v-btn>
       </v-row>
+
       <transition name="fade" mode="out-in">
         <v-data-table
           :headers="tableHeader"
@@ -95,7 +96,7 @@
               </v-btn>
 
               <v-btn
-              v-permission="'Add Master'"
+                v-permission="'Add Master'"
                 icon
                 small
                 size="24"
@@ -114,7 +115,7 @@
 
           <template v-slot:item.subdivision_status="{ item }">
             <v-switch
-            v-permission="'Enable Master'"
+              v-permission="'Enable Master'"
               :color="item.subdivision_status == 'Active' ? 'green' : 'red'"
               inset
               dense
@@ -128,7 +129,7 @@
 
           <template v-slot:item.actions="{ item }">
             <v-icon
-            v-permission="'Edit Master'"
+              v-permission="'Edit Master'"
               size="22"
               class="mx-1 fitPotPrimaryIcon"
               @click="
@@ -139,7 +140,7 @@
             >
 
             <v-icon
-            v-permission="'Delete Master'"
+              v-permission="'Delete Master'"
               size="22"
               class="mr-0 ml-1 fitPotErrorIcon"
               @click="deleteItem(item)"
@@ -157,6 +158,11 @@
         :fullscreen="$vuetify.breakpoint.smAndDown"
         persistent
       >
+        <!-- :id="index"
+        @mousemove="draging(index)"
+        @mousedown="drag(index)"
+        @mouseup="drop(index)" -->
+
         <template v-slot:default="dialog">
           <v-overlay :value="isDialogLoaderActive" color="primary">
             <v-progress-circular
@@ -231,7 +237,7 @@
                       chips
                       small-chips
                       @keypress="acceptNotCharacter"
-                      ></v-autocomplete>
+                    ></v-autocomplete>
                   </v-col>
                 </v-row>
               </v-form>

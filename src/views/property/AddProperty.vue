@@ -56,23 +56,23 @@
                 <v-row class="mt-4">
                   <v-col cols="4">
                     <v-autocomplete
-                    v-model="associatedBroker"
+                      v-model="associatedBroker"
                       :items="associatedBrokerItems"
                       item-text="broker_name"
                       item-value="broker_id"
                       dense
-                      label = "Associated Broker"
+                      label="Associated Broker"
                     >
                     </v-autocomplete>
                   </v-col>
 
                   <v-col cols="4">
                     <v-autocomplete
-                    v-if="isDomainVisible"
-                    v-model="domain"
+                      v-if="isDomainVisible"
+                      v-model="domain"
                       :items="domainItems"
                       dense
-                      label = "Domain"
+                      label="Domain"
                       readonly
                     >
                     </v-autocomplete>
@@ -80,7 +80,7 @@
 
                   <v-col cols="4">
                     <v-autocomplete
-                    v-if="isAgentVisible"
+                      v-if="isAgentVisible"
                       v-model="agentId"
                       :items="agentItems"
                       label="Agent"
@@ -92,7 +92,7 @@
                     </v-autocomplete>
                   </v-col>
                 </v-row>
-                
+
                 <v-row>
                   <v-col cols="3">
                     <v-autocomplete
@@ -144,7 +144,6 @@
                 </v-row>
 
                 <v-row>
-              
                   <v-col cols="4">
                     <v-text-field
                       dense
@@ -154,12 +153,12 @@
                       :rules="validationRules_upto2Decimal"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Land Area in SQ.M
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Land Area in SQ.M
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-text-field>
                   </v-col>
 
@@ -184,12 +183,12 @@
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Property Name upto 6 Words
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Property Name upto 6 Words
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -202,12 +201,12 @@
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Property Headline upto 25 Words
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Property Headline upto 25 Words
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -221,12 +220,12 @@
                       hide-details="auto"
                       :rules="validationRulesRequired"
                     >
-                    <template #label>
-                      Property Description upto 500 Words
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Property Description upto 500 Words
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-textarea>
                   </v-col>
                 </v-row>
@@ -243,12 +242,12 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Property Classification
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Property Classification
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-autocomplete>
                   </v-col>
 
@@ -263,12 +262,12 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Product Category
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Select Product Category
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-autocomplete>
                   </v-col>
                   <v-col cols="4">
@@ -282,17 +281,17 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Property Type
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Select Property Type
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-autocomplete>
                   </v-col>
                 </v-row>
 
-                <v-row >
+                <v-row>
                   <v-col cols="4" v-if="propertyClassification == 3">
                     <v-autocomplete
                       v-model="agryId"
@@ -304,20 +303,18 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Agricultural Type
-                      <span class="red--text">
-                        <strong>*</strong>
-                      </span>
-                    </template>
+                      <template #label>
+                        Select Agricultural Type
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-autocomplete>
                   </v-col>
-
-               
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
-            <v-expansion-panel v-if="propertyDataProps!=null">
+            <v-expansion-panel v-if="propertyDataProps != null">
               <v-expansion-panel-header class="grey lighten-3">
                 <div>
                   <v-icon color="success" class="mr-4"
@@ -327,8 +324,8 @@
                 </div>
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
-              <v-row class="mt-4">
-                 <v-col cols="4">
+                <v-row class="mt-4">
+                  <v-col cols="4">
                     <v-autocomplete
                       v-model="status"
                       :items="statusItems"
@@ -339,7 +336,7 @@
                     ></v-autocomplete>
                   </v-col>
 
-                   <v-col cols="4">
+                  <v-col cols="4">
                     <v-text-field
                       dense
                       label="Date First Added"
@@ -348,7 +345,7 @@
                       readonly
                     >
                     </v-text-field>
-                    </v-col>
+                  </v-col>
 
                   <v-col cols="4">
                     <v-text-field
@@ -487,15 +484,15 @@
                           dense
                         ></v-text-field>
                       </template>
-                      <v-date-picker 
-                         v-model="activedateSwitchOn" 
-                         no-title 
-                         scrollable
-                         :landscape="landscape" 
-                         :reactive="reactive" 
-                         :min="nowDate" 
-                         :max="getEndDate"
-                         >
+                      <v-date-picker
+                        v-model="activedateSwitchOn"
+                        no-title
+                        scrollable
+                        :landscape="landscape"
+                        :reactive="reactive"
+                        :min="nowDate"
+                        :max="getEndDate"
+                      >
                         <v-spacer></v-spacer>
                         <v-btn
                           text
@@ -507,7 +504,11 @@
                         <v-btn
                           text
                           color="primary"
-                          @click="$refs.menuActiveDateSwitchOn.save(activedateSwitchOn)"
+                          @click="
+                            $refs.menuActiveDateSwitchOn.save(
+                              activedateSwitchOn
+                            )
+                          "
                         >
                           OK
                         </v-btn>
@@ -515,7 +516,6 @@
                     </v-menu>
                   </v-col>
                 </v-row>
-
 
                 <v-row>
                   <v-col cols="12">
@@ -530,8 +530,8 @@
                     </v-textarea>
                   </v-col>
                 </v-row>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
 
             <v-expansion-panel>
               <v-expansion-panel-header class="grey lighten-4">
@@ -570,8 +570,8 @@
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Address Line – Street Name and District
+                      <template #label>
+                        Address Line – Street Name and District
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -605,8 +605,8 @@
                       label="Select Province"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Province
+                      <template #label>
+                        Select Province
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -628,8 +628,8 @@
                       @change="changeTown"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Town
+                      <template #label>
+                        Select Town
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -653,15 +653,15 @@
                       @change="changeBarangay"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Select Barangay
+                      <template #label>
+                        Select Barangay
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
                       </template>
                     </v-autocomplete>
                   </v-col>
-                  <v-col cols="3" >
+                  <v-col cols="3">
                     <v-autocomplete
                       v-model="subdivision"
                       :items="subdivisionItems"
@@ -669,15 +669,13 @@
                       item-value="subdivision_id"
                       dense
                       chips
-                     
                       small-chips
                       label="Select Subdivision"
                       @keypress="acceptNotCharacter"
                     >
-                  
                     </v-autocomplete>
                   </v-col>
-                  <v-col cols="3"  v-if="propertyDataProps!=null">
+                  <v-col cols="3" v-if="propertyDataProps != null">
                     <v-text-field
                       dense
                       label="Zip Code"
@@ -689,7 +687,7 @@
                   </v-col>
                   <v-col cols="3">
                     <v-text-field
-                    v-model="floorLevel"
+                      v-model="floorLevel"
                       dense
                       chips
                       small-chips
@@ -725,9 +723,7 @@
                   <v-icon color="success" class="mr-4"
                     >mdi-home-map-marker</v-icon
                   >
-                  <strong
-                    >Property : Dwelling</strong
-                  >
+                  <strong>Property : Dwelling</strong>
                 </div>
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
@@ -743,8 +739,8 @@
                       label="Number of Bedrooms"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Number of Bedrooms
+                      <template #label>
+                        Number of Bedrooms
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -762,8 +758,8 @@
                       label="Number of Toilets"
                       @keypress="acceptNotCharacter"
                     >
-                    <template #label>
-                      Number of Toilets
+                      <template #label>
+                        Number of Toilets
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -831,8 +827,8 @@
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Rental Price Asked
+                      <template #label>
+                        Rental Price Asked
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -845,10 +841,9 @@
                       v-numeric
                       dense
                       chips
-                  
                       small-chips
                       label="Minimum Rental Period"
-                      ></v-text-field>
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="3">
                     <v-text-field
@@ -856,10 +851,9 @@
                       v-numeric
                       dense
                       chips
-                 
                       small-chips
                       label="Maximum Rental Period"
-                      ></v-text-field>
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
@@ -867,7 +861,6 @@
                       :items="dayMonthRentDueItems"
                       dense
                       chips
-                
                       @keypress="acceptNotCharacter"
                       small-chips
                       label="Day of Month Rent Due"
@@ -1060,8 +1053,8 @@
                       :rules="validationRules_upto2Decimal"
                       hide-details="auto"
                     >
-                    <template #label>
-                      Sale Price Asked
+                      <template #label>
+                        Sale Price Asked
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -1076,15 +1069,15 @@
                       v-model="pricePerSqm"
                       hide-details="auto"
                       :rules="validationRules_upto2Decimal"
+                      readonly
                     >
-                    <template #label>
-                      Price per SqM
+                      <template #label>
+                        Price per SqM
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
                       </template>
-                  </v-text-field>
-                 
+                    </v-text-field>
                   </v-col>
                   <v-col cols="3">
                     <v-menu
@@ -1107,7 +1100,11 @@
                           dense
                         ></v-text-field>
                       </template>
-                      <v-date-picker v-model="dateSoldSwitchOn" no-title scrollable>
+                      <v-date-picker
+                        v-model="dateSoldSwitchOn"
+                        no-title
+                        scrollable
+                      >
                         <v-spacer></v-spacer>
                         <v-btn
                           text
@@ -1119,7 +1116,9 @@
                         <v-btn
                           text
                           color="primary"
-                          @click="$refs.menuDateSoldSwitchOn.save(dateSoldSwitchOn)"
+                          @click="
+                            $refs.menuDateSoldSwitchOn.save(dateSoldSwitchOn)
+                          "
                         >
                           OK
                         </v-btn>
