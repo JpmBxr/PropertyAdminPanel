@@ -204,9 +204,11 @@
 
                 <v-row>
                   <v-col cols="12" md="3" sm="12">
+                 
                     <v-switch
-                  
-                      class="p-0 m-0"
+                    v-if="addAgentOperatorDataProps!=null"
+                    @change="fetchAgencyAddress"
+                       class="p-0 m-0"
                       dense
                       color="primary"
                       v-model="sameAsAgency"
@@ -214,7 +216,7 @@
                       label="Same as Agency"
                       true-value="1"
                       false-value="0"
-                      @change="fetchAgencyAddress"
+                    
                     ></v-switch>
                   </v-col>
 
@@ -257,7 +259,7 @@
             </v-expansion-panel>
 
             <v-expansion-panel
-           
+            v-if="sameAsAgency==true"
             >
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
@@ -267,7 +269,7 @@
                   <strong>Address Details</strong>
                 </div>
               </v-expansion-panel-header>
-              <v-expansion-panel-content eager>
+              <v-expansion-panel-content eager   >
                 <v-row class="mt-4">
                   <v-col cols="12" md="3" sm="12">
                     <v-text-field
@@ -443,6 +445,8 @@
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
+
+       
 
             <v-expansion-panel>
               <v-expansion-panel-header class="grey lighten-3">

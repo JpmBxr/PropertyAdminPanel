@@ -6,6 +6,7 @@ export const addAgentOperatorUsers = {
   mixins: [validationMixin],
   data() {
     return {
+     
       isLoaderActive: false,
       // Data
       openPropertyLimitIsDisabled: true,
@@ -47,6 +48,7 @@ export const addAgentOperatorUsers = {
         this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.is_address_same_as_agency != null
           ? this.addAgentOperatorDataProps.is_address_same_as_agency
           : null,
+          
       unitNumber:
         this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.unit_number != null
           ? this.addAgentOperatorDataProps.unit_number
@@ -163,21 +165,22 @@ export const addAgentOperatorUsers = {
       addUpdateButtonText: "Add Role",
       addEditText: "Add",
       //end
+      
     };
   },
-  async  created() {
-
+ created() {
+  
     this.setOpenProperty();
-    await   this.fetchAgencyAddress();
-    await   this.getProvinceWithoutPagination();
-    await   this.getUserSkillWithoutPagination();
-    await   this.getUserTypeItemWithoutPagination();
-    await   this.getAgencyWithoutPagination();
-    await   this.getBrokerWithoutPagination();
-    await   this.changeProvince();
-    await   this.changeTown();
-    await   this.changeBarangay();
-    await   this.changeSubdivision();
+    
+      this.getProvinceWithoutPagination();
+      this.getTownWithoutPagination();
+      this.getBarangayWithoutPagination();
+      this.getSubdivisionWithoutPagination();
+      this.getUserSkillWithoutPagination();
+      this.getUserTypeItemWithoutPagination();
+     this.getAgencyWithoutPagination();
+     this.getBrokerWithoutPagination();
+   
     this.removeItemFromArray(this.userTypeItems, secureLS.get(Global.roleName));
     if (this.addAgentOperatorDataProps != null) {
       this.getBrokerWithoutPagination();
@@ -224,27 +227,14 @@ export const addAgentOperatorUsers = {
     },
   },
   methods: {
-    getTownWithoutPagination() {
-      this.isLoaderActive = true;
-      ApiService.get("GetTownWithoutPagination", {})
-        .then((response) => {
-          this.isLoaderActive = false;
-
-          this.townItems = response.data.resultData;
-        })
-        .catch((error) => {
-          this.isLoaderActive = false;
-          if (error.response.status != 401 && error.response.status != 403) {
-            Global.showErrorAlert(true, "error", "Something went wrong");
-          }
-        });
-    },
- async   fetchAgencyAddress(){
+   
+  fetchAgencyAddress(){
     this.isLoaderActive = true;
-    await  ApiService.get("GetAssociatedAgencyAddressWithoutPagination", {
+     ApiService.get("GetAssociatedAgencyAddressWithoutPagination", {
         associated_agency_id:this.AssociatedAgency
       })
       .then((response) => {
+
         this.isLoaderActive = false;
 
         this.unitNumber = response.data.resultData.unit_number;
@@ -267,8 +257,10 @@ export const addAgentOperatorUsers = {
 
     
     },
+
     
     getProvinceWithoutPagination() {
+   
       this.isLoaderActive = true;
       ApiService.get("GetProvinceWithoutPagination", {})
         .then((response) => {
@@ -283,6 +275,54 @@ export const addAgentOperatorUsers = {
           }
         });
     },
+    getTownWithoutPagination() {
+      this.isLoaderActive = true;
+      ApiService.get("GetTownWithoutPagination", {})
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.townItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
+  
+    getBarangayWithoutPagination() {
+      this.isLoaderActive = true;
+      ApiService.get("GetBarangayWithoutPagination", {})
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.barangayItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
+
+    getSubdivisionWithoutPagination() {
+      this.isLoaderActive = true;
+      ApiService.get("GetSubdivisionWithoutPagination", {})
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.subdivisionItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
+
 
     getUserSkillWithoutPagination() {
       this.isLoaderActive = true;
@@ -493,7 +533,7 @@ export const addAgentOperatorUsers = {
     // add edit role
     addEditItem() {
       if (this.$refs.holdingFormAddEdit.validate()) {
-
+     
         if (this.isAddEdit && this.addAgentOperatorDataProps == null) {
           // save
           let payload = {
