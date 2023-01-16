@@ -42,7 +42,7 @@
           </v-btn>
         </v-row>
         <transition name="fade" mode="out-in">
-          <v-expansion-panels class="px-4 pb-4" v-model="pnlSettings">
+          <v-expansion-panels class="px-4 pb-4" v-model="pnlSettings" multiple>
             <v-expansion-panel>
               <v-expansion-panel-header class="grey lighten-3">
                 <div>
@@ -1068,7 +1068,6 @@
                       label="Price per SqM"
                       v-model="pricePerSqm"
                       hide-details="auto"
-                      :rules="validationRules_upto2Decimal"
                       readonly
                     >
                       <template #label>

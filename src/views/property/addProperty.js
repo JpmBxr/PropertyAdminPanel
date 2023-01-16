@@ -905,6 +905,7 @@ export const addProperty = {
             });
         }
       } else {
+        this.pnlSettings = [0, 1, 2, 3, 4]
         Global.showErrorAlert(
           true,
           "error",
