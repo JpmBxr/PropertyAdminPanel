@@ -291,15 +291,10 @@
                       dense
                       label="Property/Building Name"
                       v-model="item.building_name"
-                      :rules="validationRulesRequired"
+                    
                       hide-details="auto"
                     >
-                    <template #label>
-                      Property/Building Name
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
+              
                     </v-text-field>
                   </v-col>
 
@@ -417,14 +412,9 @@
                       chips
                       small-chips
                       label="Select Floor or Level"
-                      :rules="validationRulesRequired"
+                   
                     >
-                    <template #label>
-                      Select Floor or Level
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
+              
                      </v-text-field>
                   </v-col>
                 </v-row>

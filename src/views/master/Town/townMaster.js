@@ -151,10 +151,15 @@ export const townMaster = {
         });
     },
 
-    getAdjacentTownWithoutPagination() {
+    getAdjacentTownWithoutPagination(item) {
+      if (item != null ) {
+        this.item.province_id = item.province_id;
+        this.item.town_id = item.town_id;
+      }
       this.isLoaderActive = true;
       ApiService.get("GetAdjacentTownWithoutPagination", {
-        
+        provinceId: this.item.province_id,
+        townId:this.item.town_id
       })
         .then((response) => {
           this.isLoaderActive = false;
@@ -207,7 +212,8 @@ export const townMaster = {
 
     //show add edit dialog
     showAddEditDialog(item) {
-      this.getAdjacentTownWithoutPagination();
+     
+       this.getAdjacentTownWithoutPagination(item);
 
       if (item == null && this.isAddEdit == true) {
         this.addEditText = `Add New ${this.entity}`;
@@ -218,6 +224,7 @@ export const townMaster = {
           item.adjacent_town_id = item.adjacent_town_id
             .split(",")
             .map((item) => parseInt(item, 10));
+       
         }
         this.item = Object.assign({}, item);
         this.addEditText = `Edit ${this.entity} : ` + this.item.town_name;

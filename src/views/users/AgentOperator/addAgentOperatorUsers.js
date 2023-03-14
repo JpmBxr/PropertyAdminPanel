@@ -11,6 +11,9 @@ export const addAgentOperatorUsers = {
       // Data
       openPropertyLimitIsDisabled: true,
       pnlSettings: null,
+      readonlyUserType:this.addAgentOperatorDataProps != null 
+      ? true
+      : false,
       UserType:
         this.addAgentOperatorDataProps != null && this.addAgentOperatorDataProps.role_id != null
           ? this.addAgentOperatorDataProps.role_id
@@ -227,7 +230,11 @@ export const addAgentOperatorUsers = {
     },
   },
   methods: {
-   
+    showUserPage() {
+      this.$router.push({
+        name: "AgentOperator", 
+      });
+    },
   fetchAgencyAddress(){
     this.isLoaderActive = true;
      ApiService.get("GetAssociatedAgencyAddressWithoutPagination", {

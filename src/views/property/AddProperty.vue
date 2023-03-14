@@ -43,7 +43,7 @@
         </v-row>
         <transition name="fade" mode="out-in">
           <v-expansion-panels class="px-4 pb-4" v-model="pnlSettings" multiple>
-            <v-expansion-panel>
+            <v-expansion-panel  >
               <v-expansion-panel-header class="grey lighten-3">
                 <div>
                   <v-icon color="success" class="mr-4"
@@ -52,7 +52,9 @@
                   <strong>Basic Information</strong>
                 </div>
               </v-expansion-panel-header>
-              <v-expansion-panel-content eager>
+              <v-expansion-panel-content 
+              
+              eager>
                 <v-row class="mt-4">
                   <v-col cols="4">
                     <v-autocomplete
@@ -106,7 +108,8 @@
                     </v-autocomplete>
                   </v-col>
 
-                  <v-col cols="3">
+                  <v-col cols="3"
+                  >
                     <v-autocomplete
                       v-model="third_agent_id"
                       :items="agentItems2"
@@ -118,8 +121,11 @@
                     </v-autocomplete>
                   </v-col>
 
-                  <v-col cols="3">
+                  <v-col cols="3"
+                  v-if="isSellerVisible != false" 
+                  >
                     <v-autocomplete
+                   
                       v-model="sellerId"
                       :items="sellerItems"
                       label="Select Seller"
@@ -152,6 +158,7 @@
                       v-numeric
                       :rules="validationRules_upto2Decimal"
                       hide-details="auto"
+                      @blur="pricePerSqmfill"
                     >
                       <template #label>
                         Land Area in SQ.M
@@ -170,6 +177,7 @@
                       v-model="buildingArea"
                       :rules="validationRules_upto2DecimalBuildingArea"
                       hide-details="auto"
+                      @blur="pricePerSqmfill"
                     >
                     </v-text-field>
                   </v-col>
@@ -280,6 +288,7 @@
                       dense
                       :rules="validationRulesRequired"
                       @keypress="acceptNotCharacter"
+                      @change="DwellingPanel"
                     >
                       <template #label>
                         Select Property Type
@@ -321,6 +330,54 @@
                     >mdi-account-circle</v-icon
                   >
                   <strong>Property Status</strong>
+                </div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content eager>
+                <v-row class="mt-4">
+                  <v-col cols="4">
+                    <v-autocomplete
+                      v-model="status"
+                      :items="statusItems"
+                      label="Select Status"
+                      item-text="text"
+                      item-value="value"
+                      dense
+                    ></v-autocomplete>
+                  </v-col>
+
+                  <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date First Added"
+                      v-model="dateFirstAdded"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+
+                  <v-col cols="4">
+                    <v-text-field
+                      dense
+                      label="Date Last Modified"
+                      v-model="dateLastModified"
+                      hide-details="auto"
+                      readonly
+                    >
+                    </v-text-field>
+                  </v-col>
+                </v-row>
+
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+
+            <v-expansion-panel v-if="propertyDataProps != null">
+              <v-expansion-panel-header class="grey lighten-3">
+                <div>
+                  <v-icon color="success" class="mr-4"
+                    >mdi-account-circle</v-icon
+                  >
+                  <strong>Modification History Tracking</strong>
                 </div>
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
@@ -532,7 +589,6 @@
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
-
             <v-expansion-panel>
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
@@ -717,7 +773,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel v-if="propertyType != 1">
+            <v-expansion-panel v-if="isDwellingVisible =='Yes'">
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
                   <v-icon color="success" class="mr-4"
@@ -909,6 +965,7 @@
                           v-bind="attrs"
                           v-on="on"
                           dense
+                          clearable
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -958,6 +1015,7 @@
                           v-bind="attrs"
                           v-on="on"
                           dense
+                          clearable
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -1005,6 +1063,7 @@
                           v-bind="attrs"
                           v-on="on"
                           dense
+                          clearable
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -1050,8 +1109,9 @@
                       dense
                       label="Sale Price Asked"
                       v-model="salePriceAsked"
-                      :rules="validationRules_upto2Decimal"
                       hide-details="auto"
+                      @blur="pricePerSqmfill"
+                      clearable
                     >
                       <template #label>
                         Sale Price Asked
@@ -1068,14 +1128,10 @@
                       label="Price per SqM"
                       v-model="pricePerSqm"
                       hide-details="auto"
-                      readonly
+                 
+                      clearable
                     >
-                      <template #label>
-                        Price per SqM
-                        <span class="red--text">
-                          <strong>*</strong>
-                        </span>
-                      </template>
+                   
                     </v-text-field>
                   </v-col>
                   <v-col cols="3">
@@ -1087,6 +1143,7 @@
                       transition="scale-transition"
                       offset-y
                       min-width="auto"
+                     
                     >
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
@@ -1097,6 +1154,7 @@
                           v-bind="attrs"
                           v-on="on"
                           dense
+                          clearable
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -1108,6 +1166,7 @@
                         <v-btn
                           text
                           color="primary"
+                      
                           @click="menuDateSoldSwitchOn = false"
                         >
                           Cancel
@@ -1143,6 +1202,7 @@
                           v-bind="attrs"
                           v-on="on"
                           dense
+                          clearable
                         ></v-text-field>
                       </template>
                       <v-date-picker v-model="saleSwitchOn" no-title scrollable>

@@ -150,16 +150,6 @@
         </v-data-table>
       </transition>
 
-      <v-dialog v-model="addEditDialog1" scrollable max-width="450px">
-        <v-card>
-          <v-card-title>sdfdsfsdfdsf</v-card-title>
-
-          <v-divider></v-divider>
-          <v-card-text style="height: 250px"> </v-card-text>
-          <v-divider></v-divider>
-          <v-card-actions> </v-card-actions>
-        </v-card>
-      </v-dialog>
 
       <!--start of Add / edit -->
       <v-dialog
@@ -213,14 +203,17 @@
 
                   <v-col cols="12" md="6" class="pt-5">
                     <v-select
-                      v-model="item.barangay_id"
-                      :items="barangayItems"
-                      label="Select Barangay"
-                      item-text="barangay_name"
-                      item-value="barangay_id"
+                      v-model="item.town_id"
+                      :items="townItems"
+                      label="Select Town"
+                      item-text="town_name"
+                      item-value="town_id"
+                      :rules="validationRulesRequired"
                       dense
-                      ><template #label>
-                        Select Barangay
+                      @change="getProvinceWithoutPagination(item)"
+                    >
+                      <template #label>
+                        Select Town
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
@@ -229,6 +222,43 @@
                   </v-col>
                 </v-row>
 
+                <v-row class="mx-auto d-flex">
+                  <v-col cols="6" md="6" class="pb-1">
+                    <v-autocomplete
+                      v-model="item.province_id"
+                      :items="provinceItems"
+                      label="Select Province"
+                      :rules="validationRulesRequired"
+                      item-text="province_name"
+                      item-value="province_id"
+                      dense
+                      @change="getBarangayWithoutPagination(item)"
+                      ><template #label>
+                        Select Province
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template></v-autocomplete
+                    >
+                  </v-col>
+                    <v-col cols="6" md="6" class="pb-1">
+                      <v-select
+                      v-model="item.barangay_id"
+                      :items="barangayItems"
+                      label="Select Barangay"
+                      item-text="barangay_name"
+                      item-value="barangay_id"
+                      dense
+                      @change="getAdjacentSubdivisionWithoutPagination(item)"
+                      ><template #label>
+                        Select Barangay
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template></v-select
+                    >
+                    </v-col>
+                </v-row>
                 <v-row class="mx-auto d-flex">
                   <v-col cols="12" md="12" class="pb-1">
                     <v-autocomplete
@@ -242,6 +272,7 @@
                       small-chips
                       @keypress="acceptNotCharacter"
                     ></v-autocomplete>
+
                   </v-col>
                 </v-row>
               </v-form>

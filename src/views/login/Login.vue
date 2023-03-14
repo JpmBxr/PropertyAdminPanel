@@ -162,7 +162,7 @@
         <v-col class="primary py-4 text-center white--text" cols="12">
           {{ new Date().getFullYear() }} —
           <strong>{{ CompanyName }}</strong>|
-        <strong> Version: 1.0.1.4 </strong>
+        <strong> Version: 1.0.1.7 </strong>
         </v-col>
       </v-row>
     </v-footer>

@@ -40,6 +40,7 @@ export const addProperty = {
           : null,
       isDomainVisible: false,
       isAgentVisible: false,
+      isSellerVisible:true,
       featureItems: ["No", "Yes"],
       furnishing: this.propertyDataProps != null
         ? this.propertyDataProps.furnishing
@@ -47,7 +48,7 @@ export const addProperty = {
 
       salePriceAsked:
         this.propertyDataProps != null
-          ? this.propertyDataProps.price_asked
+          ? this.propertyDataProps.price_asked.toFixed(2)
           : null,
       landArea:
         this.propertyDataProps != null
@@ -250,7 +251,7 @@ export const addProperty = {
       userType:
         this.propertyDataProps != null
           ? this.propertyDataProps.user_type
-          : null,
+          : secureLS.get(Global.roleId),
       dateModifiedOperator:
         this.propertyDataProps != null
           ? this.propertyDataProps.date_modified_operator
@@ -307,6 +308,7 @@ export const addProperty = {
           "value": "Suspended"
         },
       ],
+      isDwellingVisible:"",
 
       townItems: [],
       provinceItems: [],
@@ -340,7 +342,7 @@ export const addProperty = {
           : '',
       dateSoldSwitchOn: this.propertyDataProps != null
         ? this.propertyDataProps.date_sold
-        : '',
+        : null,
       activedateSwitchOn: this.propertyDataProps != null
         ? this.propertyDataProps.active_property_date_limit
         : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
@@ -424,9 +426,11 @@ export const addProperty = {
       var endDate = new Date(this.date.getFullYear(), this.date.getMonth() + 12, 10);
       return endDate.toISOString().slice(0, 10)
     }
+    
   },
 
   async created() {
+   
     //get broker
     this.getBroker();
     //get agent
@@ -450,10 +454,19 @@ export const addProperty = {
     if (this.propertyDataProps != null) {
       this.isAgentVisible = true;
       this.isDomainVisible = true;
+
+      if(this.userType == 'Individual'){
+        this.isSellerVisible=false;
+      }
+
+      
       this.changeProvince();
       this.changeTown();
       this.changeBarangay();
     }
+  
+
+    
     //get Status
 
 
@@ -461,6 +474,20 @@ export const addProperty = {
 
   methods: {
     //get broker without pagination
+
+    pricePerSqmfill(){   
+   
+     this.salePriceAsked = Number(this.salePriceAsked).toFixed(2);
+     if(this.landArea!=null){
+     this.pricePerSqm =Number(this.salePriceAsked/this.landArea).toFixed(2);
+    }
+    else{
+      this.pricePerSqm=0;
+    }
+ 
+    },
+
+ 
     getBroker() {
 
       this.isLoaderActive = true;
@@ -570,6 +597,7 @@ export const addProperty = {
           this.isLoaderActive = false;
 
           this.propertyTypeItems = response.data.resultData;
+          console.log("property type change",this.propertyTypeItems)
         })
         .catch((error) => {
           this.isLoaderActive = false;
@@ -580,6 +608,29 @@ export const addProperty = {
             Global.showErrorAlert(true, "error", "Something went wrong");
           }
         });
+    },
+    DwellingPanel(){
+ 
+  this.isLoaderActive = true;
+  ApiService.get("GetDwellingWithoutPagination", {
+    typeId:this.propertyType
+  })
+    .then((response) => {
+      this.isLoaderActive = false;
+
+      this.isDwellingVisible = response.data.resultData[0].dwelling_type;
+     console.log("Dwelling",this.isDwellingVisible)
+    })
+    .catch((error) => {
+      this.isLoaderActive = false;
+      if (
+        error.response.status != 401 &&
+        error.response.status != 403
+      ) {
+        Global.showErrorAlert(true, "error", "Something went wrong");
+      }
+    });
+  
     },
     // get product category
     getProductCategory() {
@@ -709,7 +760,7 @@ export const addProperty = {
     // add Property
     addEditItem() {
 
-      console.log(this.$refs.holdingFormAddEdit.validate());
+      console.log(this.$refs.holdingFormAddEdit.value);
       if (this.$refs.holdingFormAddEdit.validate()) {
         if (this.isAddEdit && this.propertyDataProps == null) {
           // save
@@ -904,12 +955,13 @@ export const addProperty = {
               }
             });
         }
-      } else {
-        this.pnlSettings = [0, 1, 2, 3, 4]
+      } else {    
+        this.pnlSettings=[0,1,2,3,4]
         Global.showErrorAlert(
           true,
           "error",
-          "Missing Information In One Or More Tabs"
+          "Missing Information In One Or More Tabs",
+       
         );
       }
     },

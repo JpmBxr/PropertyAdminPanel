@@ -104,7 +104,7 @@
                 class="white--text my-auto mr-1 ml-3 d-md-none"
                 @click="
                   isAddEdit = true;
-                  showAddEditDialog(null);
+                  showAddEditDialog(item);
                 "
               >
                 <v-icon>mdi-plus-circle</v-icon>
@@ -215,10 +215,11 @@
                       v-model="item.town_id"
                       :items="townItems"
                       label="Select Town"
-                      item-text="townProvince"
+                      item-text="town_name"
                       item-value="town_id"
                       :rules="validationRulesRequired"
                       dense
+                      @change="getProvinceWithoutPagination"
                     >
                       <template #label>
                         Select Town
@@ -232,7 +233,7 @@
 
                 <v-row class="mx-auto d-flex" dense>
                   <v-col cols="12" md="12" class="pb-1">
-                    <v-select
+                    <v-autocomplete
                       v-model="item.province_id"
                       :items="provinceItems"
                       label="Select Province"
@@ -240,12 +241,13 @@
                       item-text="province_name"
                       item-value="province_id"
                       dense
+                      @change="getBarangayWithoutPagination(item)"
                       ><template #label>
                         Select Province
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
-                      </template></v-select
+                      </template></v-autocomplete
                     >
                   </v-col>
                 </v-row>
@@ -280,6 +282,7 @@
                       chips
                       small-chips
                       @keypress="acceptNotCharacter"
+
                     ></v-autocomplete>
                   </v-col>
                 </v-row>

@@ -242,7 +242,14 @@
                       label="House/Lot Number"
                       v-model="item.house_number"
                       hide-details="auto"
+                      :rules="validationRulesRequired"
                     >
+                    <template #label>
+                        House lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" sm="12">
@@ -365,8 +372,14 @@
                       label="Zip Code"
                       v-model="item.zip_code"
                       hide-details="auto"
-                      :rules="validationRules_zipCode4DigitOptional"
+                      :rules="validationRules_zipCodeWithMax6Char"
                     >
+                    <template #label>
+                       Zip Code
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-text-field>
                   </v-col>
                   

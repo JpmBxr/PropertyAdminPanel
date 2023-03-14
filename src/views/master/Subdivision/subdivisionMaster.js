@@ -115,8 +115,10 @@ export const subdivisionMaster = {
   },
 
   created() {
+    this.getProvinceWithoutPagination();
+    this.getTownWithoutPagination();
     this.getBarangayWithoutPagination();
-    this.getAdjacentSubdivisionWithoutPagination();
+  
     this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   computed: {
@@ -141,9 +143,45 @@ export const subdivisionMaster = {
   },
 
   methods: {
+    getTownWithoutPagination() {
+    
+      this.isLoaderActive = true;
+      ApiService.get("GetTownWithoutPagination", {})
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.townItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
+    getProvinceWithoutPagination() {
+      this.isLoaderActive = true;
+      ApiService.get("GetProvinceWithoutPagination", {
+        provinceId:this.item.town_id
+      })
+        .then((response) => {
+          this.isLoaderActive = false;
+
+          this.provinceItems = response.data.resultData;
+        })
+        .catch((error) => {
+          this.isLoaderActive = false;
+          if (error.response.status != 401 && error.response.status != 403) {
+            Global.showErrorAlert(true, "error", "Something went wrong");
+          }
+        });
+    },
     getBarangayWithoutPagination() {
       this.isLoaderActive = true;
-      ApiService.get("GetBarangayWithoutPagination", {})
+      ApiService.get("GetBarangayForSubdivisionWithoutPagination", {
+        townId:this.item.town_id,
+        provinceId:this.item.province_id,
+      })
         .then((response) => {
           this.isLoaderActive = false;
           this.barangayItems = response.data.resultData;
@@ -156,9 +194,23 @@ export const subdivisionMaster = {
         });
     },
 
-    getAdjacentSubdivisionWithoutPagination() {
+    getAdjacentSubdivisionWithoutPagination(item) {
+      if (item != null ) {
+        console.log("Barangay Id",item.barangay_id)
+        console.log("Town Id",item.town_id)
+        console.log("Province Id",item.province_id)
+        this.item.town_id= item.town_id;
+        this.item.province_id= item.province_id;
+        this.item.barangay_id = item.barangay_id;
+      
+       
+      }
       this.isLoaderActive = true;
-      ApiService.get("GetAdjacentSubdivisionWithoutPagination", {})
+      ApiService.get("GetAdjacentSubdivisionWithoutPagination", {
+        townId:this.item.town_id,
+        provinceId:this.item.province_id,
+        barangayId:this.item.barangay_id,
+      })
         .then((response) => {
           this.isLoaderActive = false;
 
@@ -211,7 +263,7 @@ export const subdivisionMaster = {
 
     //show add edit dialog
     showAddEditDialog(item) {
-      this.getAdjacentSubdivisionWithoutPagination();
+      this.getAdjacentSubdivisionWithoutPagination(item);
       if (item == null && this.isAddEdit == true) {
         this.addEditText = `Add New ${this.entity}`;
         this.addEditDialog = true;
@@ -240,6 +292,7 @@ export const subdivisionMaster = {
     addEditItem() {
       if (this.$refs.holdingFormAddEdit.validate()) {
         if (this.isAddEdit) {
+        
           // save
           let payload = {
             subdivision_name: this.item.subdivision_name,
@@ -247,7 +300,12 @@ export const subdivisionMaster = {
             town_id: this.item.town_id,
             province_id: this.item.province_id,
             zip_code: this.item.zip_code,
-            adjacent_subdivision: this.item.adjacent_subdivision_id.join(),
+            
+         
+            adjacent_subdivision:
+            this.item.adjacent_subdivision_id != null
+              ? this.item.adjacent_subdivision_id.join()
+              : null,
             created_by: Global.loggedInUser,
           };
           this.isDialogLoaderActive = true;
@@ -270,6 +328,7 @@ export const subdivisionMaster = {
             });
         } else {
           // update
+       
           let payload = {
             subdivision_id: this.item.subdivision_id,
             subdivision_name: this.item.subdivision_name,

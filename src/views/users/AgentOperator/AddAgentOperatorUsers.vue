@@ -27,9 +27,21 @@
                   <v-icon>mdi-chevron-right</v-icon>
                   {{ entity }}</v-list-item-subtitle
                 >
+                
               </v-list-item-content>
             </v-list-item>
+            
           </v-toolbar-title>
+          <v-btn
+            class="white--text primary-button  mt-6"
+            @click="
+                  
+                  showUserPage(null);
+                "
+          >
+            Back
+            <v-icon right dark> mdi-arrow-left </v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
           <v-btn
             class="white--text primary-button mx-0 mr-4 mt-4"
@@ -55,9 +67,9 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
                 <v-row class="mt-4">
-                  <v-col cols="12" md="3" sm="12">
-                    <v-autocomplete
-                  
+                  <v-col cols="12" md="3" sm="12"  v-if="readonlyUserType==true">
+                    <v-autocomplete  
+                     readonly
                       v-model="UserType"
                       :items="userTypeItems"
                       :disabled="isItemLoading"
@@ -71,6 +83,32 @@
                       label="Select User Type"
                       @change="changeUserType"
                       return-object
+                    
+                    >
+                      <template #label>
+                        Select User Type
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
+                  <v-col  v-if="readonlyUserType==false" >
+                    <v-autocomplete  
+                      v-model="UserType"
+                      :items="userTypeItems"
+                      :disabled="isItemLoading"
+                      item-text="name"
+                      item-value="id"
+                      dense
+                      chips
+                      :rules="validationRulesRequired"
+                      @keypress="acceptNotCharacter"
+                      small-chips
+                      label="Select User Type"
+                      @change="changeUserType"
+                      return-object
+                    
                     >
                       <template #label>
                         Select User Type
@@ -106,6 +144,7 @@
                       v-model="reasonInactive"
                       :rules="validationRulesRequired"
                       hide-details="auto"
+                      autocomplete="new"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -118,6 +157,7 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptCharacterWithSpace"
                       hide-details="auto"
+                      autocomplete="new"
                     >
                       <template #label>
                         First Name
@@ -135,6 +175,7 @@
                       :rules="validationRulesRequired"
                       @keypress="acceptCharacterWithSpace"
                       hide-details="auto"
+                      autocomplete="new"
                     >
                       <template #label>
                         Last Name
@@ -150,6 +191,7 @@
                       label="Nick Name"
                       v-model="nickName"
                       hide-details="auto"
+                      autocomplete="new"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -162,6 +204,7 @@
                       v-model="email"
                       :rules="validationRules_email"
                       hide-details="auto"
+                      autocomplete="new"
                     >
                       <template #label>
                         Email
@@ -180,6 +223,7 @@
                       :rules="validationRules_mobile"
                       hide-details="auto"
                       maxlength="12"
+                      autocomplete="new"
                     >
                       <template #label>
                         Primary Phone
@@ -198,7 +242,20 @@
                       v-model="phone2"
                       hide-details="auto"
                       maxlength="12"
+                      autocomplete="new"
                     ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12" md="12" sm="12">
+                    <v-textarea
+                      v-model="profileStatement"
+                      filled
+                      label="Profile Statement"
+                      auto-grow
+                      placeholder="Profile Statement - Up to 100 words"
+                    ></v-textarea>
                   </v-col>
                 </v-row>
 
@@ -287,7 +344,12 @@
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     >
-                
+                    <template #label>
+                      House/Lot Number
+                        <span class="red--text">
+                          <strong>*</strong>
+                        </span>
+                      </template>
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" sm="12">
@@ -448,7 +510,7 @@
 
        
 
-            <v-expansion-panel>
+            <v-expansion-panel v-if="isAgentOperator">
               <v-expansion-panel-header class="grey lighten-3">
                 <div>
                   <v-icon color="success" class="mr-4"
@@ -495,17 +557,7 @@
                   </v-col>
                 </v-row>
 
-                <v-row>
-                  <v-col cols="12" md="12" sm="12">
-                    <v-textarea
-                      v-model="profileStatement"
-                      filled
-                      label="Profile Statement"
-                      auto-grow
-                      placeholder="Profile Statement - Up to 100 words"
-                    ></v-textarea>
-                  </v-col>
-                </v-row>
+            
               </v-expansion-panel-content>
             </v-expansion-panel>
 

@@ -222,20 +222,22 @@
 
                 <v-row class="mx-auto d-flex" dense>
                   <v-col cols="12" md="12" class="pb-1">
-                    <v-select
+                    <v-autocomplete
                       v-model="item.province_id"
                       :items="provinceItems"
                       item-text="province_name"
                       item-value="province_id"
-                      dense
+                      dense  
                       :rules="validationRulesRequired"
+                      @change="getAdjacentTownWithoutPagination(item)"
+
                     >
                       <template #label>
                         Select Province
                         <span class="red--text">
                           <strong>*</strong>
                         </span>
-                      </template></v-select
+                      </template></v-autocomplete
                     >
                   </v-col>
                 </v-row>

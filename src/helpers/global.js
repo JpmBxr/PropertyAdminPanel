@@ -3,23 +3,23 @@ import Swal from "sweetalert2";
 import { ApiService } from "../helpers/apiService";
 export const Global = {
   //Development Url Environment
-  appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
-  profileImageUrl:
-    "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
+   appBaseUrl: "https://mgtspe.dreamplesk.com/public/api/",
+   profileImageUrl:
+     "https://mgtspe.dreamplesk.com/public/storage/profile_images/",
   propertyImageUrl:
     "https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/",
-  previewProperty: "https://pecustomer.dreamplesk.com/public/singleproperty/",
-  featuredagent: "https://mgtspe.dreamplesk.com/public/uploads/featuredagent/images/",
+   previewProperty: "https://pecustomer.dreamplesk.com/singleproperty/",
+   featuredagent: "https://mgtspe.dreamplesk.com/public/uploads/featuredagent/images/",
 
 
   // Testing Url Environment
-    // appBaseUrl: "https://peapiuat.dreamplesk.com/api/",
-    // profileImageUrl:
-    //   "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
-    // propertyImageUrl:
-    //   "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
-    // featuredagent: "https://peapiuat.dreamplesk.com/public/uploads/featuredagent/images/",
-    // previewProperty: "https://pecustomeruat.dreamplesk.com/singleproperty/",
+  //  appBaseUrl: "https://peapiuat.dreamplesk.com/api/",
+  //  profileImageUrl:
+  //    "https://peapiuat.dreamplesk.com/public/storage/profile_images/",
+  //  propertyImageUrl:
+  //    "https://peapiuat.dreamplesk.com/public/uploads/featuredproperty/images/",
+  //  featuredagent: "https://peapiuat.dreamplesk.com/public/uploads/featuredagent/images/",
+  // previewProperty: "https://pecustomeruat.dreamplesk.com/singleproperty/",
     
 
     //Client env

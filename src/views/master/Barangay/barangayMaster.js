@@ -6,7 +6,10 @@ export const barangayMaster = {
   mixins: [validationMixin],
   data() {
     return {
+      // myTown :this.item.town_id!=null?item.town_id:this.item.town_id,
+      // myProvince: this.item.province_id!=null?item.province_id:this.item.province_id,
       //newly added
+  
       isLoaderActive: false,
       isDialogLoaderActive: false,
       totalItemsInDB: 0,
@@ -131,17 +134,21 @@ export const barangayMaster = {
     },
   },
    created() {
+   
     this.getProvinceWithoutPagination();
     this.getTownWithoutPagination();
-    this.getBarangayWithoutPagination();
+   
     this.$laravel.setPermissions(this.userPermissionDataProps);
   },
   methods: {
     // fetch roles
 
     getProvinceWithoutPagination() {
+   
       this.isLoaderActive = true;
-      ApiService.get("GetProvinceWithoutPagination", {})
+      ApiService.get("GetProvinceWithoutPagination", {
+        provinceId:this.item.town_id
+      })
         .then((response) => {
           this.isLoaderActive = false;
 
@@ -155,8 +162,9 @@ export const barangayMaster = {
         });
     },
     getTownWithoutPagination() {
+    
       this.isLoaderActive = true;
-      ApiService.get("getTownProvinceDetails", {})
+      ApiService.get("GetTownWithoutPagination", {})
         .then((response) => {
           this.isLoaderActive = false;
 
@@ -169,9 +177,18 @@ export const barangayMaster = {
           }
         });
     },
-    getBarangayWithoutPagination() {
+    getBarangayWithoutPagination(item) {
+      if (item != null ) {
+        this.item.province_id = item.province_id;
+        this.item.town_id =item.town_id;
+        this.item.barangay_id= item.barangay_id;
+      }
       this.isLoaderActive = true;
-      ApiService.get("GetBarangayWithoutPagination", {})
+      ApiService.get("GetAdjacentBarangayWithoutPagination", {
+        townId:this.item.town_id,
+        provinceId:this.item.province_id,
+        barangayId:this.item.barangay_id
+      })
         .then((response) => {
           this.isLoaderActive = false;
 
@@ -186,6 +203,7 @@ export const barangayMaster = {
     },
 
     get() {
+    
       let { page, itemsPerPage, sortDesc, sortBy } = this.pagination;
       sortDesc = sortDesc.length > 0 && sortDesc[0] ? "desc" : "asc";
       sortBy = sortBy.length == 0 ? "barangay_name" : sortBy[0];
@@ -211,6 +229,7 @@ export const barangayMaster = {
             Global.showErrorAlert(true, "error", "Something went wrong");
           }
         });
+     
     },
     // search
     searchInfo() {
@@ -222,21 +241,29 @@ export const barangayMaster = {
 
     //show add edit dialog
    showAddEditDialog(item) {
-      this.getBarangayWithoutPagination();
+    console.log(item);
+   
+      this.getBarangayWithoutPagination(item);
+    
+   
       if (item == null && this.isAddEdit == true) {
         this.addEditText = `Add New ${this.entity}`;
         this.addEditDialog = true;
         this.addUpdateButtonText = " Add ";
+   
       } else {
+  
         if (typeof item.adjacent_barangay_id == "string") {
           item.adjacent_barangay_id = item.adjacent_barangay_id
             .split(",")
             .map((item) => parseInt(item, 10));
+          
         }
         this.item = Object.assign({}, item);
         this.addEditText = `Edit ${this.entity} : ` + item.barangay_name;
         this.addEditDialog = true;
         this.addUpdateButtonText = "Update";
+     
       }
     },
 
@@ -248,7 +275,8 @@ export const barangayMaster = {
     },
 
     // add edit role
-    addEditItem() {
+    addEditItem(item) {
+      
       if (this.$refs.holdingFormAddEdit.validate()) {
         if (this.isAddEdit) {
           // save
@@ -283,7 +311,7 @@ export const barangayMaster = {
             });
         } else {
           // update
-
+          // this.item.city_id = item.city_id;
           let payload = {
             barangay_id: this.item.barangay_id,
             barangay_name: this.item.barangay_name,
@@ -291,9 +319,10 @@ export const barangayMaster = {
             province_id: this.item.province_id,
             zip_code: this.item.zip_code,
             adjacent_barangay_id:
-              this.item.adjacent_barangay_id != null
+            this.item.adjacent_barangay_id != null
                 ? this.item.adjacent_barangay_id.join()
                 : null,
+          
             updated_by: Global.loggedInUser,
             barangay_status:
               this.item.barangay_status == "Active" ? "Active" : "Inactive",
@@ -336,7 +365,7 @@ export const barangayMaster = {
           zip_code: item.zip_code,
           adjacent_barangay_id: item.adjacent_barangay_id,
           barangay_status:
-            item.barangay_status == "Active" ? "Active" : "Inactive",
+          item.barangay_status == "Active" ? "Active" : "Inactive",
           updated_by: Global.loggedInUser,
         };
         this.isLoaderActive = true;

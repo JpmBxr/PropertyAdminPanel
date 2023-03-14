@@ -597,7 +597,7 @@
       </perfect-scrollbar>
 
       <v-col class="text-center" cols="12">
-        <strong> Version: 1.0.1.4 </strong></v-col
+        <strong> Version: 1.0.1.7 </strong></v-col
       >
     </v-navigation-drawer>
 
@@ -646,14 +646,15 @@
             >
               <v-icon>mdi-bell</v-icon>
             </v-badge>
+            
           </v-btn>
 
-          <v-list-item-content class="initials">
-              <v-list-item-title>
-                <h3>{{ loggedUserFullName }}</h3>
-              </v-list-item-title>
-          <v-list-item-subtitle> {{ roleName }} </v-list-item-subtitle>
-          </v-list-item-content>
+             <v-list-item-content class="text-right">
+                <v-list-item-title >
+                  <h5>{{ loggedUserFullName }}</h5>
+                </v-list-item-title>
+                <v-list-item-subtitle> {{ roleName }} </v-list-item-subtitle>
+              </v-list-item-content>
         </template>
 
         <v-card max-width="550" class="mx-auto" v-if="unreadNotifiction > 0">
@@ -764,12 +765,7 @@
                >
               </v-avatar>
 
-              <v-list-item-content>
-                <v-list-item-title class="m-0 p-o">
-                  <h5>{{ loggedUserFullName }}</h5>
-                </v-list-item-title>
-                <v-list-item-subtitle> {{ roleName }} </v-list-item-subtitle>
-              </v-list-item-content>
+          
             </v-list-item>
           </v-list>
 
@@ -946,7 +942,7 @@
     <v-footer padless fixed class="text-center">
       <v-col class="text-center" cols="12">
         Powered by <strong>{{ CompanyName }}</strong> |
-        <strong> Version: 1.0.1.4 </strong>
+        <strong> Version: 1.0.1.7 </strong>
       </v-col>
     </v-footer>
   </v-app>

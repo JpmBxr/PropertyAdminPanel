@@ -49,9 +49,18 @@ export const validationMixin = {
       ],
       //Zip Code 4 digit
       validationRules_upto2Decimal: [
-        (v) => !!v || "Field Is Required",
-        (v) => /^\d+(\.\d{1,2})?$/.test(v) || "Please provide Value upto 2 Decimal",
+    
+        (v) => {
+          if (v) {
+            return (
+              /^\d+(\.\d{1,2})?$/.test(v) || "Please provide Value upto 2 Decimal"
+            );
+          } else {
+            return true;
+          }
+        },
       ],
+      
       validationRules_upto2DecimalBuildingArea: [
         (v) => {
           if (v) {
